@@ -1,0 +1,31 @@
+digraph {
+	graph [path="/Users/amnesia/PycharmProjects/into-the-multiverse_fin/venv/bin/graphviz"]
+	sub01 [label=sub01]
+	"" -> sub01
+	sub01_run01 [label=run01]
+	sub01 -> sub01_run01
+	sub01_run01_fmrifreq [label=fmrifreq]
+	sub01_run01 -> sub01_run01_fmrifreq
+	sub01_run01_fmrislope [label=fmrislope]
+	sub01_run01 -> sub01_run01_fmrislope
+	sub01_run02 [label=run02]
+	sub01 -> sub01_run02
+	sub01_run02_fmrifreq [label=fmrifreq]
+	sub01_run02 -> sub01_run02_fmrifreq
+	sub01_run02_fmrislope [label=fmrislope]
+	sub01_run02 -> sub01_run02_fmrislope
+	sub02 [label=sub02]
+	"" -> sub02
+	sub02_run01 [label=run01]
+	sub02 -> sub02_run01
+	sub02_run01_fmrifreq [label=fmrifreq]
+	sub02_run01 -> sub02_run01_fmrifreq
+	sub02_run01_fmrislope [label=fmrislope]
+	sub02_run01 -> sub02_run01_fmrislope
+	sub02_run02 [label=run02]
+	sub02 -> sub02_run02
+	sub02_run02_fmrifreq [label=fmrifreq]
+	sub02_run02 -> sub02_run02_fmrifreq
+	sub02_run02_fmrislope [label=fmrislope]
+	sub02_run02 -> sub02_run02_fmrislope
+}
