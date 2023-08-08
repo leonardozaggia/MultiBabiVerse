@@ -14,7 +14,7 @@ import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 # %% ------------------------------------------------------------------
-# ##                WORKING DATA EXTRACTION
+# ##                     DATA 
 # ## ------------------------------------------------------------------
 
 def get_data(path):
@@ -79,11 +79,6 @@ def get_data(path):
                         df["ts"].append(time_series)
     return df                 
 
-
-# %% ------------------------------------------------------------------
-# ##                LOAD AND PAIR GESTATIONAL AGE
-# ## ------------------------------------------------------------------
-
 def pair_age(data, path, clean = False):
 
     #directory_path = os.path.dirname(path)
@@ -109,6 +104,22 @@ def pair_age(data, path, clean = False):
         data = df.to_dict("list")
     return data
 
+def split_data(data, SUBJECT_COUNT_SPACE = 51, SUBJECT_COUNT_PREDICT = 199, SUBJECT_COUNT_LOCKBOX = 51):
+    df = pd.DataFrame(data)                          # use pandas to facilitate permutation process
+    shuffled_df = df.sample(frac=1, random_state=2)  # Set random_state for reproducibility
+    df_space = shuffled_df[: SUBJECT_COUNT_SPACE]
+    df_predict = shuffled_df[SUBJECT_COUNT_SPACE: (SUBJECT_COUNT_SPACE + SUBJECT_COUNT_PREDICT) ]
+    df_lockbox = shuffled_df[(SUBJECT_COUNT_SPACE + SUBJECT_COUNT_PREDICT):]
+    # Convert back to the proper dictionary format
+    data_space = df_space.to_dict("list")
+    data_predict = df_predict.to_dict("list")
+    data_lockbox = df_lockbox.to_dict("list")
+    return data_space, data_predict, data_lockbox
+
+
+# %% ------------------------------------------------------------------
+# ##                LOAD AND PAIR GESTATIONAL AGE
+# ## ------------------------------------------------------------------
 
 # %% ------------------------------------------------------------------
 # ##                MULTIVERSE BUILDING BLOCKS
@@ -186,9 +197,6 @@ def get_1_connectivity(sub_data, connect_met, p = False):
 
     return connectivity
 
-
-
-
 # GSR
 def fork_noGSR(sub):
     return sub
@@ -250,7 +258,7 @@ def new_mv(d):
 
     BCT_models       = {
         'local efficiency': bct.efficiency_bin,                     # segregation measure
-        'modularity (louvain)': bct.modularity_und_louvain_sign,         # segregation measure
+        'modularity (louvain)': bct.modularity_louvain_und_sign,         # segregation measure
         'modularity (probtune)': bct.modularity_probtune_und_sign,  # segregation measure
         'betweennness centrality': bct.betweenness_bin,             # integration measure
         }
@@ -442,7 +450,7 @@ def neg_zero(f):
 
 # %% Extra
 
-def play_monumental_sound(sound_path):
+def end_of_processing(sound_path):
     pygame.mixer.init()
     pygame.mixer.music.load(sound_path)
     pygame.mixer.music.play()
