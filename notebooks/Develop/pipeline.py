@@ -294,7 +294,7 @@ def new_mv(d):
     Data_Run         = {}
     GroupSummary     = {}
     Results = np.zeros(((n_w * n_n * n_t * n_c * n_b * n_g), n_ROIs))
-    ResultsIndVar = np.zeros(((n_w * n_n * n_t * n_c * n_b * n_g), 45150))
+    ResultsIndVar = np.zeros(((n_w * n_n * n_t * n_c * n_b * n_g), 1275))               #TODO: soft code it (sub_num(51) * 25(?))
     count = 0
 
     with tqdm(range(n_w * n_n * n_t * n_c * n_b * n_g)) as pbar:
