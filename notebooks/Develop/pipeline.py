@@ -368,15 +368,15 @@ def new_mv(d):
     return ModelsResults 
 
 def analysis_space(BCT_Num, BCT_models, x, weight):
-    if (BCT_Num == 'local efficiency' & (weight == "binarize")):
+    if (BCT_Num == 'local efficiency' and (weight == "binarize")):
         ss = BCT_models[BCT_Num](x,1)
-    elif (BCT_Num == 'local efficiency' & (weight == "normalize")):
+    elif (BCT_Num == 'local efficiency' and (weight == "normalize")):
         ss = bct.efficiency_wei(x,1)
     elif BCT_Num == 'modularity (louvain)':
         ss, _ = BCT_models[BCT_Num](x, seed=2)
     elif BCT_Num == 'modularity (probtune)':
         ss, _ = BCT_models[BCT_Num](x, seed=2)
-    elif BCT_Num == 'betweennness centrality' & ((weight == "normalize")):
+    elif BCT_Num == 'betweennness centrality' and ((weight == "normalize")):
         x = bct.weight_conversion(x,'lengths')
         ss = bct.betweenness_wei(x)
     else:
