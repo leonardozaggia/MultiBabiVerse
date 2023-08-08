@@ -445,16 +445,20 @@ def objective_func_reg(TempModelNum, Y, Sparsities_Run, Data_Run, BCT_models, BC
         tmp = Neg["neg_opt"](f)                                         # address negative values
         tmp = bct.weight_conversion(tmp, weight)                        # binarization - normalization
         x = bct.threshold_proportional(tmp, TempThreshold, copy=True)   # thresholding - prooning weak connections
-        if BCT_Num == 'local efficiency':
-            ss = BCT_models[BCT_Num](x, 1);
+        if (BCT_Num == 'local efficiency' and (weight == "binarize")):
+            ss = BCT_models[BCT_Num](x,1)
+        elif (BCT_Num == 'local efficiency' and (weight == "normalize")):
+            ss = bct.efficiency_wei(x,1)
         elif BCT_Num == 'modularity (louvain)':
-            temp = BCT_models[BCT_Num](x);
-            ss = temp[0]
+            ss, _ = BCT_models[BCT_Num](x, seed=2)
         elif BCT_Num == 'modularity (probtune)':
-            temp = BCT_models[BCT_Num](x);
-            ss = temp[0]
+            ss, _ = BCT_models[BCT_Num](x, seed=2)
+        elif BCT_Num == 'betweennness centrality' and ((weight == "normalize")):
+            x = bct.weight_conversion(x,'lengths')
+            ss = bct.betweenness_wei(x)
         else:
             ss = BCT_models[BCT_Num](x)
+    
         #For each subject for each approach keep the 52 regional values.
         TempResults[SubNum, :] = ss
 
