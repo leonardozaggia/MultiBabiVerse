@@ -22,7 +22,7 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 
 # %% ------------------- DATA HANDLING -------------------
 # defining relevant paths
-ring_bell_path = '/Users/amnesia/Desktop/Master_Thesis/root_dir/data/mixkit-cartoon-laugh-voice-2882.wav'
+ring_bell_path = '/Users/amnesia/Desktop/Master_Thesis/root_dir/end_processing_signal/handy-introduction-022-glbml-21786.mp3'
 path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/pipeline_timeseries"
 age_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/combined.tsv"
 # import time series and ID

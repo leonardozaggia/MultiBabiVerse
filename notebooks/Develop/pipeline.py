@@ -258,7 +258,7 @@ def new_mv(d):
 
     BCT_models       = {
         'local efficiency': bct.efficiency_bin,                     # segregation measure
-        'modularity (louvain)': bct.modularity_louvain_und_sign,         # segregation measure
+        'modularity (louvain)': bct.modularity_louvain_und_sign,    # segregation measure
         'modularity (probtune)': bct.modularity_probtune_und_sign,  # segregation measure
         'betweennness centrality': bct.betweenness_bin,             # integration measure
         }
@@ -302,7 +302,7 @@ def new_mv(d):
             temp_dic[G] = {}
             for BCT_Num in BCT_models:
                 temp_dic[G][BCT_Num] = {}                                               # get subject connectivity data 
-                for connectivity in connectivities:                                           # connectivity measure FORK
+                for connectivity in connectivities:                                     # connectivity measure FORK
                     temp_dic[G][BCT_Num][connectivity] = {}
                     for negative_values_approach in neg_options:                        # what-to-do-with negative values FORK
                         temp_dic[G][BCT_Num][connectivity][negative_values_approach] = {}                    
@@ -317,12 +317,12 @@ def new_mv(d):
                                     sub  = data["ts"][idx]
                                     if G == "GSR":
                                         sub = fork_GSR(sub)
-                                    f    = get_1_connectivity(sub, connectivity, sub_idx = idx)
+                                    f    = get_1_connectivity(sub, connectivity)
                                     tmp = []
                                     tmp = neg_corr(negative_values_approach, f)  # address negative values
                                     tmp = bct.threshold_proportional(tmp, treshold, copy = True)# apply sparsity treshold
                                     tmp = bct.weight_conversion(tmp, weight)
-                                    ss   = analysis_space(BCT_Num, BCT_models, tmp)
+                                    ss   = analysis_space(BCT_Num, BCT_models, tmp, weight)
                                     temp_dic[G][BCT_Num][connectivity][negative_values_approach][str(treshold)][weight][data["IDs"][idx]] = deepcopy(tmp)
                                     pipe_c.append(tmp)
                                     pipe_g[idx, :] = ss
@@ -367,15 +367,18 @@ def new_mv(d):
             
     return ModelsResults 
 
-def analysis_space(BCT_Num, BCT_models, x):
+def analysis_space(BCT_Num, BCT_models, x, weight):
     if (BCT_Num == 'local efficiency' & (weight == "binarize")):
         ss = BCT_models[BCT_Num](x,1)
     elif (BCT_Num == 'local efficiency' & (weight == "normalize")):
         ss = bct.efficiency_wei(x,1)
     elif BCT_Num == 'modularity (louvain)':
         ss, _ = BCT_models[BCT_Num](x, seed=2)
-    elif BCT_Num== 'modularity (probtune)':
+    elif BCT_Num == 'modularity (probtune)':
         ss, _ = BCT_models[BCT_Num](x, seed=2)
+    elif BCT_Num == 'betweennness centrality' & ((weight == "normalize")):
+        x = bct.weight_conversion(x,'lengths')
+        ss = bct.betweenness_wei(x)
     else:
         ss = BCT_models[BCT_Num](x)
     return ss

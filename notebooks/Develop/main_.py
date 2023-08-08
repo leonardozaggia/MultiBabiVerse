@@ -5,11 +5,11 @@ from nilearn import plotting
 import nibabel as nib
 from nilearn.datasets import MNI152_FILE_PATH
 import pandas as pd
-from pipeline import get_data, pair_age
+from pipeline import get_data, pair_age, split_data
 from pipeline import get_1_connectivity, get_3_connectivity
 from pipeline import run_mv, new_mv
 from pipeline import fork_GSR
-from pipeline import get_FORKs, print_FORKs
+from pipeline import get_FORKs, print_FORKs, end_of_processing
 import pickle
 
 # Prevent warnings about future nilearn package updates
@@ -19,7 +19,7 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 
 # %% ------------------- DATA HANDLING ---------------------
 # defining relevant paths
-ring_bell_path = '/Users/amnesia/Desktop/Master_Thesis/root_dir/data/mixkit-cartoon-laugh-voice-2882.wav'
+signal_path = '/Users/amnesia/Desktop/Master_Thesis/root_dir/end_processing_signal/handy-introduction-022-glbml-21786.mp3'
 path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/pipeline_timeseries"
 age_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/combined.tsv"
 output_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/outputs"
@@ -31,6 +31,15 @@ data_total = get_data(path = path)
 
 # Pair participants to their gestational age
 data = pair_age(data_total, age_path, clean=True)       # clean parameter removes uncomplete data
+
+# Split the data into 3 sections
+# n° of subjects to build the space: 51
+# n° of subjects to assess the prediction of each pipeline: 199
+# n° of subjects for post analysis validation: 51
+data_space, data_predict, data_lockbox = split_data(data = data,
+                                                    SUBJECT_COUNT_SPACE = 51,
+                                                    SUBJECT_COUNT_PREDICT = 199,  
+                                                    SUBJECT_COUNT_LOCKBOX = 51)
 
 # Get and Display forks we utilize in this multiverse
 BCT_models, neg_options, thresholds, weight_options, graph_measures, connectivities = get_FORKs()
@@ -50,11 +59,9 @@ connectivities = get_3_connectivity(data = data, plot = True, sub_idx = sub_idx)
 # This process is time consuming takes approximately 30h to be completed
 # Pickled data is provided -> for time efficient exploration of this project
 
-"""
-ModelResults = new_mv(data)
-"""
-
-ModelsResults = pickle.load(open(str(output_path + "/" + "ModelsResults.p"), "rb" ) )
+ModelsResults = new_mv(data_space)
+pickle.dump( ModelsResults, open(str(output_path + "/" + "ModelsResults.p"), "wb" ) )
+#ModelsResults = pickle.load(open(str(output_path + "/" + "ModelsResults.p"), "rb" ) )
 print(ModelsResults.keys())
 
 
@@ -230,9 +237,9 @@ gsDE.legend(handles=[OrangePatch, PurplePatch, BlankLine, IntensityPatch1,
             frameon=False, bbox_to_anchor=(1.25, .7))
 
 #save plots locally
-#gsDE.savefig(str(output_path + "/" + 'DifferentEmbeddings&Phate.png'), dpi=300, bbox_inches='tight')
-#gsDE.savefig(str(output_path + "/" +  'DifferentEmbeddings&Phate.svg'), format="svg", bbox_inches='tight')
-gsDE.show()
+gsDE.savefig(str(output_path + "/" + 'DifferentEmbeddings.png'), dpi=300, bbox_inches='tight')
+gsDE.savefig(str(output_path + "/" +  'DifferentEmbeddings.svg'), format="svg", bbox_inches='tight')
+#gsDE.show()
 
 
 
@@ -256,11 +263,10 @@ HatchPatch = {}
 for preprocessing in preprocessings:
     BCTTemp = BCT[Data == preprocessing]
     SparsitiesTemp = Sparsities[Data == preprocessing]
-    ###
     NegativesTemp = Negatives[Data == preprocessing]
     ConnectivitiesTemp = Connectivities[Data == preprocessing]
     WeightsTemp = Weights[Data == preprocessing]
-    ###
+
     YTemp = Y[Data == preprocessing, :]
     for negatives in neg_options:
         for idx_conn, connect in enumerate(connectivities):
@@ -336,10 +342,10 @@ figMDS.legend(handles=[OrangePatch, PurplePatch, BlankLine, IntensityPatch1,
                      LineWidth1, LineWidth2, LineWidth3], fontsize=15,
               frameon=False, bbox_to_anchor=(1.4, 0.8), bbox_transform=axs.transAxes)
 
-#figMDS.savefig(str(output_path + "/" + 'MDSSpace.png'), dpi=300)
-#figMDS.savefig(str(output_path + "/" +  'MDSSpace.svg'), format="svg")
-figMDS.show()
-
+figMDS.savefig(str(output_path + "/" + 'MDSSpace.png'), dpi=300)
+figMDS.savefig(str(output_path + "/" +  'MDSSpace.svg'), format="svg")
+#figMDS.show()
+pickle.dump(data_reduced, open(str(output_path + "/" + "embeddings_.p"), "wb" ) )
 
 # %% ------------------------------------------------------------------------------------
 # ##                             EXHAUSTIVE SEARCH
@@ -369,7 +375,7 @@ from pipeline import neg_abs, neg_keep, neg_zero
 from pipeline import fork_GSR, fork_noGSR
 #from helperfunctions import objective_func_reg
 
-def objective_func_reg(TempModelNum, Y, Sparsities_Run, Data_Run, BCT_models, BCT_Run, Negative_Run, Weight_Run, Connectivity_Run, data):
+def objective_func_reg(TempModelNum, Y, Sparsities_Run, Data_Run, BCT_models, BCT_Run, Negative_Run, Weight_Run, Connectivity_Run, data_predict):
     '''
 
     Define the objective function for the Bayesian optimization.  This consists
@@ -488,6 +494,7 @@ plt.colorbar()
 
 # Dump accuracies
 # todo change pickle.dump if runned again
-pickle.dump(PredictedAcc, open(str(output_path + "/" + 'predictedAcc' + key + '.pckl'), 'wb'))
+pickle.dump(PredictedAcc, open(str(output_path + "/" + 'predictedAcc_' + key + '.pckl'), 'wb'))
 
 # %%
+#end_of_processing(signal_path)
