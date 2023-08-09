@@ -253,7 +253,7 @@ def run_mv(data, neg_options, thresholds, weight_options):
 
     return data
 
-# Run FORKing path - sgregation only
+# Run FORKing path - 3 sgregation, 1 integration
 def new_mv(d):
 
     BCT_models       = {
@@ -366,7 +366,6 @@ def new_mv(d):
                     }
             
     return ModelsResults 
-
 def analysis_space(BCT_Num, BCT_models, x, weight):
     if (BCT_Num == 'local efficiency' and (weight == "binarize")):
         ss = BCT_models[BCT_Num](x,1)
@@ -382,16 +381,112 @@ def analysis_space(BCT_Num, BCT_models, x, weight):
     else:
         ss = BCT_models[BCT_Num](x)
     return ss
+def objective_func_reg(TempModelNum, Y, Sparsities_Run, Data_Run, BCT_models, BCT_Run, Negative_Run, Weight_Run, Connectivity_Run, data):
+    '''
+
+    Define the objective function for the Bayesian optimization.  This consists
+    of the number indicating which model to test, a count variable to help
+    control which subjects are tested, a random permutation of the indices of the
+    subjects, the predictor variables and the actual y outcomes, the number of
+    subjects to include in each iteration
+
+    Parameters
+    ----------
+        TempModelNum: idx of the analysis being run
+        Y: Y variable that will be predicted
+        Sparsities_Run: List of threshold used
+        Data_Run: Data used for creating the space
+        BCT_models: Dictionary containing the list of models used
+        BCT_Run: List containing the order in which the BCT models were run
+        CommunityIDs: Information about the Yeo network Ids
+        data1: Motion Regression functional connectivity data of the subjects
+               that were not used to create the space
+        data2: Global Signal Regression data for the subjects that gridsearch.cv_results['mean_test_score']were not used
+               to create the space
+        ClassOrRegress: Define if it is a classification or regression problem
+        (0: classification; 1 regression)
+
+    Returns
+    -------
+        score: Returns the MAE of the predictions
+    '''
+    # load the correct connectivity for this pipeline    
+    if Connectivity_Run[TempModelNum] == "correlation":
+        Connectivity = "correlation"
+    elif Connectivity_Run[TempModelNum] == "covariance":
+        Connectivity = "covariance"
+    elif Connectivity_Run[TempModelNum] == "partial correlation":
+        Connectivity = "partial correlation"
+    # load the correct neg_values_option for this pipeline
+    if Negative_Run[TempModelNum] == "abs":
+        Neg    = {"neg_opt": neg_abs}
+    elif Negative_Run[TempModelNum] == "keep":        
+        Neg    = {"neg_opt": neg_keep}
+    elif Negative_Run[TempModelNum] == "zero":        
+        Neg    = {"neg_opt": neg_zero}
+    # load the correct weight_option for this pipeline
+    if Weight_Run[TempModelNum] == "binarize":
+        weight = "binarize"
+    else:
+        weight = "normalize"
+    # load the correct preprocessing for this pipeline
+    if Data_Run[TempModelNum] == 'noGSR':
+        prep   = {"preprocessing": fork_noGSR}
+    elif Data_Run[TempModelNum] == 'GSR':        
+        prep   = {"preprocessing": fork_GSR}
+    else:
+        ValueError('This type of pre-processing is not supported')
+    
+    TotalSubjects = len(list(data.values())[0])
+    TotalRegions  = 52
+
+    TempThreshold = Sparsities_Run[TempModelNum]
+    BCT_Num = BCT_Run[TempModelNum]
+
+    TempResults = np.zeros([TotalSubjects, TotalRegions])
+    for SubNum in range(0, TotalSubjects):
+        sub = data["ts"][SubNum]                                        # extract subject
+        sub = prep["preprocessing"](sub)                                # apply preprocessing
+        f   = get_1_connectivity(sub, Connectivity)                     # calculate connectivity
+        tmp = Neg["neg_opt"](f)                                         # address negative values
+        tmp = bct.weight_conversion(tmp, weight)                        # binarization - normalization
+        x = bct.threshold_proportional(tmp, TempThreshold, copy=True)   # thresholding - prooning weak connections
+        if (BCT_Num == 'local efficiency' and (weight == "binarize")):
+            ss = BCT_models[BCT_Num](x,1)
+        elif (BCT_Num == 'local efficiency' and (weight == "normalize")):
+            ss = bct.efficiency_wei(x,1)
+        elif BCT_Num == 'modularity (louvain)':
+            ss, _ = BCT_models[BCT_Num](x, seed=2)
+        elif BCT_Num == 'modularity (probtune)':
+            ss, _ = BCT_models[BCT_Num](x, seed=2)
+        elif BCT_Num == 'betweennness centrality' and ((weight == "normalize")):
+            x = bct.weight_conversion(x,'lengths')
+            ss = bct.betweenness_wei(x)
+        else:
+            ss = BCT_models[BCT_Num](x)
+    
+        #For each subject for each approach keep the 52 regional values.
+        TempResults[SubNum, :] = ss
+
+    X_train, X_test, y_train, y_test = train_test_split(TempResults, Y.ravel(),
+        test_size=.3, random_state=0)
+    model = Pipeline([('scaler', StandardScaler()), ('svr', SVR())])
+    model.fit(X_train, y_train)
+    pred = model.predict(X_test)
+
+    # Note: the scores were divided by 10 in order to keep the values close
+    # to 0 for avoiding problems with the Bayesian Optimisation
+    scores = - mean_absolute_error(y_test, pred)/10
+    return scores
 
 # Get default FORKs
 def get_FORKs():
     
     BCT_models       = {
         'local efficiency': bct.efficiency_bin,                     # segregation measure
-        'modularity (louvain)': bct.modularity_louvain_und,         # segregation measure
+        'modularity (louvain)': bct.modularity_louvain_und_sign,    # segregation measure
         'modularity (probtune)': bct.modularity_probtune_und_sign,  # segregation measure
         'betweennness centrality': bct.betweenness_bin,             # integration measure
-        "global efficiency": bct.efficiency_bin                     # integration measure
         }
 
     graph_measures   = ['local efficiency','modularity (louvain)','modularity (probtune)']#'global efficiency': nx.global_efficiency  
@@ -401,12 +496,10 @@ def get_FORKs():
     connectivities   = ["covariance", "correlation", "partial correlation"]
 
     return BCT_models, neg_options, thresholds, weight_options, graph_measures, connectivities
-
-# Display FORKs
 def print_FORKs():
 
     GSR              = ["GSR, no-GSR"]   
-    graph_measures   = ['local efficiency','modularity (louvain)','modularity (probtune)', 'betweennness centrality', 'global efficiency']#'global efficiency': nx.global_efficiency  
+    graph_measures   = ['local efficiency','modularity (louvain)','modularity (probtune)', 'betweennness centrality']#'global efficiency': nx.global_efficiency  
     weight_options   = ["binarize", "normalize"]
     neg_options      = [ "abs", "zero", "keep"]
     thresholds       = [0.4, 0.3, 0.25, 0.2, 0.175, 0.150, 0.125, 0.1]
@@ -420,22 +513,6 @@ def print_FORKs():
     print("Connectivities:", connectivities)
 
     return 
-
-def get_segregation_FORKs():
-    
-    BCT_models       = {
-        'local efficiency': bct.efficiency_bin,                     # segregation measure
-        'modularity (louvain)': bct.modularity_louvain_und,         # segregation measure
-        'modularity (probtune)': bct.modularity_probtune_und_sign,  # segregation measure
-        }
-
-    graph_measures   = ['local efficiency','modularity (louvain)','modularity (probtune)']#'global efficiency': nx.global_efficiency  
-    weight_options   = ["binarize", "normalize"]
-    neg_options      = [ "abs", "zero", "keep"]
-    thresholds       = [0.4, 0.3, 0.25, 0.2, 0.175, 0.150, 0.125, 0.1]
-    connectivities   = ["covariance", "correlation", "partial correlation"]
-
-    return BCT_models, neg_options, thresholds, weight_options, graph_measures, connectivities
 
 # More eficient functions to speed up exaustive search
 def neg_abs(f):   
