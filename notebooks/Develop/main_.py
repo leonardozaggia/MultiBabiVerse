@@ -235,7 +235,7 @@ gsDE.legend(handles=[OrangePatch, PurplePatch, BlankLine, IntensityPatch1,
 #save plots locally
 gsDE.savefig(str(output_path + "/" + 'DifferentEmbeddings.png'), dpi=300, bbox_inches='tight')
 gsDE.savefig(str(output_path + "/" +  'DifferentEmbeddings.svg'), format="svg", bbox_inches='tight')
-#gsDE.show()
+gsDE.show()
 
 
 
@@ -340,7 +340,7 @@ figMDS.legend(handles=[OrangePatch, PurplePatch, BlankLine, IntensityPatch1,
 
 figMDS.savefig(str(output_path + "/" + 'MDSSpace.png'), dpi=300)
 figMDS.savefig(str(output_path + "/" +  'MDSSpace.svg'), format="svg")
-#figMDS.show()
+figMDS.show()
 pickle.dump(data_reduced, open(str(output_path + "/" + "embeddings_.p"), "wb" ) )
 
 # %% ------------------------------------------------------------------------------------
