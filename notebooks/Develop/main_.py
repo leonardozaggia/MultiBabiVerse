@@ -56,12 +56,12 @@ sub_idx = np.random.randint(0,300)
 connectivities = get_3_connectivity(data = data, plot = True, sub_idx = sub_idx)
 
 # %% ----------------- CREATE THE SPACE -------------------
-# This process is time consuming takes approximately 30h to be completed
+# This process is time consuming takes approximately 10h to be completed
 # Pickled data is provided -> for time efficient exploration of this project
 
-ModelsResults = new_mv(data_space)
-pickle.dump( ModelsResults, open(str(output_path + "/" + "ModelsResults.p"), "wb" ) )
-#ModelsResults = pickle.load(open(str(output_path + "/" + "ModelsResults.p"), "rb" ) )
+#ModelsResults = new_mv(data_space)
+#pickle.dump( ModelsResults, open(str(output_path + "/" + "ModelsResults.p"), "wb" ) )
+ModelsResults = pickle.load(open(str(output_path + "/" + "ModelsResults.p"), "rb" ) )
 print(ModelsResults.keys())
 
 
@@ -87,19 +87,15 @@ from umap import UMAP
 import phate
 from sklearn.decomposition import PCA
 
-
 # Load the previous results
 Results = ModelsResults['ResultsIndVar']
 BCT_Run = ModelsResults['BCT']
 Sparsities_Run = ModelsResults['Sparsities']
 Data_Run = ModelsResults['Data']
 preprocessings = ['GSR', 'noGSR']
-###
 Negative_Run = ModelsResults["Negatives"]           
 Connectivity_Run = ModelsResults["Connectivity"]    
 Weight_Run = ModelsResults["Weights"]               
-###
-
 
 # Scale the data prior to dimensionality reduction
 scaler = StandardScaler()
@@ -360,30 +356,20 @@ from sklearn.gaussian_process import GaussianProcessRegressor
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 """
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_absolute_error
-from sklearn.svm import SVR
-from sklearn.pipeline import Pipeline
+
+from pipeline import objective_func_reg
 from tqdm import tqdm
 import warnings
-import bct
-
 warnings.filterwarnings("ignore")
-
-# Import function to run exhaustive search 
-from pipeline import objective_func_reg
 
 # Load embedding results. This cell is only necessary if you are running this
 # part of the analysis separatly.
 ModelEmbeddings = pickle.load(open(str(output_path + "/" + "embeddings_.p"), "rb"))
-# todo find why model embeddings are missing PCA
+# TODO: find why model embeddings are missing PCA
 key = 'MDS'
 ModelEmbedding = ModelEmbeddings[key]
-
 PredictedAcc   = np.zeros((len(Data_Run)))
-AgesPrediction = np.asanyarray(data["b_age"])
-
-
+AgesPrediction = np.asanyarray(data_predict["b_age"])
 
 for i in tqdm(range(len(Data_Run))):
     tempPredAcc = objective_func_reg(i, AgesPrediction, Sparsities_Run, Data_Run, BCT_models, BCT_Run,
