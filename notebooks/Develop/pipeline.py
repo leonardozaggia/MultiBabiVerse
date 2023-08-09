@@ -186,8 +186,8 @@ def get_1_connectivity(sub_data, connect_met, p = False):
     temp.append(np.zeros((n_timeStamp,n_ROIs)))
     temp[0] = np.array(list(sub_data.values())).T            # getting the ts data of a participant in the format requested by nilearn
 
-    myclass = ConnectivityMeasure(kind = connect_met)
-    connectivity = np.squeeze(myclass.fit_transform(temp))
+    myclass = ConnectivityMeasure(kind = connect_met, )
+    connectivity = np.squeeze(myclass.fit_transform(temp, ))
 
     if p:
         plt.matshow(connectivity, cmap='coolwarm')
@@ -452,8 +452,8 @@ def objective_func_reg(TempModelNum, Y, Sparsities_Run,
         sub = prep["preprocessing"](sub)                                # apply preprocessing
         f   = get_1_connectivity(sub, Connectivity)                     # calculate connectivity
         tmp = Neg["neg_opt"](f)                                         # address negative values
-        tmp = bct.weight_conversion(tmp, weight)                        # binarization - normalization
-        x = bct.threshold_proportional(tmp, TempThreshold, copy=True)   # thresholding - prooning weak connections
+        tmp = bct.threshold_proportional(tmp, TempThreshold, copy=True)   # thresholding - prooning weak connections
+        x = bct.weight_conversion(tmp, weight, copy = True)                        # binarization - normalization
         if (BCT_Num == 'local efficiency' and (weight == "binarize")):
             ss = BCT_models[BCT_Num](x,1)
         elif (BCT_Num == 'local efficiency' and (weight == "normalize")):
@@ -463,7 +463,7 @@ def objective_func_reg(TempModelNum, Y, Sparsities_Run,
         elif BCT_Num == 'modularity (probtune)':
             ss, _ = BCT_models[BCT_Num](x, seed=2)
         elif BCT_Num == 'betweennness centrality' and ((weight == "normalize")):
-            x = bct.weight_conversion(x,'lengths')
+            x = bct.weight_conversion(x,'lengths', copy = True)
             ss = bct.betweenness_wei(x)
         else:
             ss = BCT_models[BCT_Num](x)

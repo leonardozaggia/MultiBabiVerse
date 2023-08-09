@@ -579,11 +579,11 @@ def objective_func_reg(TempModelNum, age, Sparsities_Run,
     #model = Pipeline([('scaler', StandardScaler()), ('svr', SVR())])
     model_linear = MultiOutputRegressor(LinearRegression())
     model_tree =  MultiOutputRegressor(RandomForestRegressor())
-    model_linear.fit(X_train.reshape(-1, 1), y_train)
-    model_tree.fit(X_train.reshape(-1, 1), y_train)
+    model_linear.fit(X_train, y_train)
+    model_tree.fit(X_train, y_train)
 
-    pred_linear = model_tree.predict(X_test.reshape(-1, 1))
-    pred_tree = model_tree.predict(X_test.reshape(-1, 1))
+    pred_linear = model_linear.predict(X_test)
+    pred_tree = model_tree.predict(X_test)
 
     # Note: the scores were divided by 10 in order to keep the values close
     # to 0 for avoiding problems with the Bayesian Optimisation
