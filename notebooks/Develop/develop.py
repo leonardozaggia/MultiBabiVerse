@@ -80,3 +80,23 @@ print(ModelsResults.keys())
 # TODO:  rerun the multiverse 
     # - correct number of participants
     # - with the implemented graph measures
+
+
+%%
+from sklearn.multioutput import MultiOutputRegressor
+from sklearn.linear_model import LinearRegression
+
+# Sample data
+X = [[2.5], [4.0], [3.8]]
+Y = [[3.0, 6.5, 7.2], [4.2, 8.1, 9.0], [3.7, 7.5, 8.2]]
+
+# Create a multi-output regression model with a base Linear Regression model
+model = MultiOutputRegressor(LinearRegression())
+
+# Fit the model
+model.fit(X, Y)
+
+# Predict for new data
+new_X = [[2]]
+predicted_Y = model.predict(new_X)
+print(predicted_Y)

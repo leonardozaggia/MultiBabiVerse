@@ -480,7 +480,7 @@ def objective_func_reg(TempModelNum, Y, Sparsities_Run,
     # Note: the scores were divided by 10 in order to keep the values close
     # to 0 for avoiding problems with the Bayesian Optimisation
     scores = - mean_absolute_error(y_test, pred)/10
-    return scores
+    return scores, TempResults
 
 # Get default FORKs
 def get_FORKs():
