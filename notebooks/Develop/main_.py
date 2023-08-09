@@ -1,14 +1,10 @@
 # %% IMPORTS
 import numpy as np
 import matplotlib.pyplot as plt
-from nilearn import plotting
-import nibabel as nib
 from nilearn.datasets import MNI152_FILE_PATH
-import pandas as pd
 from pipeline import get_data, pair_age, split_data
-from pipeline import get_1_connectivity, get_3_connectivity
-from pipeline import run_mv, new_mv
-from pipeline import fork_GSR
+from pipeline import get_3_connectivity
+from pipeline import new_mv
 from pipeline import get_FORKs, print_FORKs, end_of_processing
 import pickle
 

@@ -1,12 +1,13 @@
 # %% PIPELIINE TESTING
 import os
 import bct
-import pygame
+#import pygame
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
 from copy import deepcopy
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
 from nilearn.connectome import ConnectivityMeasure
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.model_selection import train_test_split
@@ -119,11 +120,6 @@ def split_data(data, SUBJECT_COUNT_SPACE = 51, SUBJECT_COUNT_PREDICT = 199, SUBJ
     data_predict = df_predict.to_dict("list")
     data_lockbox = df_lockbox.to_dict("list")
     return data_space, data_predict, data_lockbox
-
-
-# %% ------------------------------------------------------------------
-# ##                LOAD AND PAIR GESTATIONAL AGE
-# ## ------------------------------------------------------------------
 
 # %% ------------------------------------------------------------------
 # ##                MULTIVERSE BUILDING BLOCKS
@@ -385,7 +381,10 @@ def analysis_space(BCT_Num, BCT_models, x, weight):
     else:
         ss = BCT_models[BCT_Num](x)
     return ss
-def objective_func_reg(TempModelNum, Y, Sparsities_Run, Data_Run, BCT_models, BCT_Run, Negative_Run, Weight_Run, Connectivity_Run, data):
+def objective_func_reg(TempModelNum, Y, Sparsities_Run,
+                       Data_Run, BCT_models, BCT_Run,
+                       Negative_Run, Weight_Run,
+                       Connectivity_Run, data):
     '''
 
     Define the objective function for the Bayesian optimization.  This consists
@@ -534,7 +533,8 @@ def neg_zero(f):
 
 # %% Extra
 
-def end_of_processing(sound_path):
+"""def end_of_processing(sound_path):
     pygame.mixer.init()
     pygame.mixer.music.load(sound_path)
     pygame.mixer.music.play()
+"""
