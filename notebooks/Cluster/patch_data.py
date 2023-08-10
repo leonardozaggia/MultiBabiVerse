@@ -1,0 +1,6 @@
+path = "/gss/work/head3827/root_dir/data/pipeline_timeseries"
+age_path = "/gss/work/head3827/root_dir/data/combined.tsv"
+output_path = "/gss/work/head3827/root_dir/outputs"
+PredictAccs_linear_path = "/gss/work/head3827/root_dir/outputs/Exhaustive/MDS/PredictAccs_linear"
+PredictAccs_tree_path = "/gss/work/head3827/root_dir/outputs/Exhaustive/MDS/PredictAccs_tree"
+Multi_path = "/gss/work/head3827/root_dir/outputs/Exhaustive/MDS/MultiversePipelines"
