@@ -54,9 +54,10 @@ multiverse_section2[i] = pipeline_result
 
 # Dump accuracies
 # todo change pickle.dump if runned again
-PredictAccs_linear_path = "/gss/work/head3827/root_dir/outputs/Exhaustive/MDS/PredictAccs_linear"
-PredictAccs_tree_path = "/gss/work/head3827/root_dir/outputs/Exhaustive/MDS/PredictAccs_tree"
-Multi_path = "/gss/work/head3827/root_dir/outputs/Exhaustive/MDS/MultiversePipelines"
+Exhaustive_path = output_path + "/Exhaustive/" + key
+PredictAccs_linear_path = Exhaustive_path + "/PredictAccs_linear"
+PredictAccs_tree_path = Exhaustive_path + "/PredictAccs_tree"
+Multi_path = Exhaustive_path + "/MultiversePipelines"
 
 pickle.dump(PredictedAcc_l, open(str(PredictAccs_linear_path + "/" + str(i) + '.p'), 'wb'))
 pickle.dump(PredictedAcc_t, open(str(PredictAccs_tree_path + "/" + str(i) + '.p'), 'wb'))
