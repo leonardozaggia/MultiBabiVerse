@@ -489,7 +489,7 @@ PredictedAcc[i] = tempPredAcc
 multiverse_section2[i] = pipeline_result
 """
 # %%
-from pipeline import objective_func_reg, neg_abs, neg_keep, neg_zero, get_1_connectivity, fork_GSR, fork_noGSR
+from pipeline import objective_func_reg, search_ehaustive_reg
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
 from sklearn.svm import SVR
@@ -511,88 +511,8 @@ PredictedAcc   = np.zeros((len(Data_Run)))
 multiverse_section2 = list(np.zeros((len(Data_Run))))
 AgesPrediction = np.asanyarray(data_space["b_age"])
 
-def objective_func_reg(TempModelNum, age, Sparsities_Run,
-                       Data_Run, BCT_models, BCT_Run,
-                       Negative_Run, Weight_Run,
-                       Connectivity_Run, data):
- 
-    # load the correct connectivity for this pipeline    
-    if Connectivity_Run[TempModelNum] == "correlation":
-        Connectivity = "correlation"
-    elif Connectivity_Run[TempModelNum] == "covariance":
-        Connectivity = "covariance"
-    elif Connectivity_Run[TempModelNum] == "partial correlation":
-        Connectivity = "partial correlation"
-    # load the correct neg_values_option for this pipeline
-    if Negative_Run[TempModelNum] == "abs":
-        Neg    = {"neg_opt": neg_abs}
-    elif Negative_Run[TempModelNum] == "keep":        
-        Neg    = {"neg_opt": neg_keep}
-    elif Negative_Run[TempModelNum] == "zero":        
-        Neg    = {"neg_opt": neg_zero}
-    # load the correct weight_option for this pipeline
-    if Weight_Run[TempModelNum] == "binarize":
-        weight = "binarize"
-    else:
-        weight = "normalize"
-    # load the correct preprocessing for this pipeline
-    if Data_Run[TempModelNum] == 'noGSR':
-        prep   = {"preprocessing": fork_noGSR}
-    elif Data_Run[TempModelNum] == 'GSR':        
-        prep   = {"preprocessing": fork_GSR}
-    
-    TotalSubjects = len(list(data.values())[0])
-    TotalRegions  = 52
-
-    TempThreshold = Sparsities_Run[TempModelNum]
-    BCT_Num = BCT_Run[TempModelNum]
-
-    TempResults = np.zeros([TotalSubjects, TotalRegions])
-    for SubNum in range(0, TotalSubjects):
-        sub = data["ts"][SubNum]                                        # extract subject
-        sub = prep["preprocessing"](sub)                                # apply preprocessing
-        f = get_1_connectivity(sub, Connectivity)                     # calculate connectivity
-        tmp = Neg["neg_opt"](f)                                         # address negative values
-        tmp = bct.threshold_proportional(tmp, TempThreshold, copy=True)   # thresholding - prooning weak connections
-        x = bct.weight_conversion(tmp, weight, copy = True)                        # binarization - normalization
-        if (BCT_Num == 'local efficiency' and (weight == "binarize")):
-            ss = BCT_models[BCT_Num](x,1)
-        elif (BCT_Num == 'local efficiency' and (weight == "normalize")):
-            ss = bct.efficiency_wei(x,1)
-        elif BCT_Num == 'modularity (louvain)':
-            ss, _ = BCT_models[BCT_Num](x, seed=2)
-        elif BCT_Num == 'modularity (probtune)':
-            ss, _ = BCT_models[BCT_Num](x, seed=2)
-        elif BCT_Num == 'betweennness centrality' and ((weight == "normalize")):
-            x = bct.weight_conversion(x,'lengths', copy = True)
-            ss = bct.betweenness_wei(x)
-        else:
-            ss = BCT_models[BCT_Num](x)
-    
-        #For each subject for each approach keep the 52 regional values.
-        TempResults[SubNum, :] = ss
-
-    age_list = list(map(lambda x: [x], age))
-    tmp_list = [list(y) for y in TempResults]
-    X_train, X_test, y_train, y_test = train_test_split(age_list, tmp_list,
-        test_size=.3, random_state=0)
-    #model = Pipeline([('scaler', StandardScaler()), ('svr', SVR())])
-    model_linear = MultiOutputRegressor(LinearRegression())
-    model_tree =  MultiOutputRegressor(RandomForestRegressor())
-    model_linear.fit(X_train, y_train)
-    model_tree.fit(X_train, y_train)
-
-    pred_linear = model_linear.predict(X_test)
-    pred_tree = model_tree.predict(X_test)
-
-    # Note: the scores were divided by 10 in order to keep the values close
-    # to 0 for avoiding problems with the Bayesian Optimisation
-    scores_tree = - mean_absolute_error(y_test, pred_tree)/10
-    scores_linear = - mean_absolute_error(y_test, pred_linear)/10
-
-    return scores_tree, scores_linear, TempResults
 i = 0
-scores_tree, scores_linear, pipeline_result = objective_func_reg(i, AgesPrediction, Sparsities_Run, Data_Run, BCT_models, BCT_Run,
+scores_tree, scores_linear, pipeline_result = search_ehaustive_reg(i, AgesPrediction, Sparsities_Run, Data_Run, BCT_models, BCT_Run,
                                 Negative_Run, Weight_Run, Connectivity_Run, data_space)
 PredictedAcc[i] = scores_linear
 multiverse_section2[i] = pipeline_result
