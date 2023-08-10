@@ -28,7 +28,7 @@ def get_pipelines():
     pipe_code = []
     files = os.listdir(Multi_path)
     for i, _ in enumerate(files):        
-        pipelines.append(pickle.load(open(str(Multi_path + "/" + str(i) + ".p"), "rb")))
+        pipelines.append(pickle.load(open(str(Multi_path + "/" + str(i) + ".p"), "rb"))[i])
         pipe_code.append("_".join([Data_Run[i], Connectivity_Run[i], Negative_Run[i], str(Sparsities_Run[i]), Weight_Run[i], BCT_Run[i]]))
     Exhaustive_dict = {"199_subjects_1152_pipelines":pipelines, "pipeline_choices": pipe_code}
     pickle.dump(Exhaustive_dict, open(str(Exhaustive_path + "/" + 'exhaustive_search_results.p'), 'wb'))
@@ -37,15 +37,15 @@ def get_forest_acc():
     forest_acc = []
     files = os.listdir(PredictAccs_linear_path)
     for i, _ in enumerate(files):
-        forest_acc.append(pickle.load(open(str(PredictAccs_tree_path + "/" + str(i) + ".p"), "rb")))
-    pickle.dump(forest_acc, open(str(PredictAccs_tree_path + "/" + 'forest_acc.p'), 'wb'))    
+        forest_acc.append(pickle.load(open(str(PredictAccs_tree_path + "/" + str(i) + ".p"), "rb"))[i])
+    pickle.dump(forest_acc, open(str(Exhaustive_path + "/" + 'forest_acc.p'), 'wb'))    
 
 def get_linear_acc():
     linear_acc = []
     files = os.listdir(PredictAccs_linear_path)
     for i, _ in enumerate(files):
-        linear_acc.append(pickle.load(open(str(PredictAccs_linear_path + "/" + str(i) + ".p"), "rb")))
-    pickle.dump(linear_acc, open(str(PredictAccs_linear_path + "/" + 'linear_acc.p'), 'wb'))     
+        linear_acc.append(pickle.load(open(str(PredictAccs_linear_path + "/" + str(i) + ".p"), "rb"))[i])
+    pickle.dump(linear_acc, open(str(Exhaustive_path + "/" + 'linear_acc.p'), 'wb'))     
 
 
 t1 = Thread(target = get_pipelines)
