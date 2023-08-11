@@ -384,18 +384,22 @@ pickle.dump(multiverse_section2, open(str(output_path + "/" + 'exhaustive_search
 # %% ------------------------------------------------------------------------------------
 # ##                        EXHAUSTIVE SEARCH EXPLORATION
 # ## ------------------------------------------------------------------------------------
-# Display how predicted accuracy is distributed across the low-dimensional space
+
+# Display how predicted MAE accuracies is distributed across the low-dimensional space
 pipelines = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))
-linear_acc   = pickle.load(open(str(output_path + "/" + 'linear_acc.p'), 'rb'))
-forest_acc   = pickle.load(open(str(output_path + "/" + 'forest_acc.p'), 'rb'))
+linear_acc   = np.asanyarray(pickle.load(open(str(output_path + "/" + 'linear_acc.p'), 'rb')))
+forest_acc   = np.asanyarray(pickle.load(open(str(output_path + "/" + 'forest_acc.p'), 'rb')))
 ModelEmbeddings = pickle.load(open(str(output_path + "/" + "embeddings_.p"), "rb"))
 
 key = 'MDS'
 pipelines_gm = pipelines["199_subjects_1152_pipelines"]
 pipelines_gm = pipelines["pipeline_choices"]
 ModelEmbedding = ModelEmbeddings[key]
+
 plt.scatter(ModelEmbedding[0: linear_acc.shape[0], 0],
             ModelEmbedding[0: linear_acc.shape[0], 1],
-            c=linear_acc, cmap='bwr')
+            c=-np.log(np.abs(linear_acc)), cmap='bwr')
 plt.colorbar()
 
+
+# %%
