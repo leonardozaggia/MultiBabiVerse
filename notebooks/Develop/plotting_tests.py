@@ -44,5 +44,25 @@ plt.scatter(ModelEmbedding[0: linear_acc.shape[0], 0],
             ModelEmbedding[0: linear_acc.shape[0], 1],
             c=-np.log(np.abs(linear_acc)), cmap='bwr')
 plt.colorbar()
+plt.show()
+
+# create a mesh to plot in
+x_min, x_max = ModelEmbedding[:, 0].min() - 1, ModelEmbedding[:, 0].max() + 1
+y_min, y_max = ModelEmbedding[:, 1].min() - 1, ModelEmbedding[:, 1].max() + 1
+xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.1), np.arange(y_min, y_max, 0.1))
+plt.plot(xx, yy)
+plt.show()
+
+# Plot also the training points
+plt.scatter(ModelEmbedding[0: linear_acc.shape[0], 0], ModelEmbedding[0: linear_acc.shape[0], 1], c=-np.log(np.abs(linear_acc)), cmap='bwr')
+plt.colorbar()
+plt.title('Linear Regression')
+plt.show()
+plt.scatter(ModelEmbedding[0: forest_acc.shape[0], 0], ModelEmbedding[0: forest_acc.shape[0], 1], c=-np.log(np.abs(forest_acc)), cmap='bwr')
+plt.colorbar()
+plt.title('Random Forest')
+plt.show()
+
+
 
 # %%
