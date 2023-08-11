@@ -14,6 +14,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
 from sklearn.multioutput import MultiOutputRegressor
 from sklearn.linear_model import LinearRegression, Ridge, Lasso, ElasticNet
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import SVR
 from sklearn.pipeline import Pipeline
 

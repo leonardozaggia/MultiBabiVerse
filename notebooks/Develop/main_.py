@@ -102,8 +102,6 @@ n_components = 2  # number of components requested. In this case for a 2D space.
 
 # Define different dimensionality reduction techniques
 methods = OrderedDict()
-"""
-
 #TODO: find why LLE does not work
 #LLE = partial(manifold.LocallyLinearEmbedding,
 #              n_neighbors, n_components, eigen_solver='dense')
@@ -342,24 +340,28 @@ pickle.dump(data_reduced, open(str(output_path + "/" + "embeddings_.p"), "wb" ) 
 # %% ------------------------------------------------------------------------------------
 # ##                             EXHAUSTIVE SEARCH
 # ## ------------------------------------------------------------------------------------
-
- Uncomment later - not used
-
+"""
 from bayes_opt import BayesianOptimization, UtilityFunction
 from sklearn.gaussian_process.kernels import Matern, WhiteKernel
 from sklearn.neighbors import NearestNeighbors
 from sklearn.gaussian_process import GaussianProcessRegressor
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
+"""
+# Extremely time consuming step -> 140h estimated for a local run
+# Provided scripts to perform "tha Job" on the cluster -> 1.5h for cluster run
+# Achieving efficiency through parallel pipeline analysis.
+# Export file to the local output directory to continue the analysis
 
-
-from pipeline import objective_func_reg
+"""
+from pipeline import objective_func_reg   # -> imitation of Daflon approach -> predict age
+from pipeline import search_ehaustive_reg
 from tqdm import tqdm
 import warnings
 warnings.filterwarnings("ignore")
 
-ModelEmbeddings = pickle.load(open(str(output_path + "/" + "embeddings_.p"), "rb"))
 key = 'MDS'
+ModelEmbeddings = pickle.load(open(str(output_path + "/" + "embeddings_.p"), "rb"))
 ModelEmbedding = ModelEmbeddings[key]
 linear_acc = np.zeros((len(Data_Run)))
 forest_acc = np.zeros((len(Data_Run)))
@@ -373,62 +375,27 @@ for i in tqdm(range(len(Data_Run))):
     forest_acc[i] = scores_tree
     multiverse_section2[i] = pipeline_result
 
+# Dump accuracies
+# todo change pickle.dump if runned again
+pickle.dump(linear_acc, open(str(output_path + "/" + 'predictedAcc_linear' + key + '.pckl'), 'wb'))
+pickle.dump(forest_acc, open(str(output_path + "/" + 'predictedAcc_forest' + key + '.pckl'), 'wb'))
+pickle.dump(multiverse_section2, open(str(output_path + "/" + 'exhaustive_search_results' + key + '.pckl'), 'wb'))
+"""
+# %% ------------------------------------------------------------------------------------
+# ##                        EXHAUSTIVE SEARCH EXPLORATION
+# ## ------------------------------------------------------------------------------------
 # Display how predicted accuracy is distributed across the low-dimensional space
+pipelines = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))
+linear_acc   = pickle.load(open(str(output_path + "/" + 'linear_acc.p'), 'rb'))
+forest_acc   = pickle.load(open(str(output_path + "/" + 'forest_acc.p'), 'rb'))
+ModelEmbeddings = pickle.load(open(str(output_path + "/" + "embeddings_.p"), "rb"))
+
+key = 'MDS'
+pipelines_gm = pipelines["199_subjects_1152_pipelines"]
+pipelines_gm = pipelines["pipeline_choices"]
+ModelEmbedding = ModelEmbeddings[key]
 plt.scatter(ModelEmbedding[0: linear_acc.shape[0], 0],
             ModelEmbedding[0: linear_acc.shape[0], 1],
             c=linear_acc, cmap='bwr')
 plt.colorbar()
 
-# Dump accuracies
-# todo change pickle.dump if runned again
-pickle.dump(linear_acc, open(str(output_path + "/" + 'predictedAcc_linear' + key + '.pckl'), 'wb'))
-pickle.dump(forest_acc, open(str(output_path + "/" + 'predictedAcc_forest' + key + '.pckl'), 'wb'))
-pickle.dump(multiverse_section2, open(str(output_path + "/" + 'multiverse_section2_' + key + '.pckl'), 'wb'))
-
-"""
-# %%
-from pipeline import objective_func_reg, search_ehaustive_reg
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_absolute_error
-from sklearn.svm import SVR
-from sklearn.pipeline import Pipeline
-from sklearn.multioutput import MultiOutputRegressor
-from sklearn.linear_model import LinearRegression, Ridge, Lasso, ElasticNet
-from sklearn.ensemble import RandomForestRegressor
-
-from tqdm import tqdm
-import bct
-import warnings
-
-warnings.filterwarnings("ignore")
-
-ModelEmbeddings = pickle.load(open(str(output_path + "/" + "embeddings_.p"), "rb"))
-key = 'MDS'
-ModelEmbedding = ModelEmbeddings[key]
-linear_acc = np.zeros((len(Data_Run)))
-forest_acc = np.zeros((len(Data_Run)))
-multiverse_section2 = list(np.zeros((len(Data_Run))))
-AgesPrediction = np.asanyarray(data_space["b_age"])
-
-i = 0
-scores_tree, scores_linear, pipeline_result = search_ehaustive_reg(i, AgesPrediction, Sparsities_Run, Data_Run, BCT_models, BCT_Run,
-                                Negative_Run, Weight_Run, Connectivity_Run, data_space)
-linear_acc[i] = scores_linear
-forest_acc[i] = scores_tree
-multiverse_section2[i] = pipeline_result
-
-pickle.dump(linear_acc, open(str(output_path + "/" + 'predictedAcc_linear' + key + '.pckl'), 'wb'))
-pickle.dump(forest_acc, open(str(output_path + "/" + 'predictedAcc_forest' + key + '.pckl'), 'wb'))
-pickle.dump(multiverse_section2, open(str(output_path + "/" + 'multiverse_section2_' + key + '.pckl'), 'wb'))
-
-# %% Test
-
-res = pickle.load(open(str("/Users/amnesia/Desktop/Master_Thesis/root_dir/outputs/exhaustive_search_results.p"), "rb"))
-linear_acc = np.asanyarray(pickle.load(open(str("/Users/amnesia/Desktop/Master_Thesis/root_dir/outputs/linear_acc.p"), "rb")))
-forest_acc = np.asanyarray(pickle.load(open(str("/Users/amnesia/Desktop/Master_Thesis/root_dir/outputs/forest_acc.p"), "rb")))
-plt.scatter(ModelEmbedding[0: linear_acc.shape[0], 0],
-            ModelEmbedding[0: linear_acc.shape[0], 1],
-            c=-np.log(np.abs(linear_acc)), cmap='bwr')
-plt.colorbar()
-
-# %%
