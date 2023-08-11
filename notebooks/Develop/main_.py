@@ -424,11 +424,11 @@ pickle.dump(multiverse_section2, open(str(output_path + "/" + 'multiverse_sectio
 # %% Test
 
 res = pickle.load(open(str("/Users/amnesia/Desktop/Master_Thesis/root_dir/outputs/exhaustive_search_results.p"), "rb"))
-
-"""
+linear_acc = np.asanyarray(pickle.load(open(str("/Users/amnesia/Desktop/Master_Thesis/root_dir/outputs/linear_acc.p"), "rb")))
+forest_acc = np.asanyarray(pickle.load(open(str("/Users/amnesia/Desktop/Master_Thesis/root_dir/outputs/forest_acc.p"), "rb")))
 plt.scatter(ModelEmbedding[0: linear_acc.shape[0], 0],
             ModelEmbedding[0: linear_acc.shape[0], 1],
-            c=linear_acc, cmap='bwr')
+            c=-np.log(np.abs(linear_acc)), cmap='bwr')
 plt.colorbar()
-"""
+
 # %%

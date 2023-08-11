@@ -74,13 +74,18 @@ print(ModelsResults.keys())
 # TODO: decrease n of thresholds >0.1
 
 # TODO-> better way of representing the multiverse
-    # - create 2 multiverse plots with different decisions
-    # - create a function that prints the multiverse with selected options
+#       - create 2 multiverse plots with different decisions
+#       - create a function that prints the multiverse with selected options
 
 # TODO:  rerun the multiverse 
-    # - correct number of participants
-    # - with the implemented graph measures
+#       - correct number of participants
+#       - with the implemented graph measures
 
+# TODO: function that takes the output from 
+#       search_ehaustive_reg, and performs    
+#       different predictions -> predict age or graph measure?    
+#       w different models -> Ridge, Lasso or Elastic?
+#       w different metrix -> MAE or Correlation?
 
 # %% exhample of Multiple output regression
 from sklearn.multioutput import MultiOutputRegressor
