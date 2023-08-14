@@ -137,4 +137,144 @@ corr = np.corrcoef(vec1, vec2)
 print(corr)
 
 
-# %%
+# %% IMPORTS
+"""
+Diagonals from the different regression models.
+We will use this section to investigate the diffent models and their predictions.
+"""
+elastic = pickle.load(open(str(output_path + "/" + 'ElasticNet_corr_acc.p'), 'rb'))
+ridge = pickle.load(open(str(output_path + "/" + 'Ridge_corr_acc.p'), 'rb'))
+lasso = pickle.load(open(str(output_path + "/" + 'Lasso_corr_acc.p'), 'rb'))
+linear = pickle.load(open(str(output_path + "/" + 'linear_corr_acc.p'), 'rb'))
+forest = pickle.load(open(str(output_path + "/" + 'forest_corr_acc.p'), 'rb'))
+
+# calculate the mean correlation across regions -> MCM: mean correlation metric (as alternative to MAE)
+MCM_r = np.mean(np.array(ridge), axis = 1)
+MCM_e = np.mean(np.array(elastic), axis = 1)
+MCM_l = np.mean(np.array(lasso), axis = 1)
+MCM_li = np.mean(np.array(linear), axis = 1)
+MCM_f = np.mean(np.array(forest), axis = 1)
+
+
+plt.scatter(ModelEmbedding[0: MCM_r.shape[0], 0],
+            ModelEmbedding[0: MCM_r.shape[0], 1],
+            c=MCM_r, cmap='bwr')
+plt.title('Ridge Regression')
+plt.axis('off')
+plt.colorbar()
+plt.show()
+
+plt.scatter(ModelEmbedding[0: MCM_e.shape[0], 0],
+            ModelEmbedding[0: MCM_e.shape[0], 1],
+            c=MCM_e, cmap='bwr')
+plt.title('ElasticNet Regression')
+plt.axis('off')
+plt.colorbar()
+plt.show()
+
+plt.scatter(ModelEmbedding[0: MCM_l.shape[0], 0],
+            ModelEmbedding[0: MCM_l.shape[0], 1],
+            c=MCM_l, cmap='bwr')
+plt.title('Lasso Regression')
+plt.axis('off')
+plt.colorbar()
+plt.show()
+
+plt.scatter(ModelEmbedding[0: MCM_li.shape[0], 0],
+            ModelEmbedding[0: MCM_li.shape[0], 1],
+            c=MCM_li, cmap='bwr')
+plt.title('Linear Regression')
+plt.axis('off')
+plt.colorbar()
+plt.show()
+
+plt.scatter(ModelEmbedding[0: MCM_f.shape[0], 0],
+            ModelEmbedding[0: MCM_f.shape[0], 1],
+            c=MCM_f, cmap='bwr')
+plt.title('Forest Regression')
+plt.axis('off')
+plt.colorbar()
+plt.show()
+
+# recreate the plots above but within a plt.subplots
+fig, axs = plt.subplots(2, 3, figsize=(15, 10))
+axs[0, 0].scatter(ModelEmbedding[0: MCM_r.shape[0], 0],
+            ModelEmbedding[0: MCM_r.shape[0], 1],
+            c=MCM_r, cmap='bwr')
+axs[0, 0].set_title('Ridge Regression')
+axs[0, 0].axis('off')
+axs[0, 1].scatter(ModelEmbedding[0: MCM_e.shape[0], 0],
+            ModelEmbedding[0: MCM_e.shape[0], 1],
+            c=MCM_e, cmap='bwr')
+axs[0, 1].set_title('ElasticNet Regression')
+axs[0, 1].axis('off')
+axs[0, 2].scatter(ModelEmbedding[0: MCM_l.shape[0], 0],
+            ModelEmbedding[0: MCM_l.shape[0], 1],
+            c=MCM_l, cmap='bwr')
+axs[0, 2].set_title('Lasso Regression')
+axs[0, 2].axis('off')
+axs[1, 0].scatter(ModelEmbedding[0: MCM_li.shape[0], 0],
+            ModelEmbedding[0: MCM_li.shape[0], 1],
+            c=MCM_li, cmap='bwr')
+axs[1, 0].set_title('Linear Regression')
+axs[1, 0].axis('off')
+axs[1, 1].scatter(ModelEmbedding[0: MCM_f.shape[0], 0],
+            ModelEmbedding[0: MCM_f.shape[0], 1],
+            c=MCM_f, cmap='bwr')
+axs[1, 1].set_title('Forest Regression')
+axs[1, 1].axis('off')
+axs[1, 2].axis('off')
+# save the figure locally
+plt.savefig(str(output_path + "/" + 'regression_models.png'))
+plt.show()
+
+# %% plotting the same but only for one region -> answers the question: 
+# within pipeline x, how accurate can the prediction of graph-measure y in area z be?
+
+# read all the ROIs
+areas = [key for key in data_predict["ts"][0].keys()]
+
+# 
+area_z = 16
+MCM_r = np.array(ridge)[:,area_z]
+MCM_e = np.array(elastic)[:,area_z]
+MCM_l = np.array(lasso)[:,area_z]
+MCM_li = np.array(linear)[:,area_z]
+MCM_f = np.array(forest)[:,area_z]
+
+fig, axs = plt.subplots(2, 3, figsize=(15, 10))
+axs[0, 0].scatter(ModelEmbedding[0: MCM_r.shape[0], 0],
+            ModelEmbedding[0: MCM_r.shape[0], 1],
+            c=MCM_r, cmap='bwr')
+axs[0, 0].set_title('Ridge Regression')
+axs[0, 0].axis('off')
+axs[0, 1].scatter(ModelEmbedding[0: MCM_e.shape[0], 0],
+            ModelEmbedding[0: MCM_e.shape[0], 1],
+            c=MCM_e, cmap='bwr')
+axs[0, 1].set_title('ElasticNet Regression')
+axs[0, 1].axis('off')
+axs[0, 2].scatter(ModelEmbedding[0: MCM_l.shape[0], 0],
+            ModelEmbedding[0: MCM_l.shape[0], 1],
+            c=MCM_l, cmap='bwr')
+axs[0, 2].set_title('Lasso Regression')
+axs[0, 2].axis('off')
+axs[1, 0].scatter(ModelEmbedding[0: MCM_li.shape[0], 0],
+            ModelEmbedding[0: MCM_li.shape[0], 1],
+            c=MCM_li, cmap='bwr')
+axs[1, 0].set_title('Linear Regression')
+axs[1, 0].axis('off')
+axs[1, 1].scatter(ModelEmbedding[0: MCM_f.shape[0], 0],
+            ModelEmbedding[0: MCM_f.shape[0], 1],
+            c=MCM_f, cmap='bwr')
+axs[1, 1].set_title('Forest Regression')
+axs[1, 1].axis('off')
+axs[1, 2].axis('off')
+
+axs[1,2].set_title('Region ' + str(areas[area_z]), fontweight='bold', fontsize=20, bbox={'facecolor': 'white', 'edgecolor': 'black', 'pad': 10}, loc = 'center')
+
+# save the figure locally
+plt.savefig(str(output_path + "/" + 'regression_models.png'))
+plt.show()
+
+
+# %% do the same, but plot one area one after the other in aloop
