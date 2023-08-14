@@ -90,18 +90,28 @@ print(ModelsResults.keys())
 # %% exhample of Multiple output regression
 from sklearn.multioutput import MultiOutputRegressor
 from sklearn.linear_model import LinearRegression
-
 # Sample data
-X = [[2.5], [4.0], [3.8]]
+X = [[2.5,20], [4.0,30], [3.8,50]]
 Y = [[3.0, 6.5, 7.2], [4.2, 8.1, 9.0], [3.7, 7.5, 8.2]]
-
 # Create a multi-output regression model with a base Linear Regression model
 model = MultiOutputRegressor(LinearRegression())
-
 # Fit the model
 model.fit(X, Y)
-
 # Predict for new data
 new_X = [[2]]
 predicted_Y = model.predict(new_X)
 print(predicted_Y)
+
+#%% Create a 10x10 matrix with only 1s
+matrix1 = np.ones((10, 10))
+matrix0 = np.zeros((10, 10))
+matrix2 = matrix1*2
+# concatenate both matrices horizontally
+matrix_h = np.hstack((matrix1, matrix0, matrix2))
+print(matrix_h)
+# separate the matrix into 2 matrices of 10x10
+matrix1, matrix0, matrix2 = np.hsplit(matrix_h, 3)
+# print all matrices
+print(matrix1)
+print(matrix0)
+print(matrix2)

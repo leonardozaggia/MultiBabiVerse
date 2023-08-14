@@ -348,7 +348,7 @@ from sklearn.gaussian_process import GaussianProcessRegressor
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 """
-# Extremely time consuming step -> 140h estimated for a local run
+# Extremely time consuming step -> 140h estimated for a local run -> due to the partial correlation estimation
 # Provided scripts to perform "tha Job" on the cluster -> 1.5h for cluster run
 # Achieving efficiency through parallel pipeline analysis.
 # Export file to the local output directory to continue the analysis
@@ -400,6 +400,34 @@ plt.scatter(ModelEmbedding[0: linear_acc.shape[0], 0],
             ModelEmbedding[0: linear_acc.shape[0], 1],
             c=-np.log(np.abs(linear_acc)), cmap='bwr')
 plt.colorbar()
+
+
+# %% run following and explore
+import numpy as np
+from sklearn.multioutput import MultiOutputRegressor
+from sklearn.linear_model import LinearRegression, Ridge, Lasso, ElasticNet
+from sklearn.ensemble import RandomForestRegressor
+from pipeline import get_data, pair_age, split_data
+import sys
+import pickle
+from sklearn.model_selection import train_test_split
+
+i = 0
+age = AgesPrediction = np.asanyarray(data_predict["b_age"])
+TempResults = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["199_subjects_1152_pipelines"]
+age_list = list(map(lambda x: [x], age))
+tmp_list = [list(y) for y in TempResults[i]]
+X_train, X_test, y_train, y_test = train_test_split(age_list, tmp_list,
+    test_size=.3, random_state=0)
+model_linear = MultiOutputRegressor(LinearRegression())
+model_linear.fit(X_train, y_train)
+pred_linear = model_linear.predict(X_test)
+
+#%% explore pred_linear
+import matplotlib.pyplot as plt
+plt.scatter(y_test, pred_linear)
+
+#scores_linear = np.mean(np.triu(np.corrcoef(np.array(y_test), pred_linear)))
 
 
 # %%

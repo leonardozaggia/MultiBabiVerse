@@ -45,8 +45,8 @@ model_tree.fit(X_train, y_train)
 pred_linear = model_linear.predict(X_test)
 pred_tree = model_tree.predict(X_test)
 
-scores_tree = np.mean(np.triu(np.corrcoef(np.array(y_test), pred_tree)))
-scores_linear = np.mean(np.triu(np.corrcoef(np.array(y_test), pred_linear)))
+scores_tree = np.mean(np.diag(np.corrcoef(np.array(y_test), pred_tree)))
+scores_linear = np.mean(np.diag(np.corrcoef(np.array(y_test), pred_linear)))
 
 pickle.dump(scores_linear, open(str(PredictAccs_linear_path + "/" + str(i) + '.p'), 'wb'))
 pickle.dump(scores_tree, open(str(PredictAccs_tree_path + "/" + str(i) + '.p'), 'wb'))

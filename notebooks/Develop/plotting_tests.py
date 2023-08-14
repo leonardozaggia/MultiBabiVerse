@@ -64,5 +64,77 @@ plt.title('Random Forest')
 plt.show()
 
 
+# %% Plotting correlational exhaustive search
+"""
+With the exhaustive search, we can plot the correlation between the predicted graph measure model and the real ones.
+Upon visual inspection, we can see that the linear regression model leads to higher correlation values.
+Nevertheless, both methods seems to identify regions of pipelines which are better able to capture the age-network association.
+
+VARIABLES:
+    - ModelEmbedding: MDS embedding of the pipelines
+    - linear_corr_acc: average correlation between the predicted graph measure and the real one for each pipeline 
+    - forest_corr_acc: average correlation between the predicted graph measure and the real one for each pipeline
+"""
+
+linear_corr_acc = np.asanyarray(pickle.load(open(str(output_path + "/" + "linear_corr_acc.p"), "rb")))
+forest_corr_acc = np.asanyarray(pickle.load(open(str(output_path + "/" + "forest_corr_acc.p"), "rb")))
+
+plt.scatter(ModelEmbedding[0: linear_corr_acc.shape[0], 0], ModelEmbedding[0: linear_corr_acc.shape[0], 1], c=linear_corr_acc, cmap='bwr')
+plt.colorbar()
+plt.title('LINEAR Regression')
+plt.axis('off')
+plt.show()
+
+plt.scatter(ModelEmbedding[0: forest_corr_acc.shape[0], 0], ModelEmbedding[0: forest_corr_acc.shape[0], 1], c=forest_corr_acc, cmap='bwr')
+plt.colorbar()
+plt.title('FOREST Regression')
+# add description to the plot
+plt.xlabel('MDS1')
+plt.ylabel('MDS2')
+plt.xticks([])
+plt.yticks([])
+plt.show()
+
+# %% run following and explore
+import numpy as np
+from sklearn.multioutput import MultiOutputRegressor
+from sklearn.linear_model import LinearRegression, Ridge, Lasso, ElasticNet
+from sklearn.ensemble import RandomForestRegressor
+from pipeline import get_data, pair_age, split_data
+import sys
+import pickle
+from sklearn.model_selection import train_test_split
+
+i = 1
+age = AgesPrediction = np.asanyarray(data_predict["b_age"])
+TempResults = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["199_subjects_1152_pipelines"]
+age_list = list(map(lambda x: [x], age))
+tmp_list = [list(y) for y in TempResults[i]]
+X_train, X_test, y_train, y_test = train_test_split(age_list, tmp_list,
+    test_size=.3, random_state=0)
+model_linear = MultiOutputRegressor(LinearRegression())
+model_linear.fit(X_train, y_train)
+pred_linear = model_linear.predict(X_test)
+
+#%% explore pred_linear
+import matplotlib.pyplot as plt
+plt.scatter(y_test, pred_linear)
+plt.xlabel('True Values')
+plt.ylabel('Predictions')
+plt.show()
+
+pred_linear[:, 0].shape
+#scores_linear = np.mean(np.triu(np.corrcoef(np.array(y_test), pred_linear)))
+
+# %% create a correlation matrix from these two vectors
+import numpy as np
+
+c = 1
+vec1 = pred_linear[:,c].reshape(-1,1)
+vec2 = np.array(y_test)[:,c].reshape(-1,1)
+corr = np.corrcoef(vec1, vec2)
+
+print(corr)
+
 
 # %%
