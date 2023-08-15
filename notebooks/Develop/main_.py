@@ -103,10 +103,9 @@ n_components = 2  # number of components requested. In this case for a 2D space.
 # Define different dimensionality reduction techniques
 methods = OrderedDict()
 #TODO: find why LLE does not work
-#LLE = partial(manifold.LocallyLinearEmbedding,
-#              n_neighbors, n_components, eigen_solver='dense')
-#methods['LLE'] = LLE(method='standard', random_state=0)
-
+LLE = partial(manifold.LocallyLinearEmbedding,
+             n_neighbors=n_neighbors, n_components=n_components, eigen_solver='dense')
+methods['LLE'] = LLE(method='standard', random_state=0)
 
 methods['SE'] = manifold.SpectralEmbedding(n_components=n_components,
                                            n_neighbors=n_neighbors, random_state=0)
@@ -185,7 +184,7 @@ for idx_method, (label, method) in enumerate(methods.items()):
 OrangePatch = mpatches.Patch(color='orange', label='no - Global Signal Regression^')
 PurplePatch = mpatches.Patch(color='purple', label='Global Signal Regression')
 
-OrangePatch = mpatches.Patch(color='orange', label='motion regression')
+OrangePatch = mpatches.Patch(color='orange', label='no - Global Signal Regression^')
 PurplePatch = mpatches.Patch(color=[85 / 255, 3 / 255, 152 / 255], label='global signal regression')
 
 IntensityPatch1 = mpatches.Patch(color=[0.1, 0.1, 0.1], label='threshold: 0.4',
@@ -220,7 +219,7 @@ LineWidth3 = mlines.Line2D([], [], color='black', linestyle='None',
 BlankLine = mlines.Line2D([], [], linestyle='None')
 gsDE.legend(handles=[OrangePatch, PurplePatch, BlankLine, IntensityPatch1,
                      IntensityPatch2, IntensityPatch3, BlankLine,
-                     Lines[0], Lines[1], Lines[2], BlankLine,
+                     Lines[0], Lines[1], Lines[2], Lines[3], BlankLine,
                      HatchPatch[0], HatchPatch[1], HatchPatch[2], BlankLine,
                      SizeLines1, SizeLines2, BlankLine,
                      LineWidth1, LineWidth2, LineWidth3], fontsize=15,
@@ -236,12 +235,13 @@ gsDE.show()
 
 
 #%% ------------------------- MDS -------------------------
-methods['MDS'] = manifold.MDS(n_components, max_iter=100, n_init=10,
+key = 'MDS'
+methods[key] = manifold.MDS(n_components, max_iter=100, n_init=10,
                               random_state=21, metric=True)
 
 # Do the same as above but for MDS
-Y = methods['MDS'].fit_transform(X)
-data_reduced['MDS'] = Y
+Y = methods[key].fit_transform(X)
+data_reduced[key] = Y
 
 figMDS = plt.figure(constrained_layout=False, figsize=(21, 15))
 gsMDS = figMDS.add_gridspec(nrows=15, ncols=20)
@@ -326,14 +326,14 @@ LineWidth3 = mlines.Line2D([], [], color='black', linestyle='None',
 BlankLine = mlines.Line2D([], [], linestyle='None')
 figMDS.legend(handles=[OrangePatch, PurplePatch, BlankLine, IntensityPatch1,
                      IntensityPatch2, IntensityPatch3, BlankLine,
-                     Lines[0], Lines[1], Lines[2], BlankLine,
+                     Lines[0], Lines[1], Lines[2], Lines[3], BlankLine,
                      HatchPatch[0], HatchPatch[1], HatchPatch[2], BlankLine,
                      SizeLines1, SizeLines2, BlankLine,
                      LineWidth1, LineWidth2, LineWidth3], fontsize=15,
               frameon=False, bbox_to_anchor=(1.4, 0.8), bbox_transform=axs.transAxes)
 
-figMDS.savefig(str(output_path + "/" + 'MDSSpace.png'), dpi=300)
-figMDS.savefig(str(output_path + "/" +  'MDSSpace.svg'), format="svg")
+figMDS.savefig(str(output_path + "/" + key + 'Space.png'), dpi=300)
+figMDS.savefig(str(output_path + "/" +  key + 'Space.svg'), format="svg")
 figMDS.show()
 pickle.dump(data_reduced, open(str(output_path + "/" + "embeddings_.p"), "wb" ) )
 
@@ -430,4 +430,61 @@ plt.scatter(y_test, pred_linear)
 #scores_linear = np.mean(np.triu(np.corrcoef(np.array(y_test), pred_linear)))
 
 
-# %%
+# %% plotting 5 different Regressor models -> model multiverse
+# within pipeline x, how accurate can the prediction of graph-measure y in area z be?
+# read all the ROIs:
+areas = [key for key in data_predict["ts"][0].keys()]
+# select one area to plot:
+area_z = 17
+# select the embedding to plot:
+key = 'MDS'
+ModelEmbedding = ModelEmbeddings[key]
+
+# importing the prediction accuracies for each region:
+elastic = pickle.load(open(str(output_path + "/" + 'ElasticNet_corr_acc.p'), 'rb'))
+ridge = pickle.load(open(str(output_path + "/" + 'Ridge_corr_acc.p'), 'rb'))
+lasso = pickle.load(open(str(output_path + "/" + 'Lasso_corr_acc.p'), 'rb'))
+linear = pickle.load(open(str(output_path + "/" + 'linear_corr_acc.p'), 'rb'))
+forest = pickle.load(open(str(output_path + "/" + 'forest_corr_acc.p'), 'rb'))
+
+MCM_r = np.array(ridge)[:,area_z]
+MCM_e = np.array(elastic)[:,area_z]
+MCM_l = np.array(lasso)[:,area_z]
+MCM_li = np.array(linear)[:,area_z]
+MCM_f = np.array(forest)[:,area_z]
+
+# plotting the results
+fig, axs = plt.subplots(2, 3, figsize=(15, 10))
+axs[0,0].set_title('Region ' + str(areas[area_z]), fontweight='bold', fontsize=40, bbox={'facecolor': 'white', 'edgecolor': 'black', 'pad': 10}, loc = 'left')
+axs[0,0].axis('off')
+axs[0, 1].scatter(ModelEmbedding[0: MCM_e.shape[0], 0],
+            ModelEmbedding[0: MCM_e.shape[0], 1],
+            c=MCM_e, cmap='bwr')
+axs[0, 1].set_title('ElasticNet Regression')
+axs[0, 1].axis('off')
+axs[0, 2].scatter(ModelEmbedding[0: MCM_l.shape[0], 0],
+            ModelEmbedding[0: MCM_l.shape[0], 1],
+            c=MCM_l, cmap='bwr')
+axs[0, 2].set_title('Lasso Regression')
+axs[0, 2].axis('off')
+axs[1, 0].scatter(ModelEmbedding[0: MCM_li.shape[0], 0],
+            ModelEmbedding[0: MCM_li.shape[0], 1],
+            c=MCM_li, cmap='bwr')
+axs[1, 0].set_title('Linear Regression')
+axs[1, 0].axis('off')
+axs[1, 1].scatter(ModelEmbedding[0: MCM_f.shape[0], 0],
+            ModelEmbedding[0: MCM_f.shape[0], 1],
+            c=MCM_f, cmap='bwr')
+axs[1, 1].set_title('Forest Regression')
+axs[1, 1].axis('off')
+axs[1, 2].axis('off')
+axs[1, 2].scatter(ModelEmbedding[0: MCM_r.shape[0], 0],
+            ModelEmbedding[0: MCM_r.shape[0], 1],
+            c=MCM_r, cmap='bwr')
+axs[1, 2].set_title('Ridge Regression')
+
+
+# save the figure locally
+plt.savefig(str(output_path + "/" + 'regression_models.png'))
+plt.show()
+

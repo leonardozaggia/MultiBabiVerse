@@ -46,13 +46,6 @@ plt.scatter(ModelEmbedding[0: linear_acc.shape[0], 0],
 plt.colorbar()
 plt.show()
 
-# create a mesh to plot in
-x_min, x_max = ModelEmbedding[:, 0].min() - 1, ModelEmbedding[:, 0].max() + 1
-y_min, y_max = ModelEmbedding[:, 1].min() - 1, ModelEmbedding[:, 1].max() + 1
-xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.1), np.arange(y_min, y_max, 0.1))
-plt.plot(xx, yy)
-plt.show()
-
 # Plot also the training points
 plt.scatter(ModelEmbedding[0: linear_acc.shape[0], 0], ModelEmbedding[0: linear_acc.shape[0], 1], c=-np.log(np.abs(linear_acc)), cmap='bwr')
 plt.colorbar()
@@ -233,21 +226,29 @@ plt.show()
 
 # read all the ROIs
 areas = [key for key in data_predict["ts"][0].keys()]
+# select one area to plot
+area_z = 17
+# select the embedding to plot
+key = 'MDS'
+ModelEmbedding = ModelEmbeddings[key]
 
-# 
-area_z = 16
+# imorting the prediction accuracies for each region
+elastic = pickle.load(open(str(output_path + "/" + 'ElasticNet_corr_acc.p'), 'rb'))
+ridge = pickle.load(open(str(output_path + "/" + 'Ridge_corr_acc.p'), 'rb'))
+lasso = pickle.load(open(str(output_path + "/" + 'Lasso_corr_acc.p'), 'rb'))
+linear = pickle.load(open(str(output_path + "/" + 'linear_corr_acc.p'), 'rb'))
+forest = pickle.load(open(str(output_path + "/" + 'forest_corr_acc.p'), 'rb'))
+
 MCM_r = np.array(ridge)[:,area_z]
 MCM_e = np.array(elastic)[:,area_z]
 MCM_l = np.array(lasso)[:,area_z]
 MCM_li = np.array(linear)[:,area_z]
 MCM_f = np.array(forest)[:,area_z]
 
+# plotting the results
 fig, axs = plt.subplots(2, 3, figsize=(15, 10))
-axs[0, 0].scatter(ModelEmbedding[0: MCM_r.shape[0], 0],
-            ModelEmbedding[0: MCM_r.shape[0], 1],
-            c=MCM_r, cmap='bwr')
-axs[0, 0].set_title('Ridge Regression')
-axs[0, 0].axis('off')
+axs[0,0].set_title('Region ' + str(areas[area_z]), fontweight='bold', fontsize=40, bbox={'facecolor': 'white', 'edgecolor': 'black', 'pad': 10}, loc = 'left')
+axs[0,0].axis('off')
 axs[0, 1].scatter(ModelEmbedding[0: MCM_e.shape[0], 0],
             ModelEmbedding[0: MCM_e.shape[0], 1],
             c=MCM_e, cmap='bwr')
@@ -269,8 +270,11 @@ axs[1, 1].scatter(ModelEmbedding[0: MCM_f.shape[0], 0],
 axs[1, 1].set_title('Forest Regression')
 axs[1, 1].axis('off')
 axs[1, 2].axis('off')
+axs[1, 2].scatter(ModelEmbedding[0: MCM_r.shape[0], 0],
+            ModelEmbedding[0: MCM_r.shape[0], 1],
+            c=MCM_r, cmap='bwr')
+axs[1, 2].set_title('Ridge Regression')
 
-axs[1,2].set_title('Region ' + str(areas[area_z]), fontweight='bold', fontsize=20, bbox={'facecolor': 'white', 'edgecolor': 'black', 'pad': 10}, loc = 'center')
 
 # save the figure locally
 plt.savefig(str(output_path + "/" + 'regression_models.png'))
