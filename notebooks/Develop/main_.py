@@ -234,9 +234,9 @@ gsDE.show()
 
 
 
-#%% ------------------------- MDS -------------------------
-key = 'MDS'
-methods[key] = manifold.MDS(n_components, max_iter=100, n_init=10,
+#%% ------------------------- Single Plot -------------------------
+key = 't-SNE'
+methods['MDS'] = manifold.MDS(n_components, max_iter=100, n_init=10,
                               random_state=21, metric=True)
 
 # Do the same as above but for MDS
