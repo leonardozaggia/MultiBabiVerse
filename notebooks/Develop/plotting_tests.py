@@ -227,7 +227,7 @@ plt.show()
 # read all the ROIs
 areas = [key for key in data_predict["ts"][0].keys()]
 # select one area to plot
-area_z = 17
+area_z = 18
 # select the embedding to plot
 key = 'MDS'
 ModelEmbedding = ModelEmbeddings[key]
