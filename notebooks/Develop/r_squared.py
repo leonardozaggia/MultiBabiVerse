@@ -9,6 +9,7 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
+import matplotlib.pyplot as plt
 import sys
 import pickle
 from sklearn.model_selection import train_test_split
@@ -18,6 +19,7 @@ path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/pipeline_timeseries"
 age_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/combined.tsv"
 output_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/outputs"
 
+storage = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["199_subjects_1152_pipelines"]
 pipelines = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))
 ModelsResults = pickle.load(open(str(output_path + "/" + "ModelsResults.p"), "rb" ) )
 ModelEmbeddings = pickle.load(open(str(output_path + "/" + "embeddings_.p"), "rb"))
@@ -52,7 +54,7 @@ for degree in [1, 2, 3]:
     true_y = np.array(y_test)[:, ROI]  # Extract the target values for the ROI
     pred_y = np.array(pred)[:, ROI]  # Extract the predicted values for the ROI
     
-    r2 = r2_score(true_y, pred_y)  # Calculate R-squared
+    r2 = r2_score(X_test, pred_y)  # Calculate R-squared
     print(f"Degree {degree} - R-squared:", r2)
 
 #%% explore pred_linear
@@ -61,16 +63,41 @@ plt.scatter(y_test, pred_linear)
 
 #scores_linear = np.mean(np.triu(np.corrcoef(np.array(y_test), pred_linear)))
 
-#%% Alternative approach
+#%% -------------- Alternative approach - Test/Train split --------------
 """
 We are now going to run the model for each region and each pipeline.
 From age we will predict region1, region2, and so on so forth independently.
 Lets see an example for one single pipeline
 """
-storage = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["199_subjects_1152_pipelines"]
-pipeline_n = 444
-y = np.asanyarray(data_predict["b_age"])
-x = np.asanyarray(storage[pipeline_n])
+import matplotlib.pyplot as plt
+pipeline_n = 678
+x = np.asanyarray(data_predict["b_age"])
+y = np.asanyarray(storage[pipeline_n])
+print("Number of age entries " + str(y.shape))
+print("Number of entries x pipeline " + str(x.shape))
+histo_data = []
+X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=.3, random_state=0)
+
+ROIs = list(data_predict["ts"][0].keys())
+for i, ROI in enumerate(ROIs):
+    model = LinearRegression()
+    model.fit(X_train.reshape(-1, 1), y_train[:, i])
+    pred = model.predict(X_test.reshape(-1, 1))
+    print("R2 for ROI " + str(ROI) + " is " + str(r2_score(y_test[:, i], pred)))
+    histo_data.append(r2_score(y_test[:, i], pred))
+
+plt.hist(histo_data, bins = 20)
+plt.show()
+
+#%% -------------- Alternative approach - NO Test/Train split -------------- 
+"""
+We are now going to run the model for each region and each pipeline.
+From age we will predict region1, region2, and so on so forth independently.
+Lets see an example for one single pipeline
+"""
+pipeline_n = 678
+x = np.asanyarray(data_predict["b_age"])
+y = np.asanyarray(storage[pipeline_n])
 print("Number of age entries " + str(y.shape))
 print("Number of entries x pipeline " + str(x.shape))
 histo_data = []
@@ -78,66 +105,128 @@ histo_data = []
 ROIs = list(data_predict["ts"][0].keys())
 for i, ROI in enumerate(ROIs):
     model = LinearRegression()
-    model.fit(y.reshape(-1, 1), x[:, i])
-    pred = model.predict(y.reshape(-1, 1))
-    print("R2 for ROI " + str(ROI) + " is " + str(r2_score(x[:, i], pred)))
-    histo_data.append(r2_score(x[:, i], pred))
+    model.fit(x.reshape(-1, 1), y[:, i])
+    pred = model.predict(x.reshape(-1, 1))
+    print("R2 for ROI " + str(ROI) + " is " + str(r2_score(y[:, i], pred)))
+    histo_data.append(r2_score(y[:, i], pred))
 
 plt.hist(histo_data, bins = 20)
-plt.show()
 
-# %% Non linear approach 
+# %% -------------- Non-linear approach - NO Test/Train split -------------- 
 
-storage = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["199_subjects_1152_pipelines"]
 pipeline_n = 444
-y = np.asanyarray(data_predict["b_age"])
-x = np.asanyarray(storage[pipeline_n])
+x = np.asanyarray(data_predict["b_age"])
+y = np.asanyarray(storage[pipeline_n])
 print("Number of age entries " + str(y.shape))
 print("Number of entries x pipeline " + str(x.shape))
 regional_r2 = []
 
 ROIs = list(data_predict["ts"][0].keys())
 for i, ROI in enumerate(ROIs):
-    model = make_pipeline(PolynomialFeatures(2), Ridge(alpha=1e-2))
-    model.fit(y.reshape(-1, 1), x[:, i])
-    pred = model.predict(y.reshape(-1, 1))
-    print("R2 for ROI " + str(ROI) + " is " + str(r2_score(x[:, i], pred)))
-    regional_r2.append(r2_score(x[:, i], pred))
+    model = make_pipeline(PolynomialFeatures(3), Ridge(alpha=1e-2))
+    model.fit(x.reshape(-1, 1), y[:, i])
+    pred = model.predict(x.reshape(-1, 1))
+    print("R2 for ROI " + str(ROI) + " is " + str(r2_score(y[:, i], pred)))
+    regional_r2.append(r2_score(y[:, i], pred))
 
-# %% Spline approach
+plt.hist(regional_r2, bins = 20)
+# TODO: add color legend to differenciate linear and non linear R2
+plt.show()
+
+# %% -------------- Spline approach - Poolynomial --------------
 from sklearn.linear_model import Ridge
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import PolynomialFeatures
 
 # Load your data and set up your variables
-storage = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["199_subjects_1152_pipelines"]
 pipeline_n = 444
-y = np.asanyarray(data_predict["b_age"])
-x = np.asanyarray(storage[pipeline_n])
-
+x = np.asanyarray(data_predict["b_age"])
+y = np.asanyarray(storage[pipeline_n])
 ROIs = list(data_predict["ts"][0].keys())
 regional_r2 = []
 
+# Define piecewise intervals
+intervals = [20, 30, 35, 38, 42.5]  # Theoretical base adjustment of the bins
+                                    # Alternatives
+                                    #    - np.percentile(y, [25, 50, 75])
+                                    #    - estimate the bins from the data 
+
+intervals_dict = {class_id: np.zeros((len(ROIs))) for class_id in range(1,len(intervals))}
 for i, ROI in enumerate(ROIs):
-    # Define piecewise intervals
-    intervals = [20, 40, 60, 80, 100]  # Adjust these intervals as needed
-    
     # Split the data into intervals and fit separate models for each interval
     interval_predictions = []
+    cnt = 0
     for j in range(len(intervals) - 1):
-        mask = (y >= intervals[j]) & (y < intervals[j + 1])
-        y_interval = y[mask].reshape(-1, 1)
-        x_interval = x[mask, i]
+        cnt += 1
+        mask = (x >= intervals[j]) & (x < intervals[j + 1])
+        x_interval = x[mask].reshape(-1, 1)
+        y_interval = y[mask, i]
         
         model = make_pipeline(PolynomialFeatures(2), Ridge(alpha=1e-2))
-        model.fit(y_interval, x_interval)
-        pred_interval = model.predict(y_interval)
+        model.fit(x_interval, y_interval)
+        pred_interval = model.predict(x_interval)
         interval_predictions.append(pred_interval)
+        intervals_dict[cnt][i] = r2_score(y_interval, pred_interval)
+
+# Plot the results with 5 subplots
+fig, axes = plt.subplots(4, 1, figsize=(8, 12))
+cnt = 0
+for j in range(len(intervals) - 1):
+    cnt += 1
+    axes[j].hist(intervals_dict[cnt], label="Data", bins=20)
+    axes[j].set_title(f"Age interval: {intervals[j]}-{intervals[j + 1]}")
+    axes[j].set_ylabel("Count")
+    axes[j].legend()    
+
+# set main image title
+fig.suptitle("R-squared distribution across ROIs", fontsize=16)
     
-    pred = np.concatenate(interval_predictions)
-    
-    print("R2 for ROI " + str(ROI) + " is " + str(r2_score(x[:, i], pred)))
-    regional_r2.append(r2_score(x[:, i], pred))
+
+
+
+# %% -------------- Spline approach - Linear --------------
+# Load your data and set up your variables
+pipeline_n = 444
+x = np.asanyarray(data_predict["b_age"])
+y = np.asanyarray(storage[pipeline_n])
+ROIs = list(data_predict["ts"][0].keys())
+regional_r2 = []
+
+# Define piecewise intervals
+intervals = [20, 30, 35, 38, 42.5]  # Theoretical base adjustment of the bins
+                                    # Alternatives
+                                    #    - np.percentile(y, [25, 50, 75])
+                                    #    - estimate the bins from the data 
+
+intervals_dict = {class_id: np.zeros((len(ROIs))) for class_id in range(1,len(intervals))}
+for i, ROI in enumerate(ROIs):
+    # Split the data into intervals and fit separate models for each interval
+    interval_predictions = []
+    cnt = 0
+    for j in range(len(intervals) - 1):
+        cnt += 1
+        mask = (x >= intervals[j]) & (x < intervals[j + 1])
+        x_interval = x[mask].reshape(-1, 1)
+        y_interval = y[mask, i]
+        
+        model = LinearRegression()
+        model.fit(x_interval, y_interval)
+        pred_interval = model.predict(x_interval)
+        interval_predictions.append(pred_interval)
+        intervals_dict[cnt][i] = r2_score(y_interval, pred_interval)
+
+# Plot the results with 5 subplots
+fig, axes = plt.subplots(4, 1, figsize=(8, 12))
+cnt = 0
+for j in range(len(intervals) - 1):
+    cnt += 1
+    axes[j].hist(intervals_dict[cnt], label="Data", bins=20)
+    axes[j].set_title(f"Age interval: {intervals[j]}-{intervals[j + 1]}")
+    axes[j].set_ylabel("Count")
+    axes[j].legend()    
+
+# set main image title
+fig.suptitle("R-squared distribution across ROIs", fontsize=16)
 
 
 # %%
