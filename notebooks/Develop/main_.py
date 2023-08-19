@@ -29,13 +29,10 @@ data_total = get_data(path = path)
 data = pair_age(data_total, age_path, clean=True)       # clean parameter removes uncomplete data
 
 # Split the data into 3 sections
-# n° of subjects to build the space: 51
-# n° of subjects to assess the prediction of each pipeline: 199
-# n° of subjects for post analysis validation: 51
 data_space, data_predict, data_lockbox = split_data(data = data,
-                                                    SUBJECT_COUNT_SPACE = 51,
-                                                    SUBJECT_COUNT_PREDICT = 199,  
-                                                    SUBJECT_COUNT_LOCKBOX = 51)
+                                                    SUBJECT_COUNT_SPACE = 51,     # n° of subjects to build the space: 51
+                                                    SUBJECT_COUNT_PREDICT = 199,  # n° of subjects to assess the prediction of each pipeline: 199
+                                                    SUBJECT_COUNT_LOCKBOX = 51)   # n° of subjects for post analysis validation: 51
 
 # Get and Display forks we utilize in this multiverse
 BCT_models, neg_options, thresholds, weight_options, graph_measures, connectivities = get_FORKs()
@@ -44,6 +41,18 @@ print_FORKs()
 
 # %% ----------------- DATA VISUALIZATION -------------------
 #TODO: DISPLAY THE DEMOGRAPHICS OF THE DATA
+# Set up the plot style
+plt.figure(figsize=(8, 6))
+plt.style.use('seaborn-whitegrid')
+plt.hist(np.asanyarray(data["b_age"]), bins=20, color='skyblue', edgecolor='black', alpha=0.7)
+plt.xlabel('Age', fontsize=14)
+plt.ylabel('Count', fontsize=14)
+plt.title('Age distribution', fontsize=16)
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.tick_params(labelsize=12)
+plt.legend(['Infants'], fontsize=12)
+plt.tight_layout()
+plt.show()
 
 # Print the 3 different connectivities for selected participant
 # Infant with lowest Gestational Age: 109
@@ -464,3 +473,69 @@ plt.scatter(ModelEmbedding[0: accs.shape[0], 0],
             c=accs, cmap='bwr')
 plt.colorbar()
 
+# %% ------------------------------------------------------------------------------------
+# ##                        EXHAUSTIVE SEARCH EXPLORATION
+# ## ------------------------------------------------------------------------------------
+import numpy as np
+from scipy.interpolate import LSQUnivariateSpline
+import matplotlib.pyplot as plt
+from sklearn.metrics import r2_score
+
+storage = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["199_subjects_1152_pipelines"]
+ROIs = list(data_predict["ts"][0].keys())
+pipeline_n = 998
+regional_r2 = []
+
+# Load your data and set up your variables
+x = np.asanyarray(data_predict["b_age"])
+y = np.asanyarray(storage[pipeline_n])
+
+# Sort the data
+sort_idx = np.argsort(x)
+x = x[sort_idx]
+y = y[sort_idx]
+
+# Define the intervals and spline model
+intervals = [30, 35, 38]
+for i, ROI in enumerate(ROIs):
+    spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=3)
+
+    # Calculate the R-squared value
+    y_pred = spline_model(x)
+    r2 = r2_score(y[:, i], y_pred)
+    regional_r2.append(r2)
+
+#  -------------- Plotting the spline model for ROI[i] --------------
+# Generate the x values for visualization
+xs = np.linspace(x.min(), x.max(), 1000)
+i = 40
+# Plot the data points, spline fit, and intervals
+plt.figure(figsize=(10, 6))
+plt.style.use('seaborn-whitegrid')
+plt.plot(x, y[:, i], 'ro', ms=8, label='Data', alpha=0.5)
+plt.plot(xs, spline_model(xs), 'g-', lw=3, label='Spline Fit')
+for interval in intervals:
+    plt.axvline(x=interval, color='b', linestyle='--', alpha=0.7, label='Intervals' if interval == intervals[0] else '')
+plt.legend(loc='upper left', fontsize=12)
+plt.xlabel('X', fontsize=14)
+plt.ylabel('Y', fontsize=14)
+plt.title('Spline Regression with Intervals', fontsize=16)
+plt.tick_params(labelsize=12)
+plt.tight_layout()
+plt.show()
+
+
+# %%
+# Set up the plot style
+plt.figure(figsize=(8, 6))
+plt.style.use('seaborn-whitegrid')
+plt.hist(regional_r2, bins=20, color='skyblue', edgecolor='black', alpha=0.7)
+plt.xlabel('R-squared', fontsize=14)
+plt.ylabel('Frequency', fontsize=14)
+plt.title('Histogram of regional R-squared', fontsize=16)
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.tick_params(labelsize=12)
+plt.legend(['Distribution of R2'], fontsize=12)
+plt.tight_layout()
+plt.show()
+# %%

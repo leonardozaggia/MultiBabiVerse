@@ -8,7 +8,6 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score
 import matplotlib.pyplot as plt
 import sys
 import pickle
@@ -132,12 +131,7 @@ for i, ROI in enumerate(ROIs):
 plt.hist(regional_r2, bins = 20)
 # TODO: add color legend to differenciate linear and non linear R2
 plt.show()
-
-# %% -------------- Spline approach - Poolynomial --------------
-from sklearn.linear_model import Ridge
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import PolynomialFeatures
-
+# %% UNCONSTRAINED SPLINE APPROACH
 # Load your data and set up your variables
 pipeline_n = 444
 x = np.asanyarray(data_predict["b_age"])
@@ -180,53 +174,75 @@ for j in range(len(intervals) - 1):
 
 # set main image title
 fig.suptitle("R-squared distribution across ROIs", fontsize=16)
-    
 
 
+# %% -------------- Spline approach - with constraints --------------
+import numpy as np
+from scipy.interpolate import LSQUnivariateSpline
+import matplotlib.pyplot as plt
 
-# %% -------------- Spline approach - Linear --------------
 # Load your data and set up your variables
 pipeline_n = 444
 x = np.asanyarray(data_predict["b_age"])
 y = np.asanyarray(storage[pipeline_n])
-ROIs = list(data_predict["ts"][0].keys())
 regional_r2 = []
 
-# Define piecewise intervals
-intervals = [20, 30, 35, 38, 42.5]  # Theoretical base adjustment of the bins
-                                    # Alternatives
-                                    #    - np.percentile(y, [25, 50, 75])
-                                    #    - estimate the bins from the data 
+# Sort the data
+sort_idx = np.argsort(x)
+x = x[sort_idx]
+y = y[sort_idx]
 
-intervals_dict = {class_id: np.zeros((len(ROIs))) for class_id in range(1,len(intervals))}
+# Define the intervals and spline model
+intervals = [30, 35, 38]
 for i, ROI in enumerate(ROIs):
-    # Split the data into intervals and fit separate models for each interval
-    interval_predictions = []
-    cnt = 0
-    for j in range(len(intervals) - 1):
-        cnt += 1
-        mask = (x >= intervals[j]) & (x < intervals[j + 1])
-        x_interval = x[mask].reshape(-1, 1)
-        y_interval = y[mask, i]
-        
-        model = LinearRegression()
-        model.fit(x_interval, y_interval)
-        pred_interval = model.predict(x_interval)
-        interval_predictions.append(pred_interval)
-        intervals_dict[cnt][i] = r2_score(y_interval, pred_interval)
+    spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=1)
 
-# Plot the results with 5 subplots
-fig, axes = plt.subplots(4, 1, figsize=(8, 12))
-cnt = 0
-for j in range(len(intervals) - 1):
-    cnt += 1
-    axes[j].hist(intervals_dict[cnt], label="Data", bins=20)
-    axes[j].set_title(f"Age interval: {intervals[j]}-{intervals[j + 1]}")
-    axes[j].set_ylabel("Count")
-    axes[j].legend()    
+    # Calculate the R-squared value
+    y_pred = spline_model(x)
+    r2 = r2_score(y[:, i], y_pred)
+    regional_r2.append(r2)
 
-# set main image title
-fig.suptitle("R-squared distribution across ROIs", fontsize=16)
+#  -------------- Plotting the spline model for ROI[i] --------------
+# Generate the x values for visualization
+xs = np.linspace(x.min(), x.max(), 1000)
+
+# Plot the data points, spline fit, and intervals
+plt.figure(figsize=(10, 6))
+plt.style.use('seaborn-whitegrid')
+plt.plot(x, y[:, i], 'ro', ms=8, label='Data', alpha=0.5)
+plt.plot(xs, spline_model(xs), 'g-', lw=3, label='Spline Fit')
+for interval in intervals:
+    plt.axvline(x=interval, color='b', linestyle='--', alpha=0.7, label='Intervals' if interval == intervals[0] else '')
+plt.legend(loc='upper left', fontsize=12)
+plt.xlabel('X', fontsize=14)
+plt.ylabel('Y', fontsize=14)
+plt.title('Spline Regression with Intervals', fontsize=16)
+plt.tick_params(labelsize=12)
+plt.tight_layout()
+plt.show()
 
 
+# %%
+# Set up the plot style
+plt.figure(figsize=(8, 6))
+plt.style.use('seaborn-whitegrid')
+plt.hist(regional_r2, bins=20, color='skyblue', edgecolor='black', alpha=0.7)
+plt.xlabel('R-squared', fontsize=14)
+plt.ylabel('Frequency', fontsize=14)
+plt.title('Histogram of regional R-squared', fontsize=16)
+
+# Adding a grid
+plt.grid(True, linestyle='--', alpha=0.7)
+
+# Adjusting tick label size
+plt.tick_params(labelsize=12)
+
+# Adding a legend (optional)
+plt.legend(['Distribution of R2'], fontsize=12)
+
+# Tight layout for better appearance
+plt.tight_layout()
+
+# Show the plot
+plt.show()
 # %%
