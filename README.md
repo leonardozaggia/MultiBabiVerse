@@ -61,6 +61,6 @@ This project is licensed under the [University of Oldenburg] License - see the L
 ## Acknowledgments
 
 Inspiration, code snippets, etc.
+* [Dafflon-approach](https://github.com/Mind-the-Pineapple/into-the-multiverse)
 * [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [Dafflon](https://github.com/Mind-the-Pineapple/into-the-multiverse)
 
