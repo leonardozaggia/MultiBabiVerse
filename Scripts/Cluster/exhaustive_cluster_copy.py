@@ -39,7 +39,6 @@ PredictedAcc_t = np.zeros((len(Data_Run)))
 multiverse_section2 = list(np.zeros((len(Data_Run))))
 AgesPrediction = np.asanyarray(data_predict["b_age"])
 
-
 #pool = Pool()
 i = (int(sys.argv[1])-1)
 tempPredAcc_t, tempPredAcc_l, pipeline_result = search_ehaustive_reg(i, AgesPrediction, Sparsities_Run, Data_Run, BCT_models, BCT_Run, Negative_Run, Weight_Run, Connectivity_Run, data_predict)

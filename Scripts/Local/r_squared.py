@@ -19,6 +19,7 @@ age_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/combined.tsv"
 output_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/outputs"
 
 storage = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["199_subjects_1152_pipelines"]
+pipe_code = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["pipeline_choices"]
 pipelines = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))
 ModelsResults = pickle.load(open(str(output_path + "/" + "ModelsResults.p"), "rb" ) )
 ModelEmbeddings = pickle.load(open(str(output_path + "/" + "embeddings_.p"), "rb"))
@@ -182,7 +183,7 @@ from scipy.interpolate import LSQUnivariateSpline
 import matplotlib.pyplot as plt
 
 # Load your data and set up your variables
-pipeline_n = 444
+pipeline_n = 900
 x = np.asanyarray(data_predict["b_age"])
 y = np.asanyarray(storage[pipeline_n])
 regional_r2 = []
@@ -222,7 +223,8 @@ plt.tight_layout()
 plt.show()
 
 
-# %%
+# %% Distibution of R2 across ROIs
+
 # Set up the plot style
 plt.figure(figsize=(8, 6))
 plt.style.use('seaborn-whitegrid')
@@ -230,6 +232,7 @@ plt.hist(regional_r2, bins=20, color='skyblue', edgecolor='black', alpha=0.7)
 plt.xlabel('R-squared', fontsize=14)
 plt.ylabel('Frequency', fontsize=14)
 plt.title('Histogram of regional R-squared', fontsize=16)
+
 
 # Adding a grid
 plt.grid(True, linestyle='--', alpha=0.7)
@@ -245,4 +248,7 @@ plt.tight_layout()
 
 # Show the plot
 plt.show()
+
+# print pipeline properties
+print(pipe_code[pipeline_n])
 # %%
