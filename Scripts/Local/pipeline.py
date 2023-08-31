@@ -577,7 +577,7 @@ def get_FORKs():
         'betweennness centrality': bct.betweenness_bin,             # integration measure
         }
 
-    graph_measures   = ['local efficiency','modularity (louvain)','modularity (probtune)']#'global efficiency': nx.global_efficiency  
+    graph_measures   = ['local efficiency','modularity (louvain)','modularity (probtune)', 'betweennness centrality']#'global efficiency': nx.global_efficiency  
     weight_options   = ["binarize", "normalize"]
     neg_options      = [ "abs", "zero", "keep"]
     thresholds       = [0.4, 0.3, 0.25, 0.2, 0.175, 0.150, 0.125, 0.1]
