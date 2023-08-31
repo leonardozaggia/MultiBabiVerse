@@ -26,8 +26,9 @@ sub = data["ts"][sub_idx]
 connectivity = get_1_connectivity(sub, "correlation")
 tmp = neg_abs(connectivity)
 tmp = bct.threshold_proportional(tmp, 0.2, copy=True)   # thresholding - prooning weak connections
-x = bct.weight_conversion(tmp, "normalize", copy = True) 
-new = bct.efficiency_wei(x)
-new
-
+tmp = bct.weight_conversion(tmp, "normalize", copy = True) 
+tmp = bct.efficiency_wei(tmp)
+new = np.zeros((52,))
+new[:] = [tmp for i in range(0, len(new))]
+print(new)
 # %%
