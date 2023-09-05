@@ -218,7 +218,7 @@ def fork_GSR(sub):
 
     return gsr_df
 
-# Run FORKing path - 3 sgregation, 1 integration
+# Run FORKing path - 1 sgregation, 1 integration
 def new_mv(d):
 
     BCT_models       = {
@@ -329,6 +329,118 @@ def new_mv(d):
                     }
             
     return ModelsResults 
+
+def set_mv_forking(d):
+
+    BCT_models       = {
+        'local efficiency': bct.efficiency_bin,              # segregation measure
+        'global efficiency': bct.betweenness_bin,            # integration measure
+        }
+    
+    weight_options   = ["binarize", "normalize"]
+    neg_options      = [ "abs", "zero", "keep"]
+    thresholds       = [0.65, 0.6, 0.55, 0.5, 0.55, 0.4, 0.35, 0.3, 0.25, 0.2, 0.150, 0.1, 0.05]
+    connectivities   = ["covariance", "correlation", "partial correlation"]
+
+    tot_sub          = len(list(d.values())[0])              # size of our data - subject dimension 
+    n_ROIs           = len(list(d["ts"][0].keys()))
+    
+    data             = deepcopy(d)
+    data["Multiverse"] = []                                  # initiate new multiverse key
+    pipelines_graph  = []
+    pipelines_conn   = []
+    pipe_code        = []
+    temp_dic         = {}
+    GSR              = ["GSR", "noGSR"]
+
+    n_w = len(weight_options)
+    n_n = len(neg_options)
+    n_t = len(thresholds)
+    n_c = len(connectivities)
+    n_b = len(BCT_models)
+    n_g = len(GSR)
+
+    BCT_Run          = {}
+    Sparsities_Run   = {}
+    Connectivity_Run = {}
+    Negative_Run     = {}
+    Weight_Run       = {}
+    Data_Run         = {}
+    GroupSummary     = {}
+    Results = np.zeros(((n_w * n_n * n_t * n_c * n_b * n_g), n_ROIs))
+    ResultsIndVar = np.zeros(((n_w * n_n * n_t * n_c * n_b * n_g), int((tot_sub * (tot_sub-1))/2)))         
+    count = 0
+
+    with tqdm(range(n_w * n_n * n_t * n_c * n_b * n_g)) as pbar:
+        for G in GSR:
+            temp_dic[G] = {}
+            for BCT_Num in BCT_models:
+                temp_dic[G][BCT_Num] = {}                                               # get subject connectivity data 
+                for connectivity in connectivities:                                     # connectivity measure FORK
+                    temp_dic[G][BCT_Num][connectivity] = {}
+                    for negative_values_approach in neg_options:                        # what-to-do-with negative values FORK
+                        temp_dic[G][BCT_Num][connectivity][negative_values_approach] = {}                    
+                        for treshold in thresholds:                                     # tresholds FORK
+                            temp_dic[G][BCT_Num][connectivity][negative_values_approach][str(treshold)] = {}
+                            for weight in weight_options:                               # handling weights FORK
+                                temp_dic[G][BCT_Num][connectivity][negative_values_approach][str(treshold)][weight] = {}
+                                pipe_c = []
+                                pipe_g = np.zeros((tot_sub, n_ROIs))
+
+#                                for idx in range(0,tot_sub):
+#                                    sub  = data["ts"][idx]
+#                                    if G == "GSR":
+#                                        sub = fork_GSR(sub)
+#                                    f    = get_1_connectivity(sub, connectivity)
+#                                    tmp = []
+#                                    tmp = neg_corr(negative_values_approach, f)  # address negative values
+#                                    tmp = bct.threshold_proportional(tmp, treshold, copy = True)# apply sparsity treshold
+#                                    tmp = bct.weight_conversion(tmp, weight)
+#                                    ss   = analysis_space(BCT_Num, BCT_models, tmp, weight)
+#                                    temp_dic[G][BCT_Num][connectivity][negative_values_approach][str(treshold)][weight][data["IDs"][idx]] = deepcopy(tmp)
+#                                    pipe_c.append(tmp)
+#                                    pipe_g[idx, :] = ss
+
+#                                pipe_code.append("_".join([G, BCT_Num,connectivity, negative_values_approach, str(treshold), weight]))
+#                                pipelines_graph.append(pipe_g)
+#                                pipelines_conn.append(np.asanyarray(pipe_c))
+#                                data["Multiverse"].append(temp_dic)
+
+
+                                BCT_Run[count]          = BCT_Num
+                                Sparsities_Run[count]   = treshold
+                                Data_Run[count]         = G
+                                Connectivity_Run[count] = connectivity
+                                Negative_Run[count]     = negative_values_approach
+                                Weight_Run[count]       = weight
+                                GroupSummary[count]     = 'Mean'
+                                
+                                # Build an array of similarities between subjects for each
+                                # analysis approach
+#                                cos_sim = cosine_similarity(pipe_g, pipe_g)
+#                                Results[count, :] = np.mean(pipe_g, axis=0)
+#                                ResultsIndVar[count, :] = cos_sim[np.triu_indices(tot_sub, k=1)].T
+                                count += 1
+                                pbar.update(1)
+                                
+    ModelsResults = {"Results": Results,
+                    "ResultsIndVar": ResultsIndVar,
+                    "BCT": BCT_Run,
+                    "Sparsities": Sparsities_Run,
+                    "Data": Data_Run,
+                    "Connectivity": Connectivity_Run,
+                    "Negatives": Negative_Run,
+                    "Weights":Weight_Run,
+                    "SummaryStat": GroupSummary,
+                    "pipelines_graph": pipelines_graph,
+                    "pipelines_conn": pipelines_conn,
+                    "Multiverse_dict": data,
+                    "pipe_code": pipe_code
+                    }
+            
+    return ModelsResults 
+
+
 
 def analysis_space(BCT_Num, BCT_models, x, weight):
     if (BCT_Num == 'local efficiency' and (weight == "binarize")):
