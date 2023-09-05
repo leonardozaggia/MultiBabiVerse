@@ -124,24 +124,13 @@ def split_data(data, SUBJECT_COUNT_SPACE = 51, SUBJECT_COUNT_PREDICT = 199, SUBJ
     data_lockbox = df_lockbox.to_dict("list")
     return data_space, data_predict, data_lockbox
 
+# TODO: add a dunction that extract the participants used by juan
+def get_juan_splits():
+    return [63, 63]
+
 # %% ------------------------------------------------------------------
 # ##                MULTIVERSE BUILDING BLOCKS
 # ## ------------------------------------------------------------------
-
-# Extracting Connectivity matrixes
-def get_connectivity(data, corr_mets = {"covariance", "correlation", "partial correlation"}):
-    temp = []
-    connectivity = {}
-
-    for i, n in enumerate(list(data.values())[0]):                    # getting the subject dimension
-        temp.append(np.zeros((2300,52)))
-        temp[i] = np.array(list(data["ts"][i].values())).T            # getting the ts data of a participant in the format requested by nilearn
-
-    for corr_met in corr_mets:                                        # multiverse of connectivity
-        myclass = ConnectivityMeasure(kind = corr_met)
-        connectivity[corr_met] = myclass.fit_transform(temp)
-
-    return connectivity
 
 ### single participant
 def get_3_connectivity(data, corr_mets = {"covariance", "correlation", "partial correlation"}, plot = False, sub_idx = np.random.randint(0,300)):
@@ -168,16 +157,6 @@ def get_3_connectivity(data, corr_mets = {"covariance", "correlation", "partial 
         plt.show()
 
     return connectivity
-# Dealing with negative correlations
-def neg_corr(option, f):   
-    if  option == "abs":
-        out = abs(f)
-    elif option == "zero": 
-        out = f
-        out[np.where(f < 0)] = 0
-    elif option == "keep":
-        out = f
-    return out
 
 ### new connectivity
 def get_1_connectivity(sub_data, connect_met, p = False):
@@ -199,6 +178,17 @@ def get_1_connectivity(sub_data, connect_met, p = False):
         plt.show()
 
     return connectivity
+
+# Dealing with negative correlations
+def neg_corr(option, f):   
+    if  option == "abs":
+        out = abs(f)
+    elif option == "zero": 
+        out = f
+        out[np.where(f < 0)] = 0
+    elif option == "keep":
+        out = f
+    return out
 
 # GSR
 def fork_noGSR(sub):
@@ -228,47 +218,17 @@ def fork_GSR(sub):
 
     return gsr_df
 
-# Run FORKing path Mapping
-def run_mv(data, neg_options, thresholds, weight_options):
-
-    tot_sub          = range(0, len(list(data.values())[0]))                    # create iterable with the size of our data                                      
-    d2               = deepcopy(data)
-    data["Multiverse"] = []                                                       # initiate new multiverse key
-    f1               = {}
-
-    for sub_idx in tot_sub:                                                     # get subject connectivity data 
-        f   = get_3_connectivity(d2, sub_idx = sub_idx)
-        for connectivity in f.keys():                                           # connectivity measure FORK
-            f1[connectivity] = {}
-
-            for negative_values_approach in neg_options:                        # what-to-do-with negative values FORK
-                f1[connectivity][negative_values_approach] = {} 
-                
-                for treshold in thresholds:                                     # tresholds FORK
-                    f1[connectivity][negative_values_approach][str(treshold)] = {}
-                    temp = neg_corr(negative_values_approach, f[connectivity])  # address negative values
-                    temp = bct.threshold_proportional(temp, treshold, copy = True)# apply sparsity treshold
-                    
-                    for weight in weight_options:                               # handling weights FORK
-                        f1[connectivity][negative_values_approach][str(treshold)][weight] = bct.weight_conversion(temp, weight)
-        data["Multiverse"].append(f1)
-
-
-    return data
-
 # Run FORKing path - 3 sgregation, 1 integration
 def new_mv(d):
 
     BCT_models       = {
-        'local efficiency': bct.efficiency_bin,                     # segregation measure
-        'modularity (louvain)': bct.modularity_louvain_und_sign,    # segregation measure
-        'modularity (probtune)': bct.modularity_probtune_und_sign,  # segregation measure
-        'betweennness centrality': bct.betweenness_bin,             # integration measure
+        'local efficiency': bct.efficiency_bin,              # segregation measure
+        'global efficiency': bct.betweenness_bin,            # integration measure
         }
     
     weight_options   = ["binarize", "normalize"]
     neg_options      = [ "abs", "zero", "keep"]
-    thresholds       = [0.4, 0.3, 0.25, 0.2, 0.175, 0.150, 0.125, 0.1]
+    thresholds       = [0.65, 0.6, 0.55, 0.5, 0.55, 0.4, 0.35, 0.3, 0.25, 0.2, 0.150, 0.1, 0.05]
     connectivities   = ["covariance", "correlation", "partial correlation"]
 
     tot_sub          = len(list(d.values())[0])              # size of our data - subject dimension 
@@ -297,7 +257,7 @@ def new_mv(d):
     Data_Run         = {}
     GroupSummary     = {}
     Results = np.zeros(((n_w * n_n * n_t * n_c * n_b * n_g), n_ROIs))
-    ResultsIndVar = np.zeros(((n_w * n_n * n_t * n_c * n_b * n_g), 1275))               #TODO: soft code it ((tot_subject * (tot_subject-1))/2)
+    ResultsIndVar = np.zeros(((n_w * n_n * n_t * n_c * n_b * n_g), int((tot_sub * (tot_sub-1))/2)))         
     count = 0
 
     with tqdm(range(n_w * n_n * n_t * n_c * n_b * n_g)) as pbar:
@@ -375,15 +335,14 @@ def analysis_space(BCT_Num, BCT_models, x, weight):
         ss = BCT_models[BCT_Num](x,1)
     elif (BCT_Num == 'local efficiency' and (weight == "normalize")):
         ss = bct.efficiency_wei(x,1)
-    elif BCT_Num == 'modularity (louvain)':
-        ss, _ = BCT_models[BCT_Num](x, seed=2)
-    elif BCT_Num == 'modularity (probtune)':
-        ss, _ = BCT_models[BCT_Num](x, seed=2)
-    elif BCT_Num == 'betweennness centrality' and ((weight == "normalize")):
-        x = bct.weight_conversion(x,'lengths')
-        ss = bct.betweenness_wei(x)
+    elif (BCT_Num == 'global efficiency' and (weight == "normalize")):
+        ge = bct.efficiency_wei(x)
+        ss = np.zeros((52,))
+        ss[:] = [ge for i in range(0, len(ss))]    
     else:
-        ss = BCT_models[BCT_Num](x)
+        ge = BCT_models[BCT_Num](x)
+        ss = np.zeros((52,))
+        ss[:] = [ge for i in range(0, len(ss))]    
     return ss
 
 def objective_func_reg(TempModelNum, Y, Sparsities_Run,
@@ -528,71 +487,50 @@ def search_ehaustive_reg(TempModelNum, age, Sparsities_Run,
     for SubNum in range(0, TotalSubjects):
         sub = data["ts"][SubNum]                                        # extract subject
         sub = prep["preprocessing"](sub)                                # apply preprocessing
-        f = get_1_connectivity(sub, Connectivity)                     # calculate connectivity
+        f = get_1_connectivity(sub, Connectivity)                       # calculate connectivity
         tmp = Neg["neg_opt"](f)                                         # address negative values
-        tmp = bct.threshold_proportional(tmp, TempThreshold, copy=True)   # thresholding - prooning weak connections
-        x = bct.weight_conversion(tmp, weight, copy = True)                        # binarization - normalization
+        tmp = bct.threshold_proportional(tmp, TempThreshold, copy=True) # thresholding - prooning weak connections
+        x = bct.weight_conversion(tmp, weight, copy = True)             # binarization - normalization
         if (BCT_Num == 'local efficiency' and (weight == "binarize")):
             ss = BCT_models[BCT_Num](x,1)
         elif (BCT_Num == 'local efficiency' and (weight == "normalize")):
             ss = bct.efficiency_wei(x,1)
-        elif BCT_Num == 'modularity (louvain)':
-            ss, _ = BCT_models[BCT_Num](x, seed=2)
-        elif BCT_Num == 'modularity (probtune)':
-            ss, _ = BCT_models[BCT_Num](x, seed=2)
-        elif BCT_Num == 'betweennness centrality' and ((weight == "normalize")):
-            x = bct.weight_conversion(x,'lengths', copy = True)
-            ss = bct.betweenness_wei(x)
+        elif (BCT_Num == 'global efficiency' and (weight == "normalize")):
+            ge = bct.efficiency_wei(x)
+            ss = np.zeros((52,))
+            ss[:] = [ge for i in range(0, len(ss))]    
         else:
-            ss = BCT_models[BCT_Num](x)
+            ge = BCT_models[BCT_Num](x)
+            ss = np.zeros((52,))
+            ss[:] = [ge for i in range(0, len(ss))]        
     
         #For each subject for each approach keep the 52 regional values.
         TempResults[SubNum, :] = ss
 
-    age_list = list(map(lambda x: [x], age))
-    tmp_list = [list(y) for y in TempResults]
-    X_train, X_test, y_train, y_test = train_test_split(age_list, tmp_list,
-        test_size=.3, random_state=0)
-    #model = Pipeline([('scaler', StandardScaler()), ('svr', SVR())])
-    model_linear = MultiOutputRegressor(LinearRegression())
-    model_tree =  MultiOutputRegressor(RandomForestRegressor())
-    model_linear.fit(X_train, y_train)
-    model_tree.fit(X_train, y_train)
-
-    pred_linear = model_linear.predict(X_test)
-    pred_tree = model_tree.predict(X_test)
-
-    # Note: the scores were divided by 10 in order to keep the values close
-    # to 0 for avoiding problems with the Bayesian Optimisation
-    scores_tree = - mean_absolute_error(y_test, pred_tree)/10
-    scores_linear = - mean_absolute_error(y_test, pred_linear)/10
-
-    return scores_tree, scores_linear, TempResults
+    return TempResults
 
 # Get default FORKs
 def get_FORKs():
     
     BCT_models       = {
-        'local efficiency': bct.efficiency_bin,                     # segregation measure
-        'modularity (louvain)': bct.modularity_louvain_und_sign,    # segregation measure
-        'modularity (probtune)': bct.modularity_probtune_und_sign,  # segregation measure
-        'betweennness centrality': bct.betweenness_bin,             # integration measure
+        'local efficiency': bct.efficiency_bin,              # segregation measure
+        'global efficiency': bct.efficiency_bin,             # integration measure
         }
 
-    graph_measures   = ['local efficiency','modularity (louvain)','modularity (probtune)', 'betweennness centrality']#'global efficiency': nx.global_efficiency  
+    graph_measures   = ['local efficiency', 'global efficiency']
     weight_options   = ["binarize", "normalize"]
     neg_options      = [ "abs", "zero", "keep"]
-    thresholds       = [0.4, 0.3, 0.25, 0.2, 0.175, 0.150, 0.125, 0.1]
+    thresholds       = [0.65, 0.6, 0.55, 0.5, 0.55, 0.4, 0.35, 0.3, 0.25, 0.2, 0.150, 0.1, 0.05]
     connectivities   = ["covariance", "correlation", "partial correlation"]
 
     return BCT_models, neg_options, thresholds, weight_options, graph_measures, connectivities
 def print_FORKs():
 
     GSR              = ["GSR, no-GSR"]   
-    graph_measures   = ['local efficiency','modularity (louvain)','modularity (probtune)', 'betweennness centrality']#'global efficiency': nx.global_efficiency  
+    graph_measures   = ['local efficiency', 'global efficiency']
     weight_options   = ["binarize", "normalize"]
     neg_options      = [ "abs", "zero", "keep"]
-    thresholds       = [0.4, 0.3, 0.25, 0.2, 0.175, 0.150, 0.125, 0.1]
+    thresholds       = [0.65, 0.6, 0.55, 0.5, 0.55, 0.4, 0.35, 0.3, 0.25, 0.2, 0.150, 0.1, 0.05]
     connectivities   = ["covariance", "correlation", "partial correlation"]
 
     print("Global Signal Regression:", GSR)

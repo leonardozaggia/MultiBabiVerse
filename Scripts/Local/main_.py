@@ -18,7 +18,7 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 signal_path = '/Users/amnesia/Desktop/Master_Thesis/root_dir/end_processing_signal/handy-introduction-022-glbml-21786.mp3'
 path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/pipeline_timeseries"
 age_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/combined.tsv"
-output_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/outputs"
+output_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir_G_&_L/outputs"
 
 
 # %%
@@ -62,15 +62,15 @@ connectivities = get_3_connectivity(data = data, plot = True, sub_idx = sub_idx)
 
 # %% ----------------- CREATE THE SPACE -------------------
 # This process is time consuming takes approximately 10h to be completed
-"""
-ModelsResults = new_mv(data_space)
-pickle.dump( ModelsResults, open(str(output_path + "/" + "ModelsResults.p"), "wb" ) )
-"""
 
+ModelsResults = new_mv(data)
+pickle.dump( ModelsResults, open(str(output_path + "/" + "ModelsResults.p"), "wb" ) )
+print(ModelsResults.keys())
+"""
 # Pickled data is provided -> for time efficient exploration of this project
 ModelsResults = pickle.load(open(str(output_path + "/" + "ModelsResults.p"), "rb" ) )
 print(ModelsResults.keys())
-
+"""
 
 # %% ------------------------------------------------------------------------------------
 # ##                                PLOTTING THE SPACE
