@@ -62,13 +62,14 @@ connectivities = get_3_connectivity(data = data, plot = True, sub_idx = sub_idx)
 
 # %% ----------------- CREATE THE SPACE -------------------
 # This process is time consuming takes approximately 10h to be completed
-# Pickled data is provided -> for time efficient exploration of this project
+"""
+ModelsResults = new_mv(data_space)
+pickle.dump( ModelsResults, open(str(output_path + "/" + "ModelsResults.p"), "wb" ) )
+"""
 
-#ModelsResults = new_mv(data_space)
-#pickle.dump( ModelsResults, open(str(output_path + "/" + "ModelsResults.p"), "wb" ) )
+# Pickled data is provided -> for time efficient exploration of this project
 ModelsResults = pickle.load(open(str(output_path + "/" + "ModelsResults.p"), "rb" ) )
 print(ModelsResults.keys())
-
 
 
 # %% ------------------------------------------------------------------------------------

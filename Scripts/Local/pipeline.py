@@ -369,6 +369,7 @@ def new_mv(d):
                     }
             
     return ModelsResults 
+
 def analysis_space(BCT_Num, BCT_models, x, weight):
     if (BCT_Num == 'local efficiency' and (weight == "binarize")):
         ss = BCT_models[BCT_Num](x,1)
@@ -384,6 +385,7 @@ def analysis_space(BCT_Num, BCT_models, x, weight):
     else:
         ss = BCT_models[BCT_Num](x)
     return ss
+
 def objective_func_reg(TempModelNum, Y, Sparsities_Run,
                        Data_Run, BCT_models, BCT_Run,
                        Negative_Run, Weight_Run,
