@@ -330,6 +330,7 @@ def new_mv(d):
             
     return ModelsResults 
 
+# Cluster FORKing path - 1 sgregation, 1 integration
 def set_mv_forking(d):
 
     BCT_models       = {
@@ -384,8 +385,8 @@ def set_mv_forking(d):
                             temp_dic[G][BCT_Num][connectivity][negative_values_approach][str(treshold)] = {}
                             for weight in weight_options:                               # handling weights FORK
                                 temp_dic[G][BCT_Num][connectivity][negative_values_approach][str(treshold)][weight] = {}
-                                pipe_c = []
-                                pipe_g = np.zeros((tot_sub, n_ROIs))
+#                                pipe_c = []
+#                                pipe_g = np.zeros((tot_sub, n_ROIs))
 
 #                                for idx in range(0,tot_sub):
 #                                    sub  = data["ts"][idx]
@@ -401,7 +402,7 @@ def set_mv_forking(d):
 #                                    pipe_c.append(tmp)
 #                                    pipe_g[idx, :] = ss
 
-#                                pipe_code.append("_".join([G, BCT_Num,connectivity, negative_values_approach, str(treshold), weight]))
+                                pipe_code.append("_".join([G, BCT_Num,connectivity, negative_values_approach, str(treshold), weight]))
 #                                pipelines_graph.append(pipe_g)
 #                                pipelines_conn.append(np.asanyarray(pipe_c))
 #                                data["Multiverse"].append(temp_dic)
@@ -432,13 +433,73 @@ def set_mv_forking(d):
                     "Negatives": Negative_Run,
                     "Weights":Weight_Run,
                     "SummaryStat": GroupSummary,
-                    "pipelines_graph": pipelines_graph,
-                    "pipelines_conn": pipelines_conn,
-                    "Multiverse_dict": data,
+#                    "pipelines_graph": pipelines_graph,
+#                    "pipelines_conn": pipelines_conn,
+#                    "Multiverse_dict": data,
                     "pipe_code": pipe_code
                     }
             
     return ModelsResults 
+def get_mv(TempModelNum, Sparsities_Run,
+    Data_Run, BCT_models, BCT_Run,
+    Negative_Run, Weight_Run,
+    Connectivity_Run, data):
+        # load the correct connectivity for this pipeline    
+    if Connectivity_Run[TempModelNum] == "correlation":
+        Connectivity = "correlation"
+    elif Connectivity_Run[TempModelNum] == "covariance":
+        Connectivity = "covariance"
+    elif Connectivity_Run[TempModelNum] == "partial correlation":
+        Connectivity = "partial correlation"
+    # load the correct neg_values_option for this pipeline
+    if Negative_Run[TempModelNum] == "abs":
+        Neg    = {"neg_opt": neg_abs}
+    elif Negative_Run[TempModelNum] == "keep":        
+        Neg    = {"neg_opt": neg_keep}
+    elif Negative_Run[TempModelNum] == "zero":        
+        Neg    = {"neg_opt": neg_zero}
+    # load the correct weight_option for this pipeline
+    if Weight_Run[TempModelNum] == "binarize":
+        weight = "binarize"
+    else:
+        weight = "normalize"
+    # load the correct preprocessing for this pipeline
+    if Data_Run[TempModelNum] == 'noGSR':
+        prep   = {"preprocessing": fork_noGSR}
+    elif Data_Run[TempModelNum] == 'GSR':        
+        prep   = {"preprocessing": fork_GSR}
+    
+    TotalSubjects = len(list(data.values())[0])
+    TotalRegions  = 52
+
+    TempThreshold = Sparsities_Run[TempModelNum]
+    BCT_Num = BCT_Run[TempModelNum]
+
+    TempResults = np.zeros([TotalSubjects, TotalRegions])
+    for SubNum in range(0, TotalSubjects):
+        sub = data["ts"][SubNum]                                        # extract subject
+        sub = prep["preprocessing"](sub)                                # apply preprocessing
+        f = get_1_connectivity(sub, Connectivity)                       # calculate connectivity
+        tmp = Neg["neg_opt"](f)                                         # address negative values
+        tmp = bct.threshold_proportional(tmp, TempThreshold, copy=True) # thresholding - prooning weak connections
+        x = bct.weight_conversion(tmp, weight, copy = True)             # binarization - normalization
+        if (BCT_Num == 'local efficiency' and (weight == "binarize")):
+            ss = BCT_models[BCT_Num](x,1)
+        elif (BCT_Num == 'local efficiency' and (weight == "normalize")):
+            ss = bct.efficiency_wei(x,1)
+        elif (BCT_Num == 'global efficiency' and (weight == "normalize")):
+            ge = bct.efficiency_wei(x)
+            ss = np.zeros((52,))
+            ss[:] = [ge for i in range(0, len(ss))]    
+        else:
+            ge = BCT_models[BCT_Num](x)
+            ss = np.zeros((52,))
+            ss[:] = [ge for i in range(0, len(ss))]        
+    
+        #For each subject for each approach keep the 52 regional values.
+        TempResults[SubNum, :] = ss
+
+    return TempResults
 
 
 
