@@ -21,7 +21,7 @@ ModelsResults = set_mv_forking(data)
 ####
 BCT_models = {
     'local efficiency': bct.efficiency_bin,              # segregation measure
-    'global efficiency': bct.betweenness_bin,            # integration measure
+    'global efficiency': bct.efficiency_bin,            # integration measure
     }
 ####
 Results = ModelsResults['ResultsIndVar']
@@ -48,4 +48,4 @@ pipe_g = get_mv(
 
 # creating a folder and saving the single pipelines with 301 participants each
 pipes_path = output_path + "/pipes"
-pickle.dump( pipe_g, open(str(pipes_path + "/" +  + str(pipe_idx) + '.p'), 'wb'))
+pickle.dump( pipe_g, open(str(pipes_path + "/" +  str(pipe_idx) + '.p'), 'wb'))

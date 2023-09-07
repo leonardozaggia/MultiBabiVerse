@@ -12,7 +12,6 @@ output_path = "/dss/work/head3827/MultiBabiVerse/outputs"
 Exhaustive_path = output_path + "/Exhaustive"
 pipes_path = output_path + "/pipes"
 
-
 # load the data
 data_total = get_data(path = path)
 data = pair_age(data_total, age_path, clean=True)       # clean parameter removes uncomplete data
@@ -37,7 +36,7 @@ def get_ModelsResults():
     pipe_code = []
     pipes = os.listdir(pipes_path)
     for i, _ in enumerate(pipes):
-        pipe_g = pickle.load(open(str(pipes_path + "/" + str(i) + ".p"), "rb"))[i]
+        pipe_g = pickle.load(open(str(pipes_path + "/" + str(i) + ".p"), "rb"))
         cos_sim = cosine_similarity(pipe_g, pipe_g)
         ModelsResults["Results"][i, :] = np.mean(pipe_g, axis=0)
         ModelsResults["ResultsIndVar"][i, :] = cos_sim[np.triu_indices(tot_sub, k=1)].T

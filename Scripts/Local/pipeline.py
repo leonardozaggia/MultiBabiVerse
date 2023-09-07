@@ -223,7 +223,7 @@ def new_mv(d):
 
     BCT_models       = {
         'local efficiency': bct.efficiency_bin,              # segregation measure
-        'global efficiency': bct.betweenness_bin,            # integration measure
+        'global efficiency': bct.efficiency_bin,            # integration measure
         }
     
     weight_options   = ["binarize", "normalize"]
@@ -335,7 +335,7 @@ def set_mv_forking(d):
 
     BCT_models       = {
         'local efficiency': bct.efficiency_bin,              # segregation measure
-        'global efficiency': bct.betweenness_bin,            # integration measure
+        'global efficiency': bct.efficiency_bin,            # integration measure
         }
     
     weight_options   = ["binarize", "normalize"]
@@ -372,19 +372,19 @@ def set_mv_forking(d):
     ResultsIndVar = np.zeros(((n_w * n_n * n_t * n_c * n_b * n_g), int((tot_sub * (tot_sub-1))/2)))         
     count = 0
 
-    with tqdm(range(n_w * n_n * n_t * n_c * n_b * n_g)) as pbar:
-        for G in GSR:
-            temp_dic[G] = {}
-            for BCT_Num in BCT_models:
-                temp_dic[G][BCT_Num] = {}                                               # get subject connectivity data 
-                for connectivity in connectivities:                                     # connectivity measure FORK
-                    temp_dic[G][BCT_Num][connectivity] = {}
-                    for negative_values_approach in neg_options:                        # what-to-do-with negative values FORK
-                        temp_dic[G][BCT_Num][connectivity][negative_values_approach] = {}                    
-                        for treshold in thresholds:                                     # tresholds FORK
-                            temp_dic[G][BCT_Num][connectivity][negative_values_approach][str(treshold)] = {}
-                            for weight in weight_options:                               # handling weights FORK
-                                temp_dic[G][BCT_Num][connectivity][negative_values_approach][str(treshold)][weight] = {}
+
+    for G in GSR:
+        temp_dic[G] = {}
+        for BCT_Num in BCT_models:
+            temp_dic[G][BCT_Num] = {}                                               # get subject connectivity data 
+            for connectivity in connectivities:                                     # connectivity measure FORK
+                temp_dic[G][BCT_Num][connectivity] = {}
+                for negative_values_approach in neg_options:                        # what-to-do-with negative values FORK
+                    temp_dic[G][BCT_Num][connectivity][negative_values_approach] = {}                    
+                    for treshold in thresholds:                                     # tresholds FORK
+                        temp_dic[G][BCT_Num][connectivity][negative_values_approach][str(treshold)] = {}
+                        for weight in weight_options:                               # handling weights FORK
+                            temp_dic[G][BCT_Num][connectivity][negative_values_approach][str(treshold)][weight] = {}
 #                                pipe_c = []
 #                                pipe_g = np.zeros((tot_sub, n_ROIs))
 
@@ -402,28 +402,27 @@ def set_mv_forking(d):
 #                                    pipe_c.append(tmp)
 #                                    pipe_g[idx, :] = ss
 
-                                pipe_code.append("_".join([G, BCT_Num,connectivity, negative_values_approach, str(treshold), weight]))
+                            pipe_code.append("_".join([G, BCT_Num,connectivity, negative_values_approach, str(treshold), weight]))
 #                                pipelines_graph.append(pipe_g)
 #                                pipelines_conn.append(np.asanyarray(pipe_c))
 #                                data["Multiverse"].append(temp_dic)
 
 
-                                BCT_Run[count]          = BCT_Num
-                                Sparsities_Run[count]   = treshold
-                                Data_Run[count]         = G
-                                Connectivity_Run[count] = connectivity
-                                Negative_Run[count]     = negative_values_approach
-                                Weight_Run[count]       = weight
-                                GroupSummary[count]     = 'Mean'
-                                
-                                # Build an array of similarities between subjects for each
-                                # analysis approach
+                            BCT_Run[count]          = BCT_Num
+                            Sparsities_Run[count]   = treshold
+                            Data_Run[count]         = G
+                            Connectivity_Run[count] = connectivity
+                            Negative_Run[count]     = negative_values_approach
+                            Weight_Run[count]       = weight
+                            GroupSummary[count]     = 'Mean'
+                            
+                            # Build an array of similarities between subjects for each
+                            # analysis approach
 #                                cos_sim = cosine_similarity(pipe_g, pipe_g)
 #                                Results[count, :] = np.mean(pipe_g, axis=0)
 #                                ResultsIndVar[count, :] = cos_sim[np.triu_indices(tot_sub, k=1)].T
-                                count += 1
-                                pbar.update(1)
-                                
+                            count += 1
+                            
     ModelsResults = {"Results": Results,
                     "ResultsIndVar": ResultsIndVar,
                     "BCT": BCT_Run,
@@ -444,7 +443,8 @@ def get_mv(TempModelNum, Sparsities_Run,
     Data_Run, BCT_models, BCT_Run,
     Negative_Run, Weight_Run,
     Connectivity_Run, data):
-        # load the correct connectivity for this pipeline    
+    
+    # load the correct connectivity for this pipeline    
     if Connectivity_Run[TempModelNum] == "correlation":
         Connectivity = "correlation"
     elif Connectivity_Run[TempModelNum] == "covariance":
