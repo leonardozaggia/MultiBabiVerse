@@ -160,6 +160,7 @@ for idx_method, (label, method) in enumerate(methods.items()):
             for idx_conn, connect in enumerate(connectivities):
                 for weight in weight_options:
                     for idx_bct, bct_model in enumerate(BCT_models):
+                        # Distinguish between Juan's Multiverse and the rest of it (different edgecolor)
                         if weight == "binarize" and connect == "correlation" and negatives == "abs" and preprocessing == "noGSR":
                             axs[idx_method].scatter(YTemp[:, 0][(BCTTemp == bct_model) & (WeightsTemp == weight) & (ConnectivitiesTemp == connect) & (NegativesTemp == negatives)],
                                                     YTemp[:, 1][(BCTTemp == bct_model) & (WeightsTemp == weight) & (ConnectivitiesTemp == connect) & (NegativesTemp == negatives)],
@@ -168,7 +169,7 @@ for idx_method, (label, method) in enumerate(methods.items()):
                                                     hatch=hatches[connect],
                                                     alpha=0.5,
                                                     linewidth= widths[negatives],
-                                                    edgecolor='green',
+                                                    edgecolor='green', # Show JUAN pipelines in green
                                                     cmap=colourmaps[preprocessing], s=sizes[weight])
                         else:
                             axs[idx_method].scatter(YTemp[:, 0][(BCTTemp == bct_model) & (WeightsTemp == weight) & (ConnectivitiesTemp == connect) & (NegativesTemp == negatives)],
