@@ -72,13 +72,17 @@ VARIABLES:
 linear_corr_acc = np.asanyarray(pickle.load(open(str(output_path + "/" + "linear_corr_acc.p"), "rb")))
 forest_corr_acc = np.asanyarray(pickle.load(open(str(output_path + "/" + "forest_corr_acc.p"), "rb")))
 
-plt.scatter(ModelEmbedding[0: linear_corr_acc.shape[0], 0], ModelEmbedding[0: linear_corr_acc.shape[0], 1], c=linear_corr_acc, cmap='bwr')
+plt.scatter(ModelEmbedding[0: linear_corr_acc.shape[0], 0], 
+            ModelEmbedding[0: linear_corr_acc.shape[0], 1], 
+            c=linear_corr_acc, cmap='bwr')
 plt.colorbar()
 plt.title('LINEAR Regression')
 plt.axis('off')
 plt.show()
 
-plt.scatter(ModelEmbedding[0: forest_corr_acc.shape[0], 0], ModelEmbedding[0: forest_corr_acc.shape[0], 1], c=forest_corr_acc, cmap='bwr')
+plt.scatter(ModelEmbedding[0: forest_corr_acc.shape[0], 0], 
+            ModelEmbedding[0: forest_corr_acc.shape[0], 1], 
+            c=forest_corr_acc, cmap='bwr')
 plt.colorbar()
 plt.title('FOREST Regression')
 # add description to the plot

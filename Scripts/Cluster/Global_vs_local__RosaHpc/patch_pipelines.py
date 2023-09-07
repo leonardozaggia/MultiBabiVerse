@@ -31,20 +31,19 @@ Weight_Run = ModelsResults["Weights"]
 ####
 
 # lodad and path the pipelines
-def get_ModelsResults():
-    pipelines = []
-    pipe_code = []
-    pipes = os.listdir(pipes_path)
-    for i, _ in enumerate(pipes):
-        pipe_g = pickle.load(open(str(pipes_path + "/" + str(i) + ".p"), "rb"))
-        cos_sim = cosine_similarity(pipe_g, pipe_g)
-        ModelsResults["Results"][i, :] = np.mean(pipe_g, axis=0)
-        ModelsResults["ResultsIndVar"][i, :] = cos_sim[np.triu_indices(tot_sub, k=1)].T
-        
-        pipelines.append(pipe_g)
-        pipe_code.append("_".join([Data_Run[i], Connectivity_Run[i], Negative_Run[i], str(Sparsities_Run[i]), Weight_Run[i], BCT_Run[i]]))
+pipelines = []
+pipe_code = []
+pipes = os.listdir(pipes_path)
+for i, _ in enumerate(pipes):
+    pipe_g = pickle.load(open(str(pipes_path + "/" + str(i) + ".p"), "rb"))
+    cos_sim = cosine_similarity(pipe_g, pipe_g)
+    ModelsResults["Results"][i, :] = np.mean(pipe_g, axis=0)
+    ModelsResults["ResultsIndVar"][i, :] = cos_sim[np.triu_indices(tot_sub, k=1)].T
     
-    Exhaustive_dict = {"301_subjects_936_pipelines":pipelines, "pipeline_choices": pipe_code}
-    pickle.dump( ModelsResults, open(str(output_path + "/" + "ModelsResults.p"), "wb" ) )
-    pickle.dump(Exhaustive_dict, open(str(output_path + "/" + 'exhaustive_search_results.p'), 'wb'))
+    pipelines.append(pipe_g)
+    pipe_code.append("_".join([Data_Run[i], Connectivity_Run[i], Negative_Run[i], str(Sparsities_Run[i]), Weight_Run[i], BCT_Run[i]]))
+
+Exhaustive_dict = {"301_subjects_936_pipelines":pipelines, "pipeline_choices": pipe_code}
+pickle.dump( ModelsResults, open(str(output_path + "/" + "ModelsResults.p"), "wb" ) )
+pickle.dump(Exhaustive_dict, open(str(output_path + "/" + 'exhaustive_search_results.p'), 'wb'))
 

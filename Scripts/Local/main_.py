@@ -28,12 +28,6 @@ data_total = get_data(path = path)
 # Pair participants to their gestational age
 data = pair_age(data_total, age_path, clean=True)       # clean parameter removes uncomplete data
 
-# Split the data into 3 sections
-data_space, data_predict, data_lockbox = split_data(data = data,
-                                                    SUBJECT_COUNT_SPACE = 51,     # n° of subjects to build the space: 51
-                                                    SUBJECT_COUNT_PREDICT = 199,  # n° of subjects to assess the prediction of each pipeline: 199
-                                                    SUBJECT_COUNT_LOCKBOX = 51)   # n° of subjects for post analysis validation: 51
-
 # Get and Display forks we utilize in this multiverse
 BCT_models, neg_options, thresholds, weight_options, graph_measures, connectivities = get_FORKs()
 print_FORKs()
@@ -63,14 +57,17 @@ connectivities = get_3_connectivity(data = data, plot = True, sub_idx = sub_idx)
 # %% ----------------- CREATE THE SPACE -------------------
 # This process is time consuming takes approximately 10h to be completed
 
-ModelsResults = new_mv(data)
-pickle.dump( ModelsResults, open(str(output_path + "/" + "ModelsResults.p"), "wb" ) )
-print(ModelsResults.keys())
 """
+This step is performed in the cluster.
+The code is in Scripts/Cluster/Global_vs_local__RosaHpc/creating_space.py
+In the above script, we calculate the graph measures of all participants for all pipelines.
+We then save the similarities between the pipelines in ModelsResults and plot them, 
+which will allow us to gain insight into the uniqueness of the pipelines.
+"""
+
 # Pickled data is provided -> for time efficient exploration of this project
 ModelsResults = pickle.load(open(str(output_path + "/" + "ModelsResults.p"), "rb" ) )
 print(ModelsResults.keys())
-"""
 
 # %% ------------------------------------------------------------------------------------
 # ##                                PLOTTING THE SPACE
@@ -88,7 +85,6 @@ from matplotlib.ticker import NullFormatter
 import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
 import matplotlib.pyplot as plt
-import matplotlib
 from umap import UMAP
 import phate
 from sklearn.decomposition import PCA
@@ -127,20 +123,18 @@ methods['UMAP'] = UMAP(random_state=40, n_components=2, n_neighbors=200,
 methods['PHATE'] = phate.PHATE()
 methods['PCA'] = PCA(n_components=2)
 
+colourmaps = {"noGSR": "Oranges", "GSR": "Purples"}                                                   # Preprocessings
+markers    = ["v", "s", "o", "*", "D", "1", "x", "p", "H", "+", "|", "_", "3", "^", "4", "<", "X"]    # Graph Measures
+hatches    = {"partial correlation": "--", "correlation": "||", "covariance": "**"}                   # Connectivities
+widths     = {"abs": 10, "keep": 0, "zero":  5}                                                                              # Binarize or Weighted                                                                                       #
+sizes      = {"normalize": 80, "binarize": 250}  
 
-markers      = ["v", "s", "o", "*", "D", "1", "x", "p", "H", "+", "|", "_", "3", "^", "4", "<", "X"]    # Graph Measures
-colourmaps   = {"noGSR": "Oranges", "GSR": "Purples"}                                                   # Preprocessings
-hatches      = {"partial correlation": "--", "correlation": "||", "covariance": "**"}                   # Connectivities
-sizes        = {"normalize": 80, "binarize": 250}  
-widths       = {"abs": 10, "keep": 0, "zero":  5}                                                                              # Binarize or Weighted                                                                                       #
-
-BCT             = np.array(list(BCT_Run.items()))[:, 1]
-Sparsities      = np.array(list(Sparsities_Run.items()))[:, 1]
-Data            = np.array(list(Data_Run.items()))[:, 1]
-Negatives        = np.array(list(Negative_Run.items()))[:, 1]
-Connectivities   = np.array(list(Connectivity_Run.items()))[:, 1]
-Weights          = np.array(list(Weight_Run.items()))[:, 1]           
-
+Connectivities = np.array(list(Connectivity_Run.items()))[:, 1]
+Sparsities     = np.array(list(Sparsities_Run.items()))[:, 1]
+Negatives      = np.array(list(Negative_Run.items()))[:, 1]
+Weights        = np.array(list(Weight_Run.items()))[:, 1]           
+Data           = np.array(list(Data_Run.items()))[:, 1]
+BCT            = np.array(list(BCT_Run.items()))[:, 1]
 
 # Reduced dimensions
 data_reduced = {}
@@ -166,14 +160,26 @@ for idx_method, (label, method) in enumerate(methods.items()):
             for idx_conn, connect in enumerate(connectivities):
                 for weight in weight_options:
                     for idx_bct, bct_model in enumerate(BCT_models):
-                        axs[idx_method].scatter(YTemp[:, 0][(BCTTemp == bct_model) & (WeightsTemp == weight) & (ConnectivitiesTemp == connect) & (NegativesTemp == negatives)],
-                                                YTemp[:, 1][(BCTTemp == bct_model) & (WeightsTemp == weight) & (ConnectivitiesTemp == connect) & (NegativesTemp == negatives)],
-                                                c=SparsitiesTemp[(BCTTemp == bct_model) & (WeightsTemp == weight) & (ConnectivitiesTemp == connect) & (NegativesTemp == negatives)],
-                                                marker=markers[idx_bct],
-                                                hatch=hatches[connect],
-                                                alpha=0.5,
-                                                linewidth= widths[negatives],
-                                                cmap=colourmaps[preprocessing], s=sizes[weight])
+                        if weight == "binarize" and connect == "correlation" and negatives == "abs" and preprocessing == "noGSR":
+                            axs[idx_method].scatter(YTemp[:, 0][(BCTTemp == bct_model) & (WeightsTemp == weight) & (ConnectivitiesTemp == connect) & (NegativesTemp == negatives)],
+                                                    YTemp[:, 1][(BCTTemp == bct_model) & (WeightsTemp == weight) & (ConnectivitiesTemp == connect) & (NegativesTemp == negatives)],
+                                                    c=SparsitiesTemp[(BCTTemp == bct_model) & (WeightsTemp == weight) & (ConnectivitiesTemp == connect) & (NegativesTemp == negatives)],
+                                                    marker=markers[idx_bct],
+                                                    hatch=hatches[connect],
+                                                    alpha=0.5,
+                                                    linewidth= widths[negatives],
+                                                    edgecolor='green',
+                                                    cmap=colourmaps[preprocessing], s=sizes[weight])
+                        else:
+                            axs[idx_method].scatter(YTemp[:, 0][(BCTTemp == bct_model) & (WeightsTemp == weight) & (ConnectivitiesTemp == connect) & (NegativesTemp == negatives)],
+                                                    YTemp[:, 1][(BCTTemp == bct_model) & (WeightsTemp == weight) & (ConnectivitiesTemp == connect) & (NegativesTemp == negatives)],
+                                                    c=SparsitiesTemp[(BCTTemp == bct_model) & (WeightsTemp == weight) & (ConnectivitiesTemp == connect) & (NegativesTemp == negatives)],
+                                                    marker=markers[idx_bct],
+                                                    hatch=hatches[connect],
+                                                    alpha=0.5,
+                                                    linewidth= widths[negatives],
+                                                    cmap=colourmaps[preprocessing], s=sizes[weight])
+                            
                         Lines[idx_bct] = mlines.Line2D([], [], color='black', linestyle='None',
                                                     marker=markers[idx_bct], markersize=10,
                                                     label=bct_model)
