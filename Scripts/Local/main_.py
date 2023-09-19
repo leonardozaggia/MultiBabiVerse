@@ -117,8 +117,8 @@ import phate
 from sklearn.decomposition import PCA
 
 # Load the previous results
-#Results = ModelsResults['ResultsIndVar']
-Results = second_similarity
+Results = ModelsResults['ResultsIndVar']
+#Results = second_similarity
 BCT_Run = ModelsResults['BCT']
 Sparsities_Run = ModelsResults['Sparsities']
 Data_Run = ModelsResults['Data']
@@ -284,7 +284,7 @@ data_reduced['MDS'] = Y
 
 #%% ------------------------- Single Plot -------------------------
 
-key = 'MDS'
+key = 't-SNE'
 title_dict = {"MDS": "Multi-dimensional Scaling",
               "t-SNE": "t-Distributed Stochastic Neighbor Embedding",
               "SE": "Spectral Embedding",
@@ -436,8 +436,9 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 
 storage = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["301_subjects_936_pipelines"]
+pipe_choices = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["pipeline_choices"]
 ROIs = list(data["ts"][0].keys())
-pipeline_n = 600
+pipeline_n = 207
 regional_r2 = []
 
 # Load your data and set up your variables
@@ -450,7 +451,7 @@ x = x[sort_idx]
 y = y[sort_idx]
 
 # Define the intervals and spline model
-intervals = [30, 35, 38]
+intervals = [28, 31, 37]
 for i, ROI in enumerate(ROIs):
     spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=1)
 
@@ -463,6 +464,12 @@ for i, ROI in enumerate(ROIs):
 # Generate the x values for visualization
 xs = np.linspace(x.min(), x.max(), 1000)
 i = 40
+# Run one more iteration of the model to get the final y_pred
+spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=1)
+# Calculate the R-squared value
+y_pred = spline_model(x)
+r2 = r2_score(y[:, i], y_pred)
+regional_r2.append(r2)
 # Plot the data points, spline fit, and intervals
 plt.figure(figsize=(10, 6))
 plt.style.use('seaborn-whitegrid')
@@ -471,8 +478,8 @@ plt.plot(xs, spline_model(xs), 'g-', lw=3, label='Spline Fit')
 for interval in intervals:
     plt.axvline(x=interval, color='b', linestyle='--', alpha=0.7, label='Intervals' if interval == intervals[0] else '')
 plt.legend(loc='upper left', fontsize=12)
-plt.xlabel('X', fontsize=14)
-plt.ylabel('Y', fontsize=14)
+plt.xlabel('Gestational age', fontsize=14)
+plt.ylabel('Graph Measure value', fontsize=14)
 plt.title('Spline Regression with Intervals', fontsize=16)
 plt.tick_params(labelsize=12)
 plt.tight_layout()
@@ -492,9 +499,7 @@ plt.tick_params(labelsize=12)
 plt.legend(['Distribution of R2'], fontsize=12)
 plt.tight_layout()
 plt.show()
-# %% Plotting R2 for all pipelines - spline k = 1
-key = 'MDS'
-ModelEmbedding = data_reduced[key]
+
 
 # %% K = 1
 accs_1 = np.zeros(936)
@@ -597,6 +602,10 @@ for pipeline in range(936):
 # %% ------------------------------------------------------------------------------------
 # ##                        EXHAUSTIVE SEARCH EXPLORATION
 # ## ------------------------------------------------------------------------------------
+# %% Plotting R2 for all pipelines - spline k = 1
+key = 't-SNE'
+ModelEmbedding = data_reduced[key]
+# %%
 
 # plotting the results
 fig, axs = plt.subplots(2, 2, figsize=(15, 10))
@@ -667,19 +676,19 @@ for i, ax in enumerate(axs.flat):
         scatter = ax.scatter(
             ModelEmbedding[0: accs.shape[0], 0],
             ModelEmbedding[0: accs.shape[0], 1],
-            c=accs,
+            c=np.log(accs),
             cmap='coolwarm',
-            vmax = 0.05,
-            vmin = 0,
+            vmax = -2,
+            vmin = -7,
         )
 
         # Add a colorbar
         cbar = plt.colorbar(scatter, ax=ax)
-        cbar.set_label('Log(R2)', fontsize=12)
+        cbar.set_label('R2', fontsize=12)
 
         # Title with custom color and font size
         ax.set_title(titles[i], fontsize=16, color=colors[i])
-
+        ax.set_xlabel(str(np.max(accs)), fontsize=12)
         # Remove axis labels and ticks
         ax.set_xticks([])
         ax.set_yticks([])
@@ -692,58 +701,64 @@ plt.show()
 
 
 # %% ------------------------------------------------------------------------------------
-# ##                        PLOT ALTERNATIVE 3
+# ##                        PLOT DISTRIBUTION OF R2
 # ## ------------------------------------------------------------------------------------
-import matplotlib.pyplot as plt
+"""
+Plotting the distribution of each of the accs arrays
+"""
+import matplotlib.pyplot as plt 
 import seaborn as sns
 import numpy as np
 
 # Set a custom color palette
 sns.set_palette("coolwarm")
 
-# Create a figure with 2x2 subplots and adjust spacing
-fig, axs = plt.subplots(2, 2, figsize=(15, 10))
-fig.subplots_adjust(hspace=0.4, wspace=0.4)
+# Create a figure with a single subplot
+fig, ax = plt.subplots(figsize=(10, 5))
 
-# Titles for subplots
-titles = [ 'Linear Regression', 'k = 1', 'k = 2', 'k = 3']
+# Title for the plot
+ax.set_title('Accuracy Distribution by model flexibility', fontsize=16)
 
 # Create a list of k values and corresponding accuracy arrays
 k_values = [0, 1, 2, 3]
 accs_list = [accs_0, accs_1, accs_2, accs_3]
+vmax = np.max(accs_3)
 
 # Define custom colors for subplots
 colors = ['red', 'blue', 'green', 'purple']
 
 # Iterate through subplots and corresponding data
-for i, ax in enumerate(axs.flat):
-    if i < len(k_values):
-        k = k_values[i]
-        accs = accs_list[i]
+for i, accs in enumerate(accs_list):
+    k = k_values[i]
 
-        # Scatter plot with custom colorblob:vscode-webview://0s716sufr6imepjjhlgngr05i8aigpjdrudd0he4mp3q7j3n38pj/2f4e32ed-98a4-41f5-8bb7-2addbc690196
-        ax.plot(
-            ModelEmbedding[0: accs.shape[0], 0],
-            ModelEmbedding[0: accs.shape[0], 1],
-            'ro',
-            ms=8,
-            label='Data',
-            alpha=0.5,
-            vmin = 0,
-            vmax = 0.05
-        )
+    # Create a scatter plot with custom color (distplot will be deprecated)
+    sns.histplot(accs,ax=ax, color=colors[i], label=f'k = {k}')
 
-        # Title with custom color and font size
-        ax.set_title(titles[i], fontsize=16, color=colors[i])
+    # Remove axis labels and ticks
 
-        # Remove axis labels and ticks
-        ax.set_xticks([])
-        ax.set_yticks([])
+    ax.set_xlim([0, 0.20])
 
-# Save the figure locally
-plt.savefig(str(output_path + "/" + 'regression_models.png'))
+# Create a legend with custom colors and labels
+handles, labels = ax.get_legend_handles_labels()
+fig.legend(handles, labels, loc='center right', bbox_to_anchor=(1.2, 0.5), fontsize=12)
 
 # Show the plot
 plt.show()
+
+
+
+
+
+
+# %% Print the index of the best pipeline from each Multiverse 
+print("Linear: " + str(np.argmax(accs_0)))
+print("k = 1: " + str(np.argmax(accs_1)))
+print("k = 2: " + str(np.argmax(accs_2)))
+print("k = 3: " + str(np.argmax(accs_3)))
+# Print the forking path for the best pipeline from each Multiverse
+print("The best pipeline using linear model is: " + str(pipe_choices[np.argmax(accs_0)]))
+print("The best pipeline using polinomial k = 1 is: " + str(pipe_choices[np.argmax(accs_1)]))
+print("The best pipeline using polinomial k = 2 is: " + str(pipe_choices[np.argmax(accs_2)]))
+print("The best pipeline using polinomial k = 3 is: " + str(pipe_choices[np.argmax(accs_3)]))
 
 # %%
