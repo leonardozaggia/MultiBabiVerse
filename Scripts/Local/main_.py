@@ -461,7 +461,7 @@ Best pipeline for each Multiverse
 Linear Regression = 390
 Spline Regression = 207 + 233
 """
-pipeline_n = 391
+pipeline_n = 600
 regional_r2 = []
 
 # Load your data and set up your variables
@@ -520,7 +520,7 @@ plt.ylabel('Frequency', fontsize=14)
 plt.title('Histogram of regional R-squared', fontsize=16)
 plt.grid(True, linestyle='--', alpha=0.7)
 plt.tick_params(labelsize=12)
-plt.legend(['Distribution of R2'], fontsize=12)
+plt.legend(['Distribution of R²'], fontsize=12)
 plt.tight_layout()
 plt.show()
 
@@ -673,11 +673,11 @@ for i, ax in enumerate(axs.flat):
 
         # Add a colorbar
         cbar = plt.colorbar(scatter, ax=ax)
-        cbar.set_label('R2', fontsize=12)
+        cbar.set_label('R²', fontsize=12)
 
         # Title with custom color and font size
         ax.set_title(titles[i], fontsize=16, color=colors[i])
-        ax.set_xlabel(f'Max R2: {np.max(accs)}', fontsize=12)
+        ax.set_xlabel(f'Max R²: {np.max(accs)}', fontsize=12)
         # Remove axis labels and ticks
         ax.set_xticks([])
         ax.set_yticks([])
@@ -702,7 +702,7 @@ import numpy as np
 sns.set_palette("coolwarm")
 
 # Choose a specific value of k
-k = 3
+k = 1
 accs = accs_list[k]  # Assuming you have accs_list defined somewhere
 
 # Create a figure and adjust size
@@ -718,7 +718,6 @@ scatter = ax.scatter(
     vmin=0,
 )
 
-
 # Add a vertical colorbar with the label on top
 cbar = plt.colorbar(scatter, shrink = 0.7, orientation='vertical', pad=0.05)
 
@@ -730,7 +729,7 @@ cbar.set_label('R2', fontsize=12)  # Adjust label position with labelpad
 
 # Title with custom color and font size
 ax.set_title(f'k = {k}', fontsize=16, color='blue')
-ax.set_xlabel(f'Max R2: {np.max(accs)}', fontsize=12)
+ax.set_xlabel(f'Max R²: {np.max(accs)}', fontsize=12)
 ax.set_xticks([])  # Remove x-axis ticks
 ax.set_yticks([])  # Remove y-axis ticks
 
@@ -744,11 +743,8 @@ plt.show()
 # ## ------------------------------------------------------------------------------------
 """
 Plotting the distribution of each of the accs arrays
+In this way we can visualize and compare how model flexibility affects the distribution of R2
 """
-import matplotlib.pyplot as plt 
-import seaborn as sns
-
-
 # Set a custom color palette
 sns.set_palette("coolwarm")
 
@@ -756,7 +752,7 @@ sns.set_palette("coolwarm")
 fig, ax = plt.subplots(figsize=(10, 5))
 
 # Title for the plot
-ax.set_title('Accuracy Distribution by model flexibility', fontsize=16)
+ax.set_title('R² Distribution by model flexibility', fontsize=16)
 
 # Create a list of k values and corresponding accuracy arrays
 k_values = ["linear", 1, 2, 3]
@@ -770,18 +766,14 @@ colors = ['red', 'blue', 'green', 'purple']
 # Iterate through subplots and corresponding data
 for i, accs in enumerate(accs_list):
     k = k_values[i]
-
     # Create a scatter plot with custom color (distplot will be deprecated)
     sns.histplot(accs,ax=ax, color=colors[i], label=f'{legend[i]}')
-
     # Remove axis labels and ticks
-
     ax.set_xlim([0, 0.20])
 
 # Create a legend with custom colors and labels
 handles, labels = ax.get_legend_handles_labels()
 fig.legend(handles, labels, loc='center right', bbox_to_anchor=(1.2, 0.5), fontsize=12)
-
 # Show the plot
 plt.show()
 
