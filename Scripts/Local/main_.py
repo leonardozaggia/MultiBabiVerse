@@ -541,7 +541,7 @@ for pipeline in range(936):
     y = y[sort_idx]
 
     # Define the intervals and spline model
-    intervals = [30, 35, 38]
+    intervals = [28, 31, 37]
     for i, ROI in enumerate(ROIs):
         spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=1)
         # Calculate the R-squared value
@@ -565,7 +565,7 @@ for pipeline in range(936):
     y = y[sort_idx]
 
     # Define the intervals and spline model
-    intervals = [30, 35, 38]
+    intervals = [28, 31, 37]
     for i, ROI in enumerate(ROIs):
         spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=2)
         # Calculate the R-squared value
@@ -589,7 +589,7 @@ for pipeline in range(936):
     y = y[sort_idx]
 
     # Define the intervals and spline model
-    intervals = [30, 35, 38]
+    intervals = [28, 31, 37]
     for i, ROI in enumerate(ROIs):
         spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=3)
         # Calculate the R-squared value
@@ -613,7 +613,7 @@ for pipeline in range(936):
     y = y[sort_idx]
 
     # Define the intervals and spline model
-    intervals = [30, 35, 38]
+    intervals = [28, 31, 37]
     for i, ROI in enumerate(ROIs):
         from sklearn.linear_model import LinearRegression
         reg = LinearRegression().fit(x.reshape(-1, 1), y[:, i])
@@ -665,15 +665,15 @@ for i, ax in enumerate(axs.flat):
         scatter = ax.scatter(
             ModelEmbedding[0: accs.shape[0], 0],
             ModelEmbedding[0: accs.shape[0], 1],
-            c=np.log(accs),
+            c=accs,
             cmap='coolwarm',
-            vmax=-2,
-            vmin=-7,
+            vmax=0.1,
+            vmin=0,
         )
 
         # Add a colorbar
         cbar = plt.colorbar(scatter, ax=ax)
-        cbar.set_label('log(R2)', fontsize=12)
+        cbar.set_label('R2', fontsize=12)
 
         # Title with custom color and font size
         ax.set_title(titles[i], fontsize=16, color=colors[i])
@@ -683,7 +683,7 @@ for i, ax in enumerate(axs.flat):
         ax.set_yticks([])
 
 # Save the figure locally
-plt.savefig(str(output_path + "/" + 'regression_models.png'))
+# plt.savefig(str(output_path + "/" + 'regression_models.png'))
 
 # Show the plot
 plt.show()
@@ -702,7 +702,7 @@ import numpy as np
 sns.set_palette("coolwarm")
 
 # Choose a specific value of k
-k = 1
+k = 3
 accs = accs_list[k]  # Assuming you have accs_list defined somewhere
 
 # Create a figure and adjust size
@@ -712,10 +712,10 @@ fig, ax = plt.subplots(figsize=(10, 8))
 scatter = ax.scatter(
     ModelEmbedding[0: accs.shape[0], 0],
     ModelEmbedding[0: accs.shape[0], 1],
-    c=np.log(accs),
+    c=accs,
     cmap='coolwarm',
-    vmax=-2,
-    vmin=-7,
+    vmax=0.1,
+    vmin=0,
 )
 
 
@@ -726,7 +726,7 @@ cbar = plt.colorbar(scatter, shrink = 0.7, orientation='vertical', pad=0.05)
 cbar.ax.xaxis.set_label_position('top')
 cbar.ax.xaxis.labelpad = 20
 
-cbar.set_label('log(R2)', fontsize=12)  # Adjust label position with labelpad
+cbar.set_label('R2', fontsize=12)  # Adjust label position with labelpad
 
 # Title with custom color and font size
 ax.set_title(f'k = {k}', fontsize=16, color='blue')
@@ -747,7 +747,7 @@ Plotting the distribution of each of the accs arrays
 """
 import matplotlib.pyplot as plt 
 import seaborn as sns
-import numpy as np
+
 
 # Set a custom color palette
 sns.set_palette("coolwarm")
@@ -817,7 +817,7 @@ for pipeline in range(936):
     y = y[:150]
 
     # Define the intervals and spline model
-    intervals = [30, 35, 38]
+    intervals = [28, 31, 37]
     for i, ROI in enumerate(ROIs):
         spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=1)
         # Calculate the R-squared value
@@ -843,7 +843,7 @@ for pipeline in range(936):
     y = y[:150]
 
     # Define the intervals and spline model
-    intervals = [30, 35, 38]
+    intervals = [28, 31, 37]
     for i, ROI in enumerate(ROIs):
         spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=2)
         # Calculate the R-squared value
@@ -869,7 +869,7 @@ for pipeline in range(936):
     y = y[:150]
 
     # Define the intervals and spline model
-    intervals = [30, 35, 38]
+    intervals = [28, 31, 37]
     for i, ROI in enumerate(ROIs):
         spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=3)
         # Calculate the R-squared value
@@ -895,7 +895,117 @@ for pipeline in range(936):
     y = y[:150]
 
     # Define the intervals and spline model
-    intervals = [30, 35, 38]
+    intervals = [28, 31, 37]
+    for i, ROI in enumerate(ROIs):
+        from sklearn.linear_model import LinearRegression
+        reg = LinearRegression().fit(x.reshape(-1, 1), y[:, i])
+        # Calculate the R-squared value
+        y_pred = reg.predict(x.reshape(-1, 1))
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_0[pipeline] = np.mean(regional_r2)
+ 
+
+# %% ------------------------------------------------------------------------------------
+# ##                        RERUN - 95 SUBJECTS
+# ## ------------------------------------------------------------------------------------
+# %% K = 1
+accs_1 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:95]
+    y = y[:95]
+
+    # Define the intervals and spline model
+    intervals = [28, 31, 37]
+    for i, ROI in enumerate(ROIs):
+        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=1)
+        # Calculate the R-squared value
+        y_pred = spline_model(x)
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_1[pipeline] = np.mean(regional_r2)
+# %% K = 2
+accs_2 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:95]
+    y = y[:95]
+
+    # Define the intervals and spline model
+    intervals = [28, 31, 37]
+    for i, ROI in enumerate(ROIs):
+        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=2)
+        # Calculate the R-squared value
+        y_pred = spline_model(x)
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_2[pipeline] = np.mean(regional_r2)
+# %% K = 3
+accs_3 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:95]
+    y = y[:95]
+
+    # Define the intervals and spline model
+    intervals = [28, 31, 37]
+    for i, ROI in enumerate(ROIs):
+        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=3)
+        # Calculate the R-squared value
+        y_pred = spline_model(x)
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_3[pipeline] = np.mean(regional_r2)
+# %% Linear Regression
+accs_0 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:95]
+    y = y[:95]
+
+    # Define the intervals and spline model
+    intervals = [28, 31, 37]
     for i, ROI in enumerate(ROIs):
         from sklearn.linear_model import LinearRegression
         reg = LinearRegression().fit(x.reshape(-1, 1), y[:, i])
