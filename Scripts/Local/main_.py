@@ -48,7 +48,25 @@ plt.legend(['Infants'], fontsize=12)
 plt.tight_layout()
 plt.show()
 
-# Print the 3 different connectivities for selected participant
+# Print relevant information about the data
+print("The lowest gestational age is: " + str(np.min(data["b_age"])))
+print("The highest gestational age is: " + str(np.max(data["b_age"])))
+print("The mean gestational age is: " + str(np.mean(data["b_age"])))
+print("The standard deviation of the gestational age is: " + str(np.std(data["b_age"])))
+print()
+
+
+
+# Number of participants within each interval
+data_b_age = np.array(data["b_age"])
+intervals = [24, 28, 31, 37, 43]
+preterm = [" Extremely Preterm ", " Very Preterm ", " Preterm ", " Full term "]
+for i in range(len(intervals) - 1):
+    condition = (data_b_age >= intervals[i]) & (data_b_age < intervals[i + 1])
+    print("The number of" + preterm[i] + "(between " + str(intervals[i]) + " and " + str(intervals[i+1]) + ") is: " + str(len(data_b_age[condition])))
+
+
+# %% Print the 3 different connectivities for selected participant
 # Infant with lowest Gestational Age: 109
 # Infant with highest Gestational Age: 85
 sub_idx = np.random.randint(0,300)
@@ -438,7 +456,12 @@ from sklearn.metrics import r2_score
 storage = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["301_subjects_936_pipelines"]
 pipe_choices = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["pipeline_choices"]
 ROIs = list(data["ts"][0].keys())
-pipeline_n = 207
+"""
+Best pipeline for each Multiverse
+Linear Regression = 390
+Spline Regression = 207 + 233
+"""
+pipeline_n = 391
 regional_r2 = []
 
 # Load your data and set up your variables
@@ -463,13 +486,12 @@ for i, ROI in enumerate(ROIs):
 #  -------------- Plotting the spline model for ROI[i] --------------
 # Generate the x values for visualization
 xs = np.linspace(x.min(), x.max(), 1000)
-i = 40
+i = 41
 # Run one more iteration of the model to get the final y_pred
 spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=1)
 # Calculate the R-squared value
 y_pred = spline_model(x)
 r2 = r2_score(y[:, i], y_pred)
-regional_r2.append(r2)
 # Plot the data points, spline fit, and intervals
 plt.figure(figsize=(10, 6))
 plt.style.use('seaborn-whitegrid')
@@ -480,8 +502,10 @@ for interval in intervals:
 plt.legend(loc='upper left', fontsize=12)
 plt.xlabel('Gestational age', fontsize=14)
 plt.ylabel('Graph Measure value', fontsize=14)
-plt.title('Spline Regression with Intervals', fontsize=16)
+plt.title(pipe_choices[pipeline_n], fontsize=16)
 plt.tick_params(labelsize=12)
+plt.text(0.89, 0.92, f'R² = {r2:.2f}', transform=plt.gca().transAxes, fontsize=12, color='k',
+         bbox=dict(facecolor='white', edgecolor='black', boxstyle='round'))
 plt.tight_layout()
 plt.show()
 
@@ -605,41 +629,6 @@ for pipeline in range(936):
 # %% Plotting R2 for all pipelines - spline k = 1
 key = 't-SNE'
 ModelEmbedding = data_reduced[key]
-# %%
-
-# plotting the results
-fig, axs = plt.subplots(2, 2, figsize=(15, 10))
-#axs[0,0].set_title(, fontweight='bold', fontsize=40, bbox={'facecolor': 'white', 'edgecolor': 'black', 'pad': 10}, loc = 'left')
-axs[0,0].scatter(ModelEmbedding[0: accs_0.shape[0], 0],
-            ModelEmbedding[0: accs_0.shape[0], 1],
-            c=accs_0, cmap='bwr')
-axs[0,0].set_title('Linear Regression')
-axs[0,0].axis('off')
-
-axs[0,1].scatter(ModelEmbedding[0: accs_1.shape[0], 0],
-            ModelEmbedding[0: accs_1.shape[0], 1],
-            c=accs_1, cmap='bwr')
-axs[0,1].set_title('k = 1')
-axs[0,1].axis('off')
-
-axs[1,0].scatter(ModelEmbedding[0: accs_2.shape[0], 0],
-            ModelEmbedding[0: accs_2.shape[0], 1],
-            c=accs_2, cmap='bwr')
-axs[1,0].set_title('k = 2')
-axs[1,0].axis('off')
-
-axs[1,1].scatter(ModelEmbedding[0: accs_3.shape[0], 0],
-            ModelEmbedding[0: accs_3.shape[0], 1],
-            c=accs_3, cmap='bwr')
-axs[1,1].set_title('k = 3')
-axs[1,1].axis('off')
-
-
-
-
-# save the figure locally
-plt.savefig(str(output_path + "/" + 'regression_models.png'))
-plt.show()
 
 # %% ------------------------------------------------------------------------------------
 # ##                        PLOT ALTERNATIVE 2
@@ -653,15 +642,15 @@ sns.set_palette("coolwarm")
 
 # Create a figure with 2x2 subplots and adjust spacing
 fig, axs = plt.subplots(2, 2, figsize=(15, 10))
-fig.subplots_adjust(hspace=0.4, wspace=0.4)
+fig.subplots_adjust(hspace=0.2, wspace=0.2)  # Adjust spacing
 
 # Titles for subplots
-titles = [ 'Linear Regression', 'k = 1', 'k = 2', 'k = 3']
+titles = ['Linear Regression', 'k = 1', 'k = 2', 'k = 3']
 
 # Create a list of k values and corresponding accuracy arrays
 k_values = [0, 1, 2, 3]
 accs_list = [accs_0, accs_1, accs_2, accs_3]
-vmax = np.max(accs_3) 
+vmax = np.max(accs_3)
 
 # Define custom colors for subplots
 colors = ['red', 'blue', 'green', 'purple']
@@ -678,17 +667,17 @@ for i, ax in enumerate(axs.flat):
             ModelEmbedding[0: accs.shape[0], 1],
             c=np.log(accs),
             cmap='coolwarm',
-            vmax = -2,
-            vmin = -7,
+            vmax=-2,
+            vmin=-7,
         )
 
         # Add a colorbar
         cbar = plt.colorbar(scatter, ax=ax)
-        cbar.set_label('R2', fontsize=12)
+        cbar.set_label('log(R2)', fontsize=12)
 
         # Title with custom color and font size
         ax.set_title(titles[i], fontsize=16, color=colors[i])
-        ax.set_xlabel(str(np.max(accs)), fontsize=12)
+        ax.set_xlabel(f'Max R2: {np.max(accs)}', fontsize=12)
         # Remove axis labels and ticks
         ax.set_xticks([])
         ax.set_yticks([])
@@ -696,6 +685,56 @@ for i, ax in enumerate(axs.flat):
 # Save the figure locally
 plt.savefig(str(output_path + "/" + 'regression_models.png'))
 
+# Show the plot
+plt.show()
+
+# %% ------------------------------------------------------------------------------------
+# ##                        PLOT SINGLE MULTIVERSE
+# ## ------------------------------------------------------------------------------------
+"""
+Plotting a single multiverse, using linear regression or spline k = 1, 2, 3
+"""
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+# Set a custom color palette
+sns.set_palette("coolwarm")
+
+# Choose a specific value of k
+k = 1
+accs = accs_list[k]  # Assuming you have accs_list defined somewhere
+
+# Create a figure and adjust size
+fig, ax = plt.subplots(figsize=(10, 8))
+
+# Create a scatter plot with custom color
+scatter = ax.scatter(
+    ModelEmbedding[0: accs.shape[0], 0],
+    ModelEmbedding[0: accs.shape[0], 1],
+    c=np.log(accs),
+    cmap='coolwarm',
+    vmax=-2,
+    vmin=-7,
+)
+
+
+# Add a vertical colorbar with the label on top
+cbar = plt.colorbar(scatter, shrink = 0.7, orientation='vertical', pad=0.05)
+
+# Adjust the label position to be on top
+cbar.ax.xaxis.set_label_position('top')
+cbar.ax.xaxis.labelpad = 20
+
+cbar.set_label('log(R2)', fontsize=12)  # Adjust label position with labelpad
+
+# Title with custom color and font size
+ax.set_title(f'k = {k}', fontsize=16, color='blue')
+ax.set_xlabel(f'Max R2: {np.max(accs)}', fontsize=12)
+ax.set_xticks([])  # Remove x-axis ticks
+ax.set_yticks([])  # Remove y-axis ticks
+
+plt.savefig(str('/Users/amnesia/Desktop/Master_Thesis' + "/" + 'single_multiverse_tsne.png'))
 # Show the plot
 plt.show()
 
@@ -720,7 +759,8 @@ fig, ax = plt.subplots(figsize=(10, 5))
 ax.set_title('Accuracy Distribution by model flexibility', fontsize=16)
 
 # Create a list of k values and corresponding accuracy arrays
-k_values = [0, 1, 2, 3]
+k_values = ["linear", 1, 2, 3]
+legend = ['Linear Regression', 'Spline k = 1', 'Spline k = 2', 'Spline k = 3']
 accs_list = [accs_0, accs_1, accs_2, accs_3]
 vmax = np.max(accs_3)
 
@@ -732,7 +772,7 @@ for i, accs in enumerate(accs_list):
     k = k_values[i]
 
     # Create a scatter plot with custom color (distplot will be deprecated)
-    sns.histplot(accs,ax=ax, color=colors[i], label=f'k = {k}')
+    sns.histplot(accs,ax=ax, color=colors[i], label=f'{legend[i]}')
 
     # Remove axis labels and ticks
 
@@ -745,20 +785,125 @@ fig.legend(handles, labels, loc='center right', bbox_to_anchor=(1.2, 0.5), fonts
 # Show the plot
 plt.show()
 
-
-
-
-
-
 # %% Print the index of the best pipeline from each Multiverse 
 print("Linear: " + str(np.argmax(accs_0)))
 print("k = 1: " + str(np.argmax(accs_1)))
 print("k = 2: " + str(np.argmax(accs_2)))
 print("k = 3: " + str(np.argmax(accs_3)))
 # Print the forking path for the best pipeline from each Multiverse
-print("The best pipeline using linear model is: " + str(pipe_choices[np.argmax(accs_0)]))
-print("The best pipeline using polinomial k = 1 is: " + str(pipe_choices[np.argmax(accs_1)]))
-print("The best pipeline using polinomial k = 2 is: " + str(pipe_choices[np.argmax(accs_2)]))
-print("The best pipeline using polinomial k = 3 is: " + str(pipe_choices[np.argmax(accs_3)]))
+print("The best pipeline using linear model is: " + pipe_choices[np.argmax(accs_0)].replace("_", ", "))
+print("The best pipeline using polinomial k = 1 is: " + pipe_choices[np.argmax(accs_1)].replace("_", ", "))
+print("The best pipeline using polinomial k = 2 is: " + pipe_choices[np.argmax(accs_2)].replace("_", ", "))
+print("The best pipeline using polinomial k = 3 is: " + pipe_choices[np.argmax(accs_3)].replace("_", ", "))
+
+# %% ------------------------------------------------------------------------------------
+# ##                        RERUN - 150 SUBJECTS
+# ## ------------------------------------------------------------------------------------
+# %% K = 1
+accs_1 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:150]
+    y = y[:150]
+
+    # Define the intervals and spline model
+    intervals = [30, 35, 38]
+    for i, ROI in enumerate(ROIs):
+        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=1)
+        # Calculate the R-squared value
+        y_pred = spline_model(x)
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_1[pipeline] = np.mean(regional_r2)
+# %% K = 2
+accs_2 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:150]
+    y = y[:150]
+
+    # Define the intervals and spline model
+    intervals = [30, 35, 38]
+    for i, ROI in enumerate(ROIs):
+        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=2)
+        # Calculate the R-squared value
+        y_pred = spline_model(x)
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_2[pipeline] = np.mean(regional_r2)
+# %% K = 3
+accs_3 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:150]
+    y = y[:150]
+
+    # Define the intervals and spline model
+    intervals = [30, 35, 38]
+    for i, ROI in enumerate(ROIs):
+        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=3)
+        # Calculate the R-squared value
+        y_pred = spline_model(x)
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_3[pipeline] = np.mean(regional_r2)
+# %% Linear Regression
+accs_0 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:150]
+    y = y[:150]
+
+    # Define the intervals and spline model
+    intervals = [30, 35, 38]
+    for i, ROI in enumerate(ROIs):
+        from sklearn.linear_model import LinearRegression
+        reg = LinearRegression().fit(x.reshape(-1, 1), y[:, i])
+        # Calculate the R-squared value
+        y_pred = reg.predict(x.reshape(-1, 1))
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_0[pipeline] = np.mean(regional_r2)
+ 
 
 # %%

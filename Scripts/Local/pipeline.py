@@ -736,3 +736,120 @@ def neg_zero(f):
     pygame.mixer.music.load(sound_path)
     pygame.mixer.music.play()
 """
+
+""" Micha efficient function
+import bct
+import time
+import numpy as np
+from numba import jit
+from matplotlib import pyplot as plt
+
+def efficiency_wei(Gw, local=True):
+
+   # The local efficiency is the global efficiency computed on the
+   # neighborhood of the node, and is related to the clustering coefficient.
+
+
+    def invert(W, copy=True):
+        if copy:
+            W = W.copy()
+        E = np.where(W)
+        W[E] = 1. / W[E]
+        return W
+    
+    def cuberoot(x):
+        return np.sign(x) * np.abs(x)**(1 / 3)
+
+    @jit(nopython=True)
+    def distance_inv_wei(G):
+        n = len(G)
+        D = np.full((n, n), np.inf)
+        np.fill_diagonal(D, 0)
+
+        for u in range(n):
+            # distance permanence (true is temporary)
+            S = np.ones((n,), dtype=np.bool_)
+            G1 = G.copy()
+            V = np.array([u], dtype=np.int64)
+            while True:
+                S[V] = 0  # distance u->V is now permanent
+                G1[:, V] = 0  # no in-edges as already shortest
+                
+                for v in V:
+                    W = np.where(G1[v, :])[0]  # neighbors of smallest nodes
+                    max_len = n
+                    td = np.empty((2, max_len))
+                    len_W = len(W)
+                    td[0, :len_W] = D[u, W]
+                    td[1, :len_W] = D[u, v] + G1[v, W]
+                    for idx in range(len_W):
+                        D[u, W[idx]] = min(td[0, idx], td[1, idx])
+
+                if D[u, S].size == 0:  # all nodes reached
+                    break
+                minD = np.min(D[u, S])
+                if np.isinf(minD):  # some nodes cannot be reached
+                    break
+                V = np.where(D[u, :] == minD)[0]
+
+        np.fill_diagonal(D, 1)
+        D = 1 / D
+        np.fill_diagonal(D, 0)
+        return D
+
+    n = len(Gw)
+    Gl = invert(Gw, copy=True)  # connection length matrix
+    A = np.array((Gw != 0), dtype=int)
+   
+    #local efficiency algorithm described by Wang et al 2016, recommended
+    if local:
+        E = np.zeros((n,))
+        for u in range(n):
+            V, = np.where(np.logical_or(Gw[u, :], Gw[:, u].T))
+            sw = cuberoot(Gw[u, V]) + cuberoot(Gw[V, u].T)
+            e = distance_inv_wei(cuberoot(Gl)[np.ix_(V, V)])
+            se = e+e.T
+            
+            numer = np.sum(np.outer(sw.T, sw) * se) / 2
+            if numer != 0:
+                # symmetrized adjacency vector
+                sa = A[u, V] + A[V, u].T
+                denom = np.sum(sa)**2 - np.sum(sa * sa)
+                # print numer,denom
+                E[u] = numer / denom  # local efficiency
+    else:
+        ValueError("Removed other options for readability")
+
+    return E
+
+#*****************************************************************************************#
+# This script calculates and compares the speed for nodal efficiency calculations with    #
+#   1) a custom implementation compiled into machine code with jit                        #
+#   2) the normal bct toolbox                                                             #
+#                                                                                         #
+# The jit implementation is most useful when dealing with large matrices or even loops,   #
+# as it is compiled only once.                                                            #
+#                                                                                         #
+# For a 100x100 matrix the speedup on my machine is 10x, for larger matrices even higher! #
+#*****************************************************************************************#
+
+W = np.random.rand(100,100)
+
+start = time.time()
+efficiency_jit = efficiency_wei(W, local=True)
+end = time.time()
+print(f"Jit implementation took {end-start} seconds.")
+
+start = time.time()
+efficiency_bct = bct.efficiency_wei(W, local=True)
+end = time.time()
+print(f"BCT implementation took {end-start} seconds.")
+
+plt.title("Efficiency")
+plt.plot(efficiency_jit, lw=4, label="jit")
+plt.plot(efficiency_bct, lw=2, label="bct")
+plt.show()
+# %%
+
+
+"""
