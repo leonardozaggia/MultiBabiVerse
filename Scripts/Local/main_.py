@@ -1048,11 +1048,6 @@ for pipeline_n in range(len(pipe_choices)):
 
     for i in range(len(ROIs)):
 
-        # Assuming x and y are your variables (lists, arrays, or pandas Series)
-        # For example:
-        # x = [1, 2, 3, 4, 5]
-        # y = [2, 4, 5, 4, 5]
-
         # Perform linear regression
         slope, intercept, r_value, p_value, std_err = linregress(x, y[:,i])
 
