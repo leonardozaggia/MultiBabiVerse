@@ -1,0 +1,4064 @@
+Chosen pipeline: GSR_covariance_abs_0.65_binarize_local efficiency -  0
+
+The association between x and y was statistically significant at least once.
+R_sIPC - 45
+Chosen pipeline: GSR_covariance_abs_0.65_normalize_local efficiency -  1
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.6_binarize_local efficiency -  2
+
+The association between x and y was statistically significant at least once.
+R_sIPC - 45
+Chosen pipeline: GSR_covariance_abs_0.6_normalize_local efficiency -  3
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_covariance_abs_0.55_binarize_local efficiency -  4
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.55_normalize_local efficiency -  5
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.5_binarize_local efficiency -  6
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.5_normalize_local efficiency -  7
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.55_binarize_local efficiency -  8
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.55_normalize_local efficiency -  9
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.4_binarize_local efficiency -  10
+
+The association between x and y was statistically significant at least once.
+R_FFC - 32
+Chosen pipeline: GSR_covariance_abs_0.4_normalize_local efficiency -  11
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.35_binarize_local efficiency -  12
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.35_normalize_local efficiency -  13
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.3_binarize_local efficiency -  14
+
+The association between x and y was statistically significant at least once.
+R_aINS - 29
+Chosen pipeline: GSR_covariance_abs_0.3_normalize_local efficiency -  15
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.25_binarize_local efficiency -  16
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_covariance_abs_0.25_normalize_local efficiency -  17
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_covariance_abs_0.2_binarize_local efficiency -  18
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.2_normalize_local efficiency -  19
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.15_binarize_local efficiency -  20
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+R_InP - 34
+R_mACC - 38
+Chosen pipeline: GSR_covariance_abs_0.15_normalize_local efficiency -  21
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+R_mACC - 38
+Chosen pipeline: GSR_covariance_abs_0.1_binarize_local efficiency -  22
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_covariance_abs_0.1_normalize_local efficiency -  23
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_covariance_abs_0.05_binarize_local efficiency -  24
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_TPOJ - 21
+R_SC - 43
+Chosen pipeline: GSR_covariance_abs_0.05_normalize_local efficiency -  25
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_TPOJ - 21
+R_SC - 43
+Chosen pipeline: GSR_covariance_zero_0.65_binarize_local efficiency -  26
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_covariance_zero_0.65_normalize_local efficiency -  27
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+R_A1 - 26
+R_A2 - 27
+Chosen pipeline: GSR_covariance_zero_0.6_binarize_local efficiency -  28
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_covariance_zero_0.6_normalize_local efficiency -  29
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+R_A1 - 26
+R_A2 - 27
+Chosen pipeline: GSR_covariance_zero_0.55_binarize_local efficiency -  30
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_covariance_zero_0.55_normalize_local efficiency -  31
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+R_A1 - 26
+R_A2 - 27
+Chosen pipeline: GSR_covariance_zero_0.5_binarize_local efficiency -  32
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_covariance_zero_0.5_normalize_local efficiency -  33
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_covariance_zero_0.55_binarize_local efficiency -  34
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_covariance_zero_0.55_normalize_local efficiency -  35
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+R_A1 - 26
+R_A2 - 27
+Chosen pipeline: GSR_covariance_zero_0.4_binarize_local efficiency -  36
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+Chosen pipeline: GSR_covariance_zero_0.4_normalize_local efficiency -  37
+
+The association between x and y was statistically significant at least once.
+R_A1 - 26
+R_A2 - 27
+Chosen pipeline: GSR_covariance_zero_0.35_binarize_local efficiency -  38
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+R_InP - 34
+Chosen pipeline: GSR_covariance_zero_0.35_normalize_local efficiency -  39
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+R_A1 - 26
+Chosen pipeline: GSR_covariance_zero_0.3_binarize_local efficiency -  40
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_covariance_zero_0.3_normalize_local efficiency -  41
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+L_InP - 8
+R_A1 - 26
+R_A2 - 27
+Chosen pipeline: GSR_covariance_zero_0.25_binarize_local efficiency -  42
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+L_V1 - 22
+R_A2 - 27
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_covariance_zero_0.25_normalize_local efficiency -  43
+
+The association between x and y was statistically significant at least once.
+R_A1 - 26
+R_A2 - 27
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_covariance_zero_0.2_binarize_local efficiency -  44
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+L_V2 - 23
+R_A2 - 27
+R_InP - 34
+Chosen pipeline: GSR_covariance_zero_0.2_normalize_local efficiency -  45
+
+The association between x and y was statistically significant at least once.
+R_A1 - 26
+R_A2 - 27
+R_aINS - 29
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_covariance_zero_0.15_binarize_local efficiency -  46
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_covariance_zero_0.15_normalize_local efficiency -  47
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_covariance_zero_0.1_binarize_local efficiency -  48
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+Chosen pipeline: GSR_covariance_zero_0.1_normalize_local efficiency -  49
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.05_binarize_local efficiency -  50
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+R_A2 - 27
+Chosen pipeline: GSR_covariance_zero_0.05_normalize_local efficiency -  51
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+R_A2 - 27
+Chosen pipeline: GSR_covariance_keep_0.65_binarize_local efficiency -  52
+
+The association between x and y was statistically significant at least once.
+L_SC - 17
+R_InP - 34
+R_pASS - 39
+Chosen pipeline: GSR_covariance_keep_0.65_normalize_local efficiency -  53
+
+The association between x and y was statistically significant at least once.
+L_pMFG - 14
+Chosen pipeline: GSR_covariance_keep_0.6_binarize_local efficiency -  54
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_covariance_keep_0.6_normalize_local efficiency -  55
+
+The association between x and y was statistically significant at least once.
+L_pMFG - 14
+R_A2 - 27
+Chosen pipeline: GSR_covariance_keep_0.55_binarize_local efficiency -  56
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_covariance_keep_0.55_normalize_local efficiency -  57
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.5_binarize_local efficiency -  58
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_covariance_keep_0.5_normalize_local efficiency -  59
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.55_binarize_local efficiency -  60
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_covariance_keep_0.55_normalize_local efficiency -  61
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.4_binarize_local efficiency -  62
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+Chosen pipeline: GSR_covariance_keep_0.4_normalize_local efficiency -  63
+
+The association between x and y was statistically significant at least once.
+R_A1 - 26
+Chosen pipeline: GSR_covariance_keep_0.35_binarize_local efficiency -  64
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+R_InP - 34
+Chosen pipeline: GSR_covariance_keep_0.35_normalize_local efficiency -  65
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+R_A1 - 26
+Chosen pipeline: GSR_covariance_keep_0.3_binarize_local efficiency -  66
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_covariance_keep_0.3_normalize_local efficiency -  67
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+L_InP - 8
+R_A1 - 26
+R_A2 - 27
+Chosen pipeline: GSR_covariance_keep_0.25_binarize_local efficiency -  68
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+L_V1 - 22
+R_A2 - 27
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_covariance_keep_0.25_normalize_local efficiency -  69
+
+The association between x and y was statistically significant at least once.
+R_A1 - 26
+R_A2 - 27
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_covariance_keep_0.2_binarize_local efficiency -  70
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+L_V2 - 23
+R_A2 - 27
+R_InP - 34
+Chosen pipeline: GSR_covariance_keep_0.2_normalize_local efficiency -  71
+
+The association between x and y was statistically significant at least once.
+R_A1 - 26
+R_A2 - 27
+R_aINS - 29
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_covariance_keep_0.15_binarize_local efficiency -  72
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_covariance_keep_0.15_normalize_local efficiency -  73
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_covariance_keep_0.1_binarize_local efficiency -  74
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+Chosen pipeline: GSR_covariance_keep_0.1_normalize_local efficiency -  75
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.05_binarize_local efficiency -  76
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+R_A2 - 27
+Chosen pipeline: GSR_covariance_keep_0.05_normalize_local efficiency -  77
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+R_A2 - 27
+Chosen pipeline: GSR_correlation_abs_0.65_binarize_local efficiency -  78
+
+The association between x and y was statistically significant at least once.
+R_sIPC - 45
+Chosen pipeline: GSR_correlation_abs_0.65_normalize_local efficiency -  79
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.6_binarize_local efficiency -  80
+
+The association between x and y was statistically significant at least once.
+R_sIPC - 45
+Chosen pipeline: GSR_correlation_abs_0.6_normalize_local efficiency -  81
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_correlation_abs_0.55_binarize_local efficiency -  82
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.55_normalize_local efficiency -  83
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.5_binarize_local efficiency -  84
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.5_normalize_local efficiency -  85
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.55_binarize_local efficiency -  86
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.55_normalize_local efficiency -  87
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.4_binarize_local efficiency -  88
+
+The association between x and y was statistically significant at least once.
+R_FFC - 32
+Chosen pipeline: GSR_correlation_abs_0.4_normalize_local efficiency -  89
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.35_binarize_local efficiency -  90
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.35_normalize_local efficiency -  91
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.3_binarize_local efficiency -  92
+
+The association between x and y was statistically significant at least once.
+R_aINS - 29
+Chosen pipeline: GSR_correlation_abs_0.3_normalize_local efficiency -  93
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.25_binarize_local efficiency -  94
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_correlation_abs_0.25_normalize_local efficiency -  95
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_correlation_abs_0.2_binarize_local efficiency -  96
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.2_normalize_local efficiency -  97
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.15_binarize_local efficiency -  98
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+R_InP - 34
+R_mACC - 38
+Chosen pipeline: GSR_correlation_abs_0.15_normalize_local efficiency -  99
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+R_mACC - 38
+Chosen pipeline: GSR_correlation_abs_0.1_binarize_local efficiency -  100
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_correlation_abs_0.1_normalize_local efficiency -  101
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_correlation_abs_0.05_binarize_local efficiency -  102
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_TPOJ - 21
+R_SC - 43
+Chosen pipeline: GSR_correlation_abs_0.05_normalize_local efficiency -  103
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_TPOJ - 21
+R_SC - 43
+Chosen pipeline: GSR_correlation_zero_0.65_binarize_local efficiency -  104
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_correlation_zero_0.65_normalize_local efficiency -  105
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+R_A1 - 26
+R_A2 - 27
+Chosen pipeline: GSR_correlation_zero_0.6_binarize_local efficiency -  106
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_correlation_zero_0.6_normalize_local efficiency -  107
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+R_A1 - 26
+R_A2 - 27
+Chosen pipeline: GSR_correlation_zero_0.55_binarize_local efficiency -  108
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_correlation_zero_0.55_normalize_local efficiency -  109
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+R_A1 - 26
+R_A2 - 27
+Chosen pipeline: GSR_correlation_zero_0.5_binarize_local efficiency -  110
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_correlation_zero_0.5_normalize_local efficiency -  111
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_correlation_zero_0.55_binarize_local efficiency -  112
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_correlation_zero_0.55_normalize_local efficiency -  113
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+R_A1 - 26
+R_A2 - 27
+Chosen pipeline: GSR_correlation_zero_0.4_binarize_local efficiency -  114
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+Chosen pipeline: GSR_correlation_zero_0.4_normalize_local efficiency -  115
+
+The association between x and y was statistically significant at least once.
+R_A1 - 26
+R_A2 - 27
+Chosen pipeline: GSR_correlation_zero_0.35_binarize_local efficiency -  116
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+R_InP - 34
+Chosen pipeline: GSR_correlation_zero_0.35_normalize_local efficiency -  117
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+R_A1 - 26
+Chosen pipeline: GSR_correlation_zero_0.3_binarize_local efficiency -  118
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_correlation_zero_0.3_normalize_local efficiency -  119
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+L_InP - 8
+R_A1 - 26
+R_A2 - 27
+Chosen pipeline: GSR_correlation_zero_0.25_binarize_local efficiency -  120
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+L_V1 - 22
+R_A2 - 27
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_correlation_zero_0.25_normalize_local efficiency -  121
+
+The association between x and y was statistically significant at least once.
+R_A1 - 26
+R_A2 - 27
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_correlation_zero_0.2_binarize_local efficiency -  122
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+L_V2 - 23
+R_A2 - 27
+R_InP - 34
+Chosen pipeline: GSR_correlation_zero_0.2_normalize_local efficiency -  123
+
+The association between x and y was statistically significant at least once.
+R_A1 - 26
+R_A2 - 27
+R_aINS - 29
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_correlation_zero_0.15_binarize_local efficiency -  124
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_correlation_zero_0.15_normalize_local efficiency -  125
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_correlation_zero_0.1_binarize_local efficiency -  126
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+Chosen pipeline: GSR_correlation_zero_0.1_normalize_local efficiency -  127
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.05_binarize_local efficiency -  128
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+R_A2 - 27
+Chosen pipeline: GSR_correlation_zero_0.05_normalize_local efficiency -  129
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+R_A2 - 27
+Chosen pipeline: GSR_correlation_keep_0.65_binarize_local efficiency -  130
+
+The association between x and y was statistically significant at least once.
+L_SC - 17
+R_InP - 34
+R_pASS - 39
+Chosen pipeline: GSR_correlation_keep_0.65_normalize_local efficiency -  131
+
+The association between x and y was statistically significant at least once.
+L_pMFG - 14
+Chosen pipeline: GSR_correlation_keep_0.6_binarize_local efficiency -  132
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_correlation_keep_0.6_normalize_local efficiency -  133
+
+The association between x and y was statistically significant at least once.
+L_pMFG - 14
+R_A2 - 27
+Chosen pipeline: GSR_correlation_keep_0.55_binarize_local efficiency -  134
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_correlation_keep_0.55_normalize_local efficiency -  135
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.5_binarize_local efficiency -  136
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_correlation_keep_0.5_normalize_local efficiency -  137
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.55_binarize_local efficiency -  138
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+Chosen pipeline: GSR_correlation_keep_0.55_normalize_local efficiency -  139
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.4_binarize_local efficiency -  140
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+Chosen pipeline: GSR_correlation_keep_0.4_normalize_local efficiency -  141
+
+The association between x and y was statistically significant at least once.
+R_A1 - 26
+Chosen pipeline: GSR_correlation_keep_0.35_binarize_local efficiency -  142
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+R_InP - 34
+Chosen pipeline: GSR_correlation_keep_0.35_normalize_local efficiency -  143
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+R_A1 - 26
+Chosen pipeline: GSR_correlation_keep_0.3_binarize_local efficiency -  144
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_correlation_keep_0.3_normalize_local efficiency -  145
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+L_InP - 8
+R_A1 - 26
+R_A2 - 27
+Chosen pipeline: GSR_correlation_keep_0.25_binarize_local efficiency -  146
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+L_V1 - 22
+R_A2 - 27
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_correlation_keep_0.25_normalize_local efficiency -  147
+
+The association between x and y was statistically significant at least once.
+R_A1 - 26
+R_A2 - 27
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_correlation_keep_0.2_binarize_local efficiency -  148
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+L_V2 - 23
+R_A2 - 27
+R_InP - 34
+Chosen pipeline: GSR_correlation_keep_0.2_normalize_local efficiency -  149
+
+The association between x and y was statistically significant at least once.
+R_A1 - 26
+R_A2 - 27
+R_aINS - 29
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: GSR_correlation_keep_0.15_binarize_local efficiency -  150
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_correlation_keep_0.15_normalize_local efficiency -  151
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_correlation_keep_0.1_binarize_local efficiency -  152
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+Chosen pipeline: GSR_correlation_keep_0.1_normalize_local efficiency -  153
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.05_binarize_local efficiency -  154
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+R_A2 - 27
+Chosen pipeline: GSR_correlation_keep_0.05_normalize_local efficiency -  155
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+R_A2 - 27
+Chosen pipeline: GSR_partial correlation_abs_0.65_binarize_local efficiency -  156
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+R_iIPC - 33
+R_lACC - 36
+Chosen pipeline: GSR_partial correlation_abs_0.65_normalize_local efficiency -  157
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+Chosen pipeline: GSR_partial correlation_abs_0.6_binarize_local efficiency -  158
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_iIPC - 7
+R_sPreM - 46
+Chosen pipeline: GSR_partial correlation_abs_0.6_normalize_local efficiency -  159
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.55_binarize_local efficiency -  160
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+Chosen pipeline: GSR_partial correlation_abs_0.55_normalize_local efficiency -  161
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+R_pMFG - 40
+Chosen pipeline: GSR_partial correlation_abs_0.5_binarize_local efficiency -  162
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.5_normalize_local efficiency -  163
+
+The association between x and y was statistically significant at least once.
+R_aMFG - 30
+Chosen pipeline: GSR_partial correlation_abs_0.55_binarize_local efficiency -  164
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+Chosen pipeline: GSR_partial correlation_abs_0.55_normalize_local efficiency -  165
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+R_pMFG - 40
+Chosen pipeline: GSR_partial correlation_abs_0.4_binarize_local efficiency -  166
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.4_normalize_local efficiency -  167
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.35_binarize_local efficiency -  168
+
+The association between x and y was statistically significant at least once.
+R_V3 - 50
+Chosen pipeline: GSR_partial correlation_abs_0.35_normalize_local efficiency -  169
+
+The association between x and y was statistically significant at least once.
+R_V3 - 50
+Chosen pipeline: GSR_partial correlation_abs_0.3_binarize_local efficiency -  170
+
+The association between x and y was statistically significant at least once.
+R_V3 - 50
+Chosen pipeline: GSR_partial correlation_abs_0.3_normalize_local efficiency -  171
+
+The association between x and y was statistically significant at least once.
+L_sPreM - 20
+R_V3 - 50
+Chosen pipeline: GSR_partial correlation_abs_0.25_binarize_local efficiency -  172
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.25_normalize_local efficiency -  173
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.2_binarize_local efficiency -  174
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.2_normalize_local efficiency -  175
+
+The association between x and y was statistically significant at least once.
+R_FFC - 32
+Chosen pipeline: GSR_partial correlation_abs_0.15_binarize_local efficiency -  176
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.15_normalize_local efficiency -  177
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.1_binarize_local efficiency -  178
+
+The association between x and y was statistically significant at least once.
+L_aASS - 2
+Chosen pipeline: GSR_partial correlation_abs_0.1_normalize_local efficiency -  179
+
+The association between x and y was statistically significant at least once.
+L_aASS - 2
+Chosen pipeline: GSR_partial correlation_abs_0.05_binarize_local efficiency -  180
+
+The association between x and y was statistically significant at least once.
+R_V4 - 51
+Chosen pipeline: GSR_partial correlation_abs_0.05_normalize_local efficiency -  181
+
+The association between x and y was statistically significant at least once.
+R_V4 - 51
+Chosen pipeline: GSR_partial correlation_zero_0.65_binarize_local efficiency -  182
+
+The association between x and y was statistically significant at least once.
+L_sIPC - 19
+Chosen pipeline: GSR_partial correlation_zero_0.65_normalize_local efficiency -  183
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.6_binarize_local efficiency -  184
+
+The association between x and y was statistically significant at least once.
+L_sIPC - 19
+Chosen pipeline: GSR_partial correlation_zero_0.6_normalize_local efficiency -  185
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.55_binarize_local efficiency -  186
+
+The association between x and y was statistically significant at least once.
+L_sIPC - 19
+Chosen pipeline: GSR_partial correlation_zero_0.55_normalize_local efficiency -  187
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.5_binarize_local efficiency -  188
+
+The association between x and y was statistically significant at least once.
+L_sIPC - 19
+Chosen pipeline: GSR_partial correlation_zero_0.5_normalize_local efficiency -  189
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.55_binarize_local efficiency -  190
+
+The association between x and y was statistically significant at least once.
+L_sIPC - 19
+Chosen pipeline: GSR_partial correlation_zero_0.55_normalize_local efficiency -  191
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.4_binarize_local efficiency -  192
+
+The association between x and y was statistically significant at least once.
+L_sIPC - 19
+Chosen pipeline: GSR_partial correlation_zero_0.4_normalize_local efficiency -  193
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.35_binarize_local efficiency -  194
+
+The association between x and y was statistically significant at least once.
+L_sIPC - 19
+Chosen pipeline: GSR_partial correlation_zero_0.35_normalize_local efficiency -  195
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.3_binarize_local efficiency -  196
+
+The association between x and y was statistically significant at least once.
+L_sIPC - 19
+Chosen pipeline: GSR_partial correlation_zero_0.3_normalize_local efficiency -  197
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.25_binarize_local efficiency -  198
+
+The association between x and y was statistically significant at least once.
+L_lACC - 10
+L_sIPC - 19
+Chosen pipeline: GSR_partial correlation_zero_0.25_normalize_local efficiency -  199
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.2_binarize_local efficiency -  200
+
+The association between x and y was statistically significant at least once.
+L_sIFG - 18
+L_sIPC - 19
+Chosen pipeline: GSR_partial correlation_zero_0.2_normalize_local efficiency -  201
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.15_binarize_local efficiency -  202
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.15_normalize_local efficiency -  203
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.1_binarize_local efficiency -  204
+
+The association between x and y was statistically significant at least once.
+L_lACC - 10
+L_pMFG - 14
+R_iIPC - 33
+Chosen pipeline: GSR_partial correlation_zero_0.1_normalize_local efficiency -  205
+
+The association between x and y was statistically significant at least once.
+L_lACC - 10
+Chosen pipeline: GSR_partial correlation_zero_0.05_binarize_local efficiency -  206
+
+The association between x and y was statistically significant at least once.
+L_sIPC - 19
+Chosen pipeline: GSR_partial correlation_zero_0.05_normalize_local efficiency -  207
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.65_binarize_local efficiency -  208
+
+The association between x and y was statistically significant at least once.
+R_lACC - 36
+R_V3 - 50
+Chosen pipeline: GSR_partial correlation_keep_0.65_normalize_local efficiency -  209
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+L_sPreM - 20
+L_V3 - 24
+R_aASS - 28
+Chosen pipeline: GSR_partial correlation_keep_0.6_binarize_local efficiency -  210
+
+The association between x and y was statistically significant at least once.
+R_lACC - 36
+R_V3 - 50
+Chosen pipeline: GSR_partial correlation_keep_0.6_normalize_local efficiency -  211
+
+The association between x and y was statistically significant at least once.
+L_sPreM - 20
+R_aASS - 28
+Chosen pipeline: GSR_partial correlation_keep_0.55_binarize_local efficiency -  212
+
+The association between x and y was statistically significant at least once.
+L_sIPC - 19
+Chosen pipeline: GSR_partial correlation_keep_0.55_normalize_local efficiency -  213
+
+The association between x and y was statistically significant at least once.
+L_sPreM - 20
+R_aASS - 28
+Chosen pipeline: GSR_partial correlation_keep_0.5_binarize_local efficiency -  214
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.5_normalize_local efficiency -  215
+
+The association between x and y was statistically significant at least once.
+L_asASS - 5
+L_sPreM - 20
+R_aASS - 28
+Chosen pipeline: GSR_partial correlation_keep_0.55_binarize_local efficiency -  216
+
+The association between x and y was statistically significant at least once.
+L_sIPC - 19
+Chosen pipeline: GSR_partial correlation_keep_0.55_normalize_local efficiency -  217
+
+The association between x and y was statistically significant at least once.
+L_sPreM - 20
+R_aASS - 28
+Chosen pipeline: GSR_partial correlation_keep_0.4_binarize_local efficiency -  218
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.4_normalize_local efficiency -  219
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.35_binarize_local efficiency -  220
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+R_aMFG - 30
+R_sPreM - 46
+R_V3 - 50
+Chosen pipeline: GSR_partial correlation_keep_0.35_normalize_local efficiency -  221
+
+The association between x and y was statistically significant at least once.
+L_aASS - 2
+L_FFC - 6
+L_InP - 8
+L_sIPC - 19
+R_V3 - 50
+Chosen pipeline: GSR_partial correlation_keep_0.3_binarize_local efficiency -  222
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: GSR_partial correlation_keep_0.3_normalize_local efficiency -  223
+
+The association between x and y was statistically significant at least once.
+R_V2 - 49
+Chosen pipeline: GSR_partial correlation_keep_0.25_binarize_local efficiency -  224
+
+The association between x and y was statistically significant at least once.
+L_psASS - 15
+L_V3 - 24
+R_A2 - 27
+R_pASS - 39
+Chosen pipeline: GSR_partial correlation_keep_0.25_normalize_local efficiency -  225
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+R_sIPC - 45
+Chosen pipeline: GSR_partial correlation_keep_0.2_binarize_local efficiency -  226
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_V3 - 24
+R_pASS - 39
+Chosen pipeline: GSR_partial correlation_keep_0.2_normalize_local efficiency -  227
+
+The association between x and y was statistically significant at least once.
+L_aASS - 2
+L_pMFG - 14
+Chosen pipeline: GSR_partial correlation_keep_0.15_binarize_local efficiency -  228
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.15_normalize_local efficiency -  229
+
+The association between x and y was statistically significant at least once.
+L_lIFG - 11
+L_V1 - 22
+R_TPOJ - 47
+Chosen pipeline: GSR_partial correlation_keep_0.1_binarize_local efficiency -  230
+
+The association between x and y was statistically significant at least once.
+L_lACC - 10
+Chosen pipeline: GSR_partial correlation_keep_0.1_normalize_local efficiency -  231
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+L_lACC - 10
+L_V3 - 24
+Chosen pipeline: GSR_partial correlation_keep_0.05_binarize_local efficiency -  232
+
+The association between x and y was statistically significant at least once.
+L_sIPC - 19
+Chosen pipeline: GSR_partial correlation_keep_0.05_normalize_local efficiency -  233
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.65_binarize_global efficiency -  234
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.65_normalize_global efficiency -  235
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.6_binarize_global efficiency -  236
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.6_normalize_global efficiency -  237
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.55_binarize_global efficiency -  238
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.55_normalize_global efficiency -  239
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.5_binarize_global efficiency -  240
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.5_normalize_global efficiency -  241
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.55_binarize_global efficiency -  242
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.55_normalize_global efficiency -  243
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.4_binarize_global efficiency -  244
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.4_normalize_global efficiency -  245
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.35_binarize_global efficiency -  246
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.35_normalize_global efficiency -  247
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.3_binarize_global efficiency -  248
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.3_normalize_global efficiency -  249
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.25_binarize_global efficiency -  250
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.25_normalize_global efficiency -  251
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.2_binarize_global efficiency -  252
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.2_normalize_global efficiency -  253
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.15_binarize_global efficiency -  254
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.15_normalize_global efficiency -  255
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.1_binarize_global efficiency -  256
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.1_normalize_global efficiency -  257
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_abs_0.05_binarize_global efficiency -  258
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+L_A2 - 1
+L_aASS - 2
+L_aINS - 3
+L_aMFG - 4
+L_asASS - 5
+L_FFC - 6
+L_iIPC - 7
+L_InP - 8
+L_iPreM - 9
+L_lACC - 10
+L_lIFG - 11
+L_mACC - 12
+L_pASS - 13
+L_pMFG - 14
+L_psASS - 15
+L_sACC - 16
+L_SC - 17
+L_sIFG - 18
+L_sIPC - 19
+L_sPreM - 20
+L_TPOJ - 21
+L_V1 - 22
+L_V2 - 23
+L_V3 - 24
+L_V4 - 25
+R_A1 - 26
+R_A2 - 27
+R_aASS - 28
+R_aINS - 29
+R_aMFG - 30
+R_asASS - 31
+R_FFC - 32
+R_iIPC - 33
+R_InP - 34
+R_iPreM - 35
+R_lACC - 36
+R_lIFG - 37
+R_mACC - 38
+R_pASS - 39
+R_pMFG - 40
+R_psASS - 41
+R_sACC - 42
+R_SC - 43
+R_sIFG - 44
+R_sIPC - 45
+R_sPreM - 46
+R_TPOJ - 47
+R_V1 - 48
+R_V2 - 49
+R_V3 - 50
+R_V4 - 51
+Chosen pipeline: GSR_covariance_abs_0.05_normalize_global efficiency -  259
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.65_binarize_global efficiency -  260
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.65_normalize_global efficiency -  261
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.6_binarize_global efficiency -  262
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.6_normalize_global efficiency -  263
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.55_binarize_global efficiency -  264
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.55_normalize_global efficiency -  265
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.5_binarize_global efficiency -  266
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.5_normalize_global efficiency -  267
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.55_binarize_global efficiency -  268
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.55_normalize_global efficiency -  269
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.4_binarize_global efficiency -  270
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.4_normalize_global efficiency -  271
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.35_binarize_global efficiency -  272
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.35_normalize_global efficiency -  273
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.3_binarize_global efficiency -  274
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.3_normalize_global efficiency -  275
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.25_binarize_global efficiency -  276
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.25_normalize_global efficiency -  277
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.2_binarize_global efficiency -  278
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.2_normalize_global efficiency -  279
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.15_binarize_global efficiency -  280
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.15_normalize_global efficiency -  281
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.1_binarize_global efficiency -  282
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.1_normalize_global efficiency -  283
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.05_binarize_global efficiency -  284
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_zero_0.05_normalize_global efficiency -  285
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.65_binarize_global efficiency -  286
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.65_normalize_global efficiency -  287
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.6_binarize_global efficiency -  288
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.6_normalize_global efficiency -  289
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.55_binarize_global efficiency -  290
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.55_normalize_global efficiency -  291
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.5_binarize_global efficiency -  292
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.5_normalize_global efficiency -  293
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.55_binarize_global efficiency -  294
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.55_normalize_global efficiency -  295
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.4_binarize_global efficiency -  296
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.4_normalize_global efficiency -  297
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.35_binarize_global efficiency -  298
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.35_normalize_global efficiency -  299
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.3_binarize_global efficiency -  300
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.3_normalize_global efficiency -  301
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.25_binarize_global efficiency -  302
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.25_normalize_global efficiency -  303
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.2_binarize_global efficiency -  304
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.2_normalize_global efficiency -  305
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.15_binarize_global efficiency -  306
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.15_normalize_global efficiency -  307
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.1_binarize_global efficiency -  308
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.1_normalize_global efficiency -  309
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.05_binarize_global efficiency -  310
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_covariance_keep_0.05_normalize_global efficiency -  311
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.65_binarize_global efficiency -  312
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.65_normalize_global efficiency -  313
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.6_binarize_global efficiency -  314
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.6_normalize_global efficiency -  315
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.55_binarize_global efficiency -  316
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.55_normalize_global efficiency -  317
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.5_binarize_global efficiency -  318
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.5_normalize_global efficiency -  319
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.55_binarize_global efficiency -  320
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.55_normalize_global efficiency -  321
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.4_binarize_global efficiency -  322
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.4_normalize_global efficiency -  323
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.35_binarize_global efficiency -  324
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.35_normalize_global efficiency -  325
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.3_binarize_global efficiency -  326
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.3_normalize_global efficiency -  327
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.25_binarize_global efficiency -  328
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.25_normalize_global efficiency -  329
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.2_binarize_global efficiency -  330
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.2_normalize_global efficiency -  331
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.15_binarize_global efficiency -  332
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.15_normalize_global efficiency -  333
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.1_binarize_global efficiency -  334
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.1_normalize_global efficiency -  335
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_abs_0.05_binarize_global efficiency -  336
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+L_A2 - 1
+L_aASS - 2
+L_aINS - 3
+L_aMFG - 4
+L_asASS - 5
+L_FFC - 6
+L_iIPC - 7
+L_InP - 8
+L_iPreM - 9
+L_lACC - 10
+L_lIFG - 11
+L_mACC - 12
+L_pASS - 13
+L_pMFG - 14
+L_psASS - 15
+L_sACC - 16
+L_SC - 17
+L_sIFG - 18
+L_sIPC - 19
+L_sPreM - 20
+L_TPOJ - 21
+L_V1 - 22
+L_V2 - 23
+L_V3 - 24
+L_V4 - 25
+R_A1 - 26
+R_A2 - 27
+R_aASS - 28
+R_aINS - 29
+R_aMFG - 30
+R_asASS - 31
+R_FFC - 32
+R_iIPC - 33
+R_InP - 34
+R_iPreM - 35
+R_lACC - 36
+R_lIFG - 37
+R_mACC - 38
+R_pASS - 39
+R_pMFG - 40
+R_psASS - 41
+R_sACC - 42
+R_SC - 43
+R_sIFG - 44
+R_sIPC - 45
+R_sPreM - 46
+R_TPOJ - 47
+R_V1 - 48
+R_V2 - 49
+R_V3 - 50
+R_V4 - 51
+Chosen pipeline: GSR_correlation_abs_0.05_normalize_global efficiency -  337
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.65_binarize_global efficiency -  338
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.65_normalize_global efficiency -  339
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.6_binarize_global efficiency -  340
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.6_normalize_global efficiency -  341
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.55_binarize_global efficiency -  342
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.55_normalize_global efficiency -  343
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.5_binarize_global efficiency -  344
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.5_normalize_global efficiency -  345
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.55_binarize_global efficiency -  346
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.55_normalize_global efficiency -  347
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.4_binarize_global efficiency -  348
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.4_normalize_global efficiency -  349
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.35_binarize_global efficiency -  350
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.35_normalize_global efficiency -  351
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.3_binarize_global efficiency -  352
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.3_normalize_global efficiency -  353
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.25_binarize_global efficiency -  354
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.25_normalize_global efficiency -  355
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.2_binarize_global efficiency -  356
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.2_normalize_global efficiency -  357
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.15_binarize_global efficiency -  358
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.15_normalize_global efficiency -  359
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.1_binarize_global efficiency -  360
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.1_normalize_global efficiency -  361
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.05_binarize_global efficiency -  362
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_zero_0.05_normalize_global efficiency -  363
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.65_binarize_global efficiency -  364
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.65_normalize_global efficiency -  365
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.6_binarize_global efficiency -  366
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.6_normalize_global efficiency -  367
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.55_binarize_global efficiency -  368
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.55_normalize_global efficiency -  369
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.5_binarize_global efficiency -  370
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.5_normalize_global efficiency -  371
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.55_binarize_global efficiency -  372
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.55_normalize_global efficiency -  373
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.4_binarize_global efficiency -  374
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.4_normalize_global efficiency -  375
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.35_binarize_global efficiency -  376
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.35_normalize_global efficiency -  377
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.3_binarize_global efficiency -  378
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.3_normalize_global efficiency -  379
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.25_binarize_global efficiency -  380
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.25_normalize_global efficiency -  381
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.2_binarize_global efficiency -  382
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.2_normalize_global efficiency -  383
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.15_binarize_global efficiency -  384
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.15_normalize_global efficiency -  385
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.1_binarize_global efficiency -  386
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.1_normalize_global efficiency -  387
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.05_binarize_global efficiency -  388
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_correlation_keep_0.05_normalize_global efficiency -  389
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.65_binarize_global efficiency -  390
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.65_normalize_global efficiency -  391
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.6_binarize_global efficiency -  392
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.6_normalize_global efficiency -  393
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.55_binarize_global efficiency -  394
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.55_normalize_global efficiency -  395
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.5_binarize_global efficiency -  396
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.5_normalize_global efficiency -  397
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.55_binarize_global efficiency -  398
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.55_normalize_global efficiency -  399
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.4_binarize_global efficiency -  400
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.4_normalize_global efficiency -  401
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.35_binarize_global efficiency -  402
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.35_normalize_global efficiency -  403
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.3_binarize_global efficiency -  404
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.3_normalize_global efficiency -  405
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.25_binarize_global efficiency -  406
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.25_normalize_global efficiency -  407
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.2_binarize_global efficiency -  408
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.2_normalize_global efficiency -  409
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.15_binarize_global efficiency -  410
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.15_normalize_global efficiency -  411
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.1_binarize_global efficiency -  412
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.1_normalize_global efficiency -  413
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.05_binarize_global efficiency -  414
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_abs_0.05_normalize_global efficiency -  415
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.65_binarize_global efficiency -  416
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.65_normalize_global efficiency -  417
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.6_binarize_global efficiency -  418
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.6_normalize_global efficiency -  419
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.55_binarize_global efficiency -  420
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.55_normalize_global efficiency -  421
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.5_binarize_global efficiency -  422
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.5_normalize_global efficiency -  423
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.55_binarize_global efficiency -  424
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.55_normalize_global efficiency -  425
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.4_binarize_global efficiency -  426
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.4_normalize_global efficiency -  427
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.35_binarize_global efficiency -  428
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.35_normalize_global efficiency -  429
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.3_binarize_global efficiency -  430
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.3_normalize_global efficiency -  431
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.25_binarize_global efficiency -  432
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.25_normalize_global efficiency -  433
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.2_binarize_global efficiency -  434
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.2_normalize_global efficiency -  435
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.15_binarize_global efficiency -  436
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.15_normalize_global efficiency -  437
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.1_binarize_global efficiency -  438
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.1_normalize_global efficiency -  439
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.05_binarize_global efficiency -  440
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_zero_0.05_normalize_global efficiency -  441
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.65_binarize_global efficiency -  442
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.65_normalize_global efficiency -  443
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.6_binarize_global efficiency -  444
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.6_normalize_global efficiency -  445
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.55_binarize_global efficiency -  446
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.55_normalize_global efficiency -  447
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.5_binarize_global efficiency -  448
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.5_normalize_global efficiency -  449
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.55_binarize_global efficiency -  450
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.55_normalize_global efficiency -  451
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.4_binarize_global efficiency -  452
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.4_normalize_global efficiency -  453
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.35_binarize_global efficiency -  454
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.35_normalize_global efficiency -  455
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.3_binarize_global efficiency -  456
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.3_normalize_global efficiency -  457
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.25_binarize_global efficiency -  458
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.25_normalize_global efficiency -  459
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.2_binarize_global efficiency -  460
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.2_normalize_global efficiency -  461
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.15_binarize_global efficiency -  462
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.15_normalize_global efficiency -  463
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.1_binarize_global efficiency -  464
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.1_normalize_global efficiency -  465
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.05_binarize_global efficiency -  466
+
+There is no significant association between x and y.
+Chosen pipeline: GSR_partial correlation_keep_0.05_normalize_global efficiency -  467
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.65_binarize_local efficiency -  468
+
+The association between x and y was statistically significant at least once.
+L_pMFG - 14
+Chosen pipeline: noGSR_covariance_abs_0.65_normalize_local efficiency -  469
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.6_binarize_local efficiency -  470
+
+The association between x and y was statistically significant at least once.
+R_aASS - 28
+R_asASS - 31
+Chosen pipeline: noGSR_covariance_abs_0.6_normalize_local efficiency -  471
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.55_binarize_local efficiency -  472
+
+The association between x and y was statistically significant at least once.
+L_FFC - 6
+R_aASS - 28
+Chosen pipeline: noGSR_covariance_abs_0.55_normalize_local efficiency -  473
+
+The association between x and y was statistically significant at least once.
+R_aASS - 28
+R_V4 - 51
+Chosen pipeline: noGSR_covariance_abs_0.5_binarize_local efficiency -  474
+
+The association between x and y was statistically significant at least once.
+L_FFC - 6
+L_lIFG - 11
+R_aASS - 28
+Chosen pipeline: noGSR_covariance_abs_0.5_normalize_local efficiency -  475
+
+The association between x and y was statistically significant at least once.
+L_lIFG - 11
+R_aASS - 28
+R_FFC - 32
+Chosen pipeline: noGSR_covariance_abs_0.55_binarize_local efficiency -  476
+
+The association between x and y was statistically significant at least once.
+L_FFC - 6
+R_aASS - 28
+Chosen pipeline: noGSR_covariance_abs_0.55_normalize_local efficiency -  477
+
+The association between x and y was statistically significant at least once.
+R_aASS - 28
+R_V4 - 51
+Chosen pipeline: noGSR_covariance_abs_0.4_binarize_local efficiency -  478
+
+The association between x and y was statistically significant at least once.
+R_V3 - 50
+Chosen pipeline: noGSR_covariance_abs_0.4_normalize_local efficiency -  479
+
+The association between x and y was statistically significant at least once.
+L_lIFG - 11
+Chosen pipeline: noGSR_covariance_abs_0.35_binarize_local efficiency -  480
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+L_pASS - 13
+L_V2 - 23
+R_FFC - 32
+R_V3 - 50
+Chosen pipeline: noGSR_covariance_abs_0.35_normalize_local efficiency -  481
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+L_pASS - 13
+R_FFC - 32
+R_lACC - 36
+Chosen pipeline: noGSR_covariance_abs_0.3_binarize_local efficiency -  482
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_FFC - 32
+R_lACC - 36
+R_V3 - 50
+Chosen pipeline: noGSR_covariance_abs_0.3_normalize_local efficiency -  483
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_FFC - 32
+R_lACC - 36
+Chosen pipeline: noGSR_covariance_abs_0.25_binarize_local efficiency -  484
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+L_sACC - 16
+L_V1 - 22
+R_asASS - 31
+R_lACC - 36
+Chosen pipeline: noGSR_covariance_abs_0.25_normalize_local efficiency -  485
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_lACC - 36
+Chosen pipeline: noGSR_covariance_abs_0.2_binarize_local efficiency -  486
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+L_sPreM - 20
+R_asASS - 31
+R_V1 - 48
+Chosen pipeline: noGSR_covariance_abs_0.2_normalize_local efficiency -  487
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_asASS - 31
+R_lACC - 36
+Chosen pipeline: noGSR_covariance_abs_0.15_binarize_local efficiency -  488
+
+The association between x and y was statistically significant at least once.
+L_aINS - 3
+R_lACC - 36
+R_V1 - 48
+R_V2 - 49
+Chosen pipeline: noGSR_covariance_abs_0.15_normalize_local efficiency -  489
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+L_aINS - 3
+R_aMFG - 30
+R_lACC - 36
+Chosen pipeline: noGSR_covariance_abs_0.1_binarize_local efficiency -  490
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+L_sIFG - 18
+Chosen pipeline: noGSR_covariance_abs_0.1_normalize_local efficiency -  491
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+L_sIFG - 18
+R_V3 - 50
+Chosen pipeline: noGSR_covariance_abs_0.05_binarize_local efficiency -  492
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+L_sIFG - 18
+Chosen pipeline: noGSR_covariance_abs_0.05_normalize_local efficiency -  493
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+R_asASS - 31
+Chosen pipeline: noGSR_covariance_zero_0.65_binarize_local efficiency -  494
+
+The association between x and y was statistically significant at least once.
+L_pMFG - 14
+Chosen pipeline: noGSR_covariance_zero_0.65_normalize_local efficiency -  495
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.6_binarize_local efficiency -  496
+
+The association between x and y was statistically significant at least once.
+L_aASS - 2
+L_pMFG - 14
+R_FFC - 32
+R_lIFG - 37
+Chosen pipeline: noGSR_covariance_zero_0.6_normalize_local efficiency -  497
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.55_binarize_local efficiency -  498
+
+The association between x and y was statistically significant at least once.
+L_aASS - 2
+L_FFC - 6
+R_aASS - 28
+R_FFC - 32
+R_lIFG - 37
+Chosen pipeline: noGSR_covariance_zero_0.55_normalize_local efficiency -  499
+
+The association between x and y was statistically significant at least once.
+L_FFC - 6
+Chosen pipeline: noGSR_covariance_zero_0.5_binarize_local efficiency -  500
+
+The association between x and y was statistically significant at least once.
+L_FFC - 6
+L_lIFG - 11
+R_aASS - 28
+R_FFC - 32
+R_lIFG - 37
+Chosen pipeline: noGSR_covariance_zero_0.5_normalize_local efficiency -  501
+
+The association between x and y was statistically significant at least once.
+L_FFC - 6
+L_lIFG - 11
+R_aASS - 28
+R_FFC - 32
+R_lIFG - 37
+Chosen pipeline: noGSR_covariance_zero_0.55_binarize_local efficiency -  502
+
+The association between x and y was statistically significant at least once.
+L_aASS - 2
+L_FFC - 6
+R_aASS - 28
+R_FFC - 32
+R_lIFG - 37
+Chosen pipeline: noGSR_covariance_zero_0.55_normalize_local efficiency -  503
+
+The association between x and y was statistically significant at least once.
+L_FFC - 6
+Chosen pipeline: noGSR_covariance_zero_0.4_binarize_local efficiency -  504
+
+The association between x and y was statistically significant at least once.
+R_V3 - 50
+Chosen pipeline: noGSR_covariance_zero_0.4_normalize_local efficiency -  505
+
+The association between x and y was statistically significant at least once.
+L_lIFG - 11
+R_lACC - 36
+Chosen pipeline: noGSR_covariance_zero_0.35_binarize_local efficiency -  506
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+L_V2 - 23
+R_lACC - 36
+R_V3 - 50
+Chosen pipeline: noGSR_covariance_zero_0.35_normalize_local efficiency -  507
+
+The association between x and y was statistically significant at least once.
+L_lIFG - 11
+L_pASS - 13
+R_FFC - 32
+R_lACC - 36
+Chosen pipeline: noGSR_covariance_zero_0.3_binarize_local efficiency -  508
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_FFC - 32
+R_V3 - 50
+Chosen pipeline: noGSR_covariance_zero_0.3_normalize_local efficiency -  509
+
+The association between x and y was statistically significant at least once.
+L_lIFG - 11
+L_pASS - 13
+R_FFC - 32
+R_lACC - 36
+Chosen pipeline: noGSR_covariance_zero_0.25_binarize_local efficiency -  510
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+L_sACC - 16
+L_V1 - 22
+R_asASS - 31
+Chosen pipeline: noGSR_covariance_zero_0.25_normalize_local efficiency -  511
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_lACC - 36
+Chosen pipeline: noGSR_covariance_zero_0.2_binarize_local efficiency -  512
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+L_sPreM - 20
+R_asASS - 31
+R_V1 - 48
+Chosen pipeline: noGSR_covariance_zero_0.2_normalize_local efficiency -  513
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_asASS - 31
+Chosen pipeline: noGSR_covariance_zero_0.15_binarize_local efficiency -  514
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_V1 - 48
+R_V2 - 49
+Chosen pipeline: noGSR_covariance_zero_0.15_normalize_local efficiency -  515
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_aMFG - 30
+Chosen pipeline: noGSR_covariance_zero_0.1_binarize_local efficiency -  516
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_aMFG - 30
+Chosen pipeline: noGSR_covariance_zero_0.1_normalize_local efficiency -  517
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+L_sIFG - 18
+R_V3 - 50
+Chosen pipeline: noGSR_covariance_zero_0.05_binarize_local efficiency -  518
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+L_sIFG - 18
+Chosen pipeline: noGSR_covariance_zero_0.05_normalize_local efficiency -  519
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+L_sIFG - 18
+Chosen pipeline: noGSR_covariance_keep_0.65_binarize_local efficiency -  520
+
+The association between x and y was statistically significant at least once.
+L_pMFG - 14
+Chosen pipeline: noGSR_covariance_keep_0.65_normalize_local efficiency -  521
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.6_binarize_local efficiency -  522
+
+The association between x and y was statistically significant at least once.
+L_aASS - 2
+L_pMFG - 14
+R_FFC - 32
+R_lIFG - 37
+Chosen pipeline: noGSR_covariance_keep_0.6_normalize_local efficiency -  523
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.55_binarize_local efficiency -  524
+
+The association between x and y was statistically significant at least once.
+L_aASS - 2
+L_FFC - 6
+R_aASS - 28
+R_FFC - 32
+R_lIFG - 37
+Chosen pipeline: noGSR_covariance_keep_0.55_normalize_local efficiency -  525
+
+The association between x and y was statistically significant at least once.
+L_FFC - 6
+Chosen pipeline: noGSR_covariance_keep_0.5_binarize_local efficiency -  526
+
+The association between x and y was statistically significant at least once.
+L_FFC - 6
+L_lIFG - 11
+R_aASS - 28
+R_FFC - 32
+R_lIFG - 37
+Chosen pipeline: noGSR_covariance_keep_0.5_normalize_local efficiency -  527
+
+The association between x and y was statistically significant at least once.
+L_FFC - 6
+L_lIFG - 11
+R_aASS - 28
+R_FFC - 32
+R_lIFG - 37
+Chosen pipeline: noGSR_covariance_keep_0.55_binarize_local efficiency -  528
+
+The association between x and y was statistically significant at least once.
+L_aASS - 2
+L_FFC - 6
+R_aASS - 28
+R_FFC - 32
+R_lIFG - 37
+Chosen pipeline: noGSR_covariance_keep_0.55_normalize_local efficiency -  529
+
+The association between x and y was statistically significant at least once.
+L_FFC - 6
+Chosen pipeline: noGSR_covariance_keep_0.4_binarize_local efficiency -  530
+
+The association between x and y was statistically significant at least once.
+R_V3 - 50
+Chosen pipeline: noGSR_covariance_keep_0.4_normalize_local efficiency -  531
+
+The association between x and y was statistically significant at least once.
+L_lIFG - 11
+R_lACC - 36
+Chosen pipeline: noGSR_covariance_keep_0.35_binarize_local efficiency -  532
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+L_V2 - 23
+R_lACC - 36
+R_V3 - 50
+Chosen pipeline: noGSR_covariance_keep_0.35_normalize_local efficiency -  533
+
+The association between x and y was statistically significant at least once.
+L_lIFG - 11
+L_pASS - 13
+R_FFC - 32
+R_lACC - 36
+Chosen pipeline: noGSR_covariance_keep_0.3_binarize_local efficiency -  534
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_FFC - 32
+R_V3 - 50
+Chosen pipeline: noGSR_covariance_keep_0.3_normalize_local efficiency -  535
+
+The association between x and y was statistically significant at least once.
+L_lIFG - 11
+L_pASS - 13
+R_FFC - 32
+R_lACC - 36
+Chosen pipeline: noGSR_covariance_keep_0.25_binarize_local efficiency -  536
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+L_sACC - 16
+L_V1 - 22
+R_asASS - 31
+Chosen pipeline: noGSR_covariance_keep_0.25_normalize_local efficiency -  537
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_lACC - 36
+Chosen pipeline: noGSR_covariance_keep_0.2_binarize_local efficiency -  538
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+L_sPreM - 20
+R_asASS - 31
+R_V1 - 48
+Chosen pipeline: noGSR_covariance_keep_0.2_normalize_local efficiency -  539
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_asASS - 31
+Chosen pipeline: noGSR_covariance_keep_0.15_binarize_local efficiency -  540
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_V1 - 48
+R_V2 - 49
+Chosen pipeline: noGSR_covariance_keep_0.15_normalize_local efficiency -  541
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_aMFG - 30
+Chosen pipeline: noGSR_covariance_keep_0.1_binarize_local efficiency -  542
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_aMFG - 30
+Chosen pipeline: noGSR_covariance_keep_0.1_normalize_local efficiency -  543
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+L_sIFG - 18
+R_V3 - 50
+Chosen pipeline: noGSR_covariance_keep_0.05_binarize_local efficiency -  544
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+L_sIFG - 18
+Chosen pipeline: noGSR_covariance_keep_0.05_normalize_local efficiency -  545
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+L_sIFG - 18
+Chosen pipeline: noGSR_correlation_abs_0.65_binarize_local efficiency -  546
+
+The association between x and y was statistically significant at least once.
+L_V2 - 23
+R_InP - 34
+R_lIFG - 37
+Chosen pipeline: noGSR_correlation_abs_0.65_normalize_local efficiency -  547
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.6_binarize_local efficiency -  548
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+R_lIFG - 37
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_abs_0.6_normalize_local efficiency -  549
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.55_binarize_local efficiency -  550
+
+The association between x and y was statistically significant at least once.
+L_lIFG - 11
+R_FFC - 32
+R_InP - 34
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_abs_0.55_normalize_local efficiency -  551
+
+The association between x and y was statistically significant at least once.
+L_TPOJ - 21
+R_asASS - 31
+Chosen pipeline: noGSR_correlation_abs_0.5_binarize_local efficiency -  552
+
+The association between x and y was statistically significant at least once.
+R_FFC - 32
+R_InP - 34
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_abs_0.5_normalize_local efficiency -  553
+
+The association between x and y was statistically significant at least once.
+L_TPOJ - 21
+R_A2 - 27
+R_asASS - 31
+R_FFC - 32
+R_InP - 34
+Chosen pipeline: noGSR_correlation_abs_0.55_binarize_local efficiency -  554
+
+The association between x and y was statistically significant at least once.
+L_lIFG - 11
+R_FFC - 32
+R_InP - 34
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_abs_0.55_normalize_local efficiency -  555
+
+The association between x and y was statistically significant at least once.
+L_TPOJ - 21
+R_asASS - 31
+Chosen pipeline: noGSR_correlation_abs_0.4_binarize_local efficiency -  556
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+R_A2 - 27
+R_FFC - 32
+R_InP - 34
+R_lACC - 36
+R_lIFG - 37
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_abs_0.4_normalize_local efficiency -  557
+
+The association between x and y was statistically significant at least once.
+L_InP - 8
+L_TPOJ - 21
+R_A2 - 27
+R_FFC - 32
+R_InP - 34
+R_sIPC - 45
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_abs_0.35_binarize_local efficiency -  558
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_InP - 8
+R_InP - 34
+R_lACC - 36
+R_lIFG - 37
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_abs_0.35_normalize_local efficiency -  559
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_InP - 8
+L_TPOJ - 21
+L_V2 - 23
+R_InP - 34
+R_lACC - 36
+Chosen pipeline: noGSR_correlation_abs_0.3_binarize_local efficiency -  560
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+R_lACC - 36
+Chosen pipeline: noGSR_correlation_abs_0.3_normalize_local efficiency -  561
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_InP - 8
+R_A2 - 27
+R_InP - 34
+Chosen pipeline: noGSR_correlation_abs_0.25_binarize_local efficiency -  562
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_pASS - 13
+R_FFC - 32
+Chosen pipeline: noGSR_correlation_abs_0.25_normalize_local efficiency -  563
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_InP - 8
+Chosen pipeline: noGSR_correlation_abs_0.2_binarize_local efficiency -  564
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_lIFG - 11
+L_V4 - 25
+R_TPOJ - 47
+Chosen pipeline: noGSR_correlation_abs_0.2_normalize_local efficiency -  565
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_lACC - 10
+L_lIFG - 11
+L_mACC - 12
+L_V4 - 25
+R_A2 - 27
+R_TPOJ - 47
+Chosen pipeline: noGSR_correlation_abs_0.15_binarize_local efficiency -  566
+
+The association between x and y was statistically significant at least once.
+L_lIFG - 11
+L_V4 - 25
+R_A1 - 26
+R_A2 - 27
+R_pASS - 39
+Chosen pipeline: noGSR_correlation_abs_0.15_normalize_local efficiency -  567
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_InP - 8
+L_lIFG - 11
+L_V4 - 25
+R_A1 - 26
+R_A2 - 27
+R_pASS - 39
+Chosen pipeline: noGSR_correlation_abs_0.1_binarize_local efficiency -  568
+
+The association between x and y was statistically significant at least once.
+R_sIPC - 45
+Chosen pipeline: noGSR_correlation_abs_0.1_normalize_local efficiency -  569
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: noGSR_correlation_abs_0.05_binarize_local efficiency -  570
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+R_A2 - 27
+R_psASS - 41
+Chosen pipeline: noGSR_correlation_abs_0.05_normalize_local efficiency -  571
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+R_A2 - 27
+R_psASS - 41
+Chosen pipeline: noGSR_correlation_zero_0.65_binarize_local efficiency -  572
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: noGSR_correlation_zero_0.65_normalize_local efficiency -  573
+
+The association between x and y was statistically significant at least once.
+L_TPOJ - 21
+Chosen pipeline: noGSR_correlation_zero_0.6_binarize_local efficiency -  574
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+R_lIFG - 37
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_zero_0.6_normalize_local efficiency -  575
+
+The association between x and y was statistically significant at least once.
+L_TPOJ - 21
+Chosen pipeline: noGSR_correlation_zero_0.55_binarize_local efficiency -  576
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_zero_0.55_normalize_local efficiency -  577
+
+The association between x and y was statistically significant at least once.
+L_TPOJ - 21
+Chosen pipeline: noGSR_correlation_zero_0.5_binarize_local efficiency -  578
+
+The association between x and y was statistically significant at least once.
+R_FFC - 32
+R_InP - 34
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_zero_0.5_normalize_local efficiency -  579
+
+The association between x and y was statistically significant at least once.
+L_aINS - 3
+L_TPOJ - 21
+R_A2 - 27
+R_InP - 34
+Chosen pipeline: noGSR_correlation_zero_0.55_binarize_local efficiency -  580
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_zero_0.55_normalize_local efficiency -  581
+
+The association between x and y was statistically significant at least once.
+L_TPOJ - 21
+Chosen pipeline: noGSR_correlation_zero_0.4_binarize_local efficiency -  582
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+R_FFC - 32
+R_InP - 34
+R_lACC - 36
+R_lIFG - 37
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_zero_0.4_normalize_local efficiency -  583
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_InP - 8
+L_TPOJ - 21
+R_A2 - 27
+R_InP - 34
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_zero_0.35_binarize_local efficiency -  584
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+L_V2 - 23
+R_InP - 34
+R_lACC - 36
+R_lIFG - 37
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_zero_0.35_normalize_local efficiency -  585
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_InP - 8
+L_TPOJ - 21
+L_V2 - 23
+R_A2 - 27
+R_InP - 34
+R_lACC - 36
+R_psASS - 41
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_zero_0.3_binarize_local efficiency -  586
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_InP - 34
+R_lACC - 36
+Chosen pipeline: noGSR_correlation_zero_0.3_normalize_local efficiency -  587
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+R_A2 - 27
+R_InP - 34
+Chosen pipeline: noGSR_correlation_zero_0.25_binarize_local efficiency -  588
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_pASS - 13
+L_V4 - 25
+Chosen pipeline: noGSR_correlation_zero_0.25_normalize_local efficiency -  589
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_InP - 8
+L_V4 - 25
+Chosen pipeline: noGSR_correlation_zero_0.2_binarize_local efficiency -  590
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_lACC - 10
+L_lIFG - 11
+L_V4 - 25
+R_TPOJ - 47
+Chosen pipeline: noGSR_correlation_zero_0.2_normalize_local efficiency -  591
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_InP - 8
+L_lACC - 10
+L_mACC - 12
+L_V4 - 25
+R_A2 - 27
+R_TPOJ - 47
+Chosen pipeline: noGSR_correlation_zero_0.15_binarize_local efficiency -  592
+
+The association between x and y was statistically significant at least once.
+L_lIFG - 11
+R_A2 - 27
+R_pASS - 39
+Chosen pipeline: noGSR_correlation_zero_0.15_normalize_local efficiency -  593
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_InP - 8
+R_A1 - 26
+R_A2 - 27
+R_pASS - 39
+Chosen pipeline: noGSR_correlation_zero_0.1_binarize_local efficiency -  594
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.1_normalize_local efficiency -  595
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: noGSR_correlation_zero_0.05_binarize_local efficiency -  596
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+R_A2 - 27
+R_psASS - 41
+Chosen pipeline: noGSR_correlation_zero_0.05_normalize_local efficiency -  597
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+R_A2 - 27
+R_psASS - 41
+Chosen pipeline: noGSR_correlation_keep_0.65_binarize_local efficiency -  598
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+Chosen pipeline: noGSR_correlation_keep_0.65_normalize_local efficiency -  599
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.6_binarize_local efficiency -  600
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+R_lIFG - 37
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_keep_0.6_normalize_local efficiency -  601
+
+The association between x and y was statistically significant at least once.
+L_TPOJ - 21
+Chosen pipeline: noGSR_correlation_keep_0.55_binarize_local efficiency -  602
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_keep_0.55_normalize_local efficiency -  603
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_TPOJ - 21
+R_A2 - 27
+R_pASS - 39
+Chosen pipeline: noGSR_correlation_keep_0.5_binarize_local efficiency -  604
+
+The association between x and y was statistically significant at least once.
+R_FFC - 32
+R_InP - 34
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_keep_0.5_normalize_local efficiency -  605
+
+The association between x and y was statistically significant at least once.
+L_aINS - 3
+L_TPOJ - 21
+R_A2 - 27
+R_InP - 34
+Chosen pipeline: noGSR_correlation_keep_0.55_binarize_local efficiency -  606
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_keep_0.55_normalize_local efficiency -  607
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_TPOJ - 21
+R_A2 - 27
+R_pASS - 39
+Chosen pipeline: noGSR_correlation_keep_0.4_binarize_local efficiency -  608
+
+The association between x and y was statistically significant at least once.
+R_A2 - 27
+R_FFC - 32
+R_InP - 34
+R_lACC - 36
+R_lIFG - 37
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_keep_0.4_normalize_local efficiency -  609
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_InP - 8
+L_TPOJ - 21
+R_A2 - 27
+R_InP - 34
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_keep_0.35_binarize_local efficiency -  610
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+L_V2 - 23
+R_InP - 34
+R_lACC - 36
+R_lIFG - 37
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_keep_0.35_normalize_local efficiency -  611
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_InP - 8
+L_TPOJ - 21
+L_V2 - 23
+R_A2 - 27
+R_InP - 34
+R_lACC - 36
+R_psASS - 41
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_keep_0.3_binarize_local efficiency -  612
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+R_InP - 34
+R_lACC - 36
+Chosen pipeline: noGSR_correlation_keep_0.3_normalize_local efficiency -  613
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+R_A2 - 27
+R_InP - 34
+Chosen pipeline: noGSR_correlation_keep_0.25_binarize_local efficiency -  614
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_pASS - 13
+L_V4 - 25
+Chosen pipeline: noGSR_correlation_keep_0.25_normalize_local efficiency -  615
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_InP - 8
+L_V4 - 25
+Chosen pipeline: noGSR_correlation_keep_0.2_binarize_local efficiency -  616
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_lACC - 10
+L_lIFG - 11
+L_V4 - 25
+R_TPOJ - 47
+Chosen pipeline: noGSR_correlation_keep_0.2_normalize_local efficiency -  617
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_InP - 8
+L_lACC - 10
+L_mACC - 12
+L_V4 - 25
+R_A2 - 27
+R_TPOJ - 47
+Chosen pipeline: noGSR_correlation_keep_0.15_binarize_local efficiency -  618
+
+The association between x and y was statistically significant at least once.
+L_lIFG - 11
+R_A2 - 27
+R_pASS - 39
+Chosen pipeline: noGSR_correlation_keep_0.15_normalize_local efficiency -  619
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+L_InP - 8
+R_A1 - 26
+R_A2 - 27
+R_pASS - 39
+Chosen pipeline: noGSR_correlation_keep_0.1_binarize_local efficiency -  620
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.1_normalize_local efficiency -  621
+
+The association between x and y was statistically significant at least once.
+L_A2 - 1
+R_InP - 34
+R_sIPC - 45
+Chosen pipeline: noGSR_correlation_keep_0.05_binarize_local efficiency -  622
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+R_A2 - 27
+R_psASS - 41
+Chosen pipeline: noGSR_correlation_keep_0.05_normalize_local efficiency -  623
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+R_A2 - 27
+R_psASS - 41
+Chosen pipeline: noGSR_partial correlation_abs_0.65_binarize_local efficiency -  624
+
+The association between x and y was statistically significant at least once.
+L_iPreM - 9
+R_psASS - 41
+Chosen pipeline: noGSR_partial correlation_abs_0.65_normalize_local efficiency -  625
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.6_binarize_local efficiency -  626
+
+The association between x and y was statistically significant at least once.
+L_aINS - 3
+L_iPreM - 9
+R_sIPC - 45
+Chosen pipeline: noGSR_partial correlation_abs_0.6_normalize_local efficiency -  627
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.55_binarize_local efficiency -  628
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.55_normalize_local efficiency -  629
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.5_binarize_local efficiency -  630
+
+The association between x and y was statistically significant at least once.
+R_asASS - 31
+Chosen pipeline: noGSR_partial correlation_abs_0.5_normalize_local efficiency -  631
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.55_binarize_local efficiency -  632
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.55_normalize_local efficiency -  633
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.4_binarize_local efficiency -  634
+
+The association between x and y was statistically significant at least once.
+L_V3 - 24
+Chosen pipeline: noGSR_partial correlation_abs_0.4_normalize_local efficiency -  635
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.35_binarize_local efficiency -  636
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+Chosen pipeline: noGSR_partial correlation_abs_0.35_normalize_local efficiency -  637
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.3_binarize_local efficiency -  638
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+Chosen pipeline: noGSR_partial correlation_abs_0.3_normalize_local efficiency -  639
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.25_binarize_local efficiency -  640
+
+The association between x and y was statistically significant at least once.
+R_aASS - 28
+R_asASS - 31
+Chosen pipeline: noGSR_partial correlation_abs_0.25_normalize_local efficiency -  641
+
+The association between x and y was statistically significant at least once.
+R_asASS - 31
+Chosen pipeline: noGSR_partial correlation_abs_0.2_binarize_local efficiency -  642
+
+The association between x and y was statistically significant at least once.
+L_mACC - 12
+L_sIFG - 18
+R_asASS - 31
+Chosen pipeline: noGSR_partial correlation_abs_0.2_normalize_local efficiency -  643
+
+The association between x and y was statistically significant at least once.
+L_sIFG - 18
+Chosen pipeline: noGSR_partial correlation_abs_0.15_binarize_local efficiency -  644
+
+The association between x and y was statistically significant at least once.
+L_sIFG - 18
+L_V4 - 25
+Chosen pipeline: noGSR_partial correlation_abs_0.15_normalize_local efficiency -  645
+
+The association between x and y was statistically significant at least once.
+L_V4 - 25
+R_A2 - 27
+R_aASS - 28
+Chosen pipeline: noGSR_partial correlation_abs_0.1_binarize_local efficiency -  646
+
+The association between x and y was statistically significant at least once.
+L_pMFG - 14
+L_psASS - 15
+L_V2 - 23
+Chosen pipeline: noGSR_partial correlation_abs_0.1_normalize_local efficiency -  647
+
+The association between x and y was statistically significant at least once.
+L_pMFG - 14
+L_psASS - 15
+L_V2 - 23
+Chosen pipeline: noGSR_partial correlation_abs_0.05_binarize_local efficiency -  648
+
+The association between x and y was statistically significant at least once.
+L_TPOJ - 21
+Chosen pipeline: noGSR_partial correlation_abs_0.05_normalize_local efficiency -  649
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.65_binarize_local efficiency -  650
+
+The association between x and y was statistically significant at least once.
+L_aINS - 3
+L_pASS - 13
+L_V4 - 25
+R_A1 - 26
+R_A2 - 27
+R_FFC - 32
+R_InP - 34
+R_TPOJ - 47
+Chosen pipeline: noGSR_partial correlation_zero_0.65_normalize_local efficiency -  651
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.6_binarize_local efficiency -  652
+
+The association between x and y was statistically significant at least once.
+L_aINS - 3
+L_pASS - 13
+L_V4 - 25
+R_A1 - 26
+R_A2 - 27
+R_FFC - 32
+R_InP - 34
+R_TPOJ - 47
+Chosen pipeline: noGSR_partial correlation_zero_0.6_normalize_local efficiency -  653
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.55_binarize_local efficiency -  654
+
+The association between x and y was statistically significant at least once.
+L_aINS - 3
+L_pASS - 13
+L_V4 - 25
+R_A1 - 26
+R_A2 - 27
+R_InP - 34
+R_TPOJ - 47
+Chosen pipeline: noGSR_partial correlation_zero_0.55_normalize_local efficiency -  655
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.5_binarize_local efficiency -  656
+
+The association between x and y was statistically significant at least once.
+R_TPOJ - 47
+Chosen pipeline: noGSR_partial correlation_zero_0.5_normalize_local efficiency -  657
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.55_binarize_local efficiency -  658
+
+The association between x and y was statistically significant at least once.
+L_aINS - 3
+L_pASS - 13
+L_V4 - 25
+R_A1 - 26
+R_A2 - 27
+R_InP - 34
+R_TPOJ - 47
+Chosen pipeline: noGSR_partial correlation_zero_0.55_normalize_local efficiency -  659
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.4_binarize_local efficiency -  660
+
+The association between x and y was statistically significant at least once.
+L_sIFG - 18
+Chosen pipeline: noGSR_partial correlation_zero_0.4_normalize_local efficiency -  661
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.35_binarize_local efficiency -  662
+
+The association between x and y was statistically significant at least once.
+R_lIFG - 37
+Chosen pipeline: noGSR_partial correlation_zero_0.35_normalize_local efficiency -  663
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.3_binarize_local efficiency -  664
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.3_normalize_local efficiency -  665
+
+The association between x and y was statistically significant at least once.
+R_sIFG - 44
+Chosen pipeline: noGSR_partial correlation_zero_0.25_binarize_local efficiency -  666
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+R_sIPC - 45
+Chosen pipeline: noGSR_partial correlation_zero_0.25_normalize_local efficiency -  667
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+Chosen pipeline: noGSR_partial correlation_zero_0.2_binarize_local efficiency -  668
+
+The association between x and y was statistically significant at least once.
+R_asASS - 31
+Chosen pipeline: noGSR_partial correlation_zero_0.2_normalize_local efficiency -  669
+
+The association between x and y was statistically significant at least once.
+R_asASS - 31
+Chosen pipeline: noGSR_partial correlation_zero_0.15_binarize_local efficiency -  670
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+L_iIPC - 7
+L_sPreM - 20
+R_asASS - 31
+R_pMFG - 40
+Chosen pipeline: noGSR_partial correlation_zero_0.15_normalize_local efficiency -  671
+
+The association between x and y was statistically significant at least once.
+L_iIPC - 7
+L_sPreM - 20
+L_TPOJ - 21
+R_asASS - 31
+R_pMFG - 40
+Chosen pipeline: noGSR_partial correlation_zero_0.1_binarize_local efficiency -  672
+
+The association between x and y was statistically significant at least once.
+L_sACC - 16
+Chosen pipeline: noGSR_partial correlation_zero_0.1_normalize_local efficiency -  673
+
+The association between x and y was statistically significant at least once.
+L_sACC - 16
+Chosen pipeline: noGSR_partial correlation_zero_0.05_binarize_local efficiency -  674
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.05_normalize_local efficiency -  675
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.65_binarize_local efficiency -  676
+
+The association between x and y was statistically significant at least once.
+L_aMFG - 4
+L_sACC - 16
+Chosen pipeline: noGSR_partial correlation_keep_0.65_normalize_local efficiency -  677
+
+The association between x and y was statistically significant at least once.
+L_pASS - 13
+L_TPOJ - 21
+R_sPreM - 46
+Chosen pipeline: noGSR_partial correlation_keep_0.6_binarize_local efficiency -  678
+
+The association between x and y was statistically significant at least once.
+L_aINS - 3
+L_aMFG - 4
+Chosen pipeline: noGSR_partial correlation_keep_0.6_normalize_local efficiency -  679
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.55_binarize_local efficiency -  680
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+R_TPOJ - 47
+Chosen pipeline: noGSR_partial correlation_keep_0.55_normalize_local efficiency -  681
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+L_lIFG - 11
+L_sIPC - 19
+R_InP - 34
+R_V3 - 50
+Chosen pipeline: noGSR_partial correlation_keep_0.5_binarize_local efficiency -  682
+
+The association between x and y was statistically significant at least once.
+R_TPOJ - 47
+Chosen pipeline: noGSR_partial correlation_keep_0.5_normalize_local efficiency -  683
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.55_binarize_local efficiency -  684
+
+The association between x and y was statistically significant at least once.
+R_InP - 34
+R_TPOJ - 47
+Chosen pipeline: noGSR_partial correlation_keep_0.55_normalize_local efficiency -  685
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+L_lIFG - 11
+L_sIPC - 19
+R_InP - 34
+R_V3 - 50
+Chosen pipeline: noGSR_partial correlation_keep_0.4_binarize_local efficiency -  686
+
+The association between x and y was statistically significant at least once.
+L_sIFG - 18
+Chosen pipeline: noGSR_partial correlation_keep_0.4_normalize_local efficiency -  687
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.35_binarize_local efficiency -  688
+
+The association between x and y was statistically significant at least once.
+R_lIFG - 37
+Chosen pipeline: noGSR_partial correlation_keep_0.35_normalize_local efficiency -  689
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.3_binarize_local efficiency -  690
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.3_normalize_local efficiency -  691
+
+The association between x and y was statistically significant at least once.
+R_sIFG - 44
+Chosen pipeline: noGSR_partial correlation_keep_0.25_binarize_local efficiency -  692
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+R_sIPC - 45
+Chosen pipeline: noGSR_partial correlation_keep_0.25_normalize_local efficiency -  693
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+Chosen pipeline: noGSR_partial correlation_keep_0.2_binarize_local efficiency -  694
+
+The association between x and y was statistically significant at least once.
+R_asASS - 31
+Chosen pipeline: noGSR_partial correlation_keep_0.2_normalize_local efficiency -  695
+
+The association between x and y was statistically significant at least once.
+R_asASS - 31
+Chosen pipeline: noGSR_partial correlation_keep_0.15_binarize_local efficiency -  696
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+L_iIPC - 7
+L_sPreM - 20
+R_asASS - 31
+R_pMFG - 40
+Chosen pipeline: noGSR_partial correlation_keep_0.15_normalize_local efficiency -  697
+
+The association between x and y was statistically significant at least once.
+L_iIPC - 7
+L_sPreM - 20
+L_TPOJ - 21
+R_asASS - 31
+R_pMFG - 40
+Chosen pipeline: noGSR_partial correlation_keep_0.1_binarize_local efficiency -  698
+
+The association between x and y was statistically significant at least once.
+L_sACC - 16
+Chosen pipeline: noGSR_partial correlation_keep_0.1_normalize_local efficiency -  699
+
+The association between x and y was statistically significant at least once.
+L_sACC - 16
+Chosen pipeline: noGSR_partial correlation_keep_0.05_binarize_local efficiency -  700
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.05_normalize_local efficiency -  701
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.65_binarize_global efficiency -  702
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.65_normalize_global efficiency -  703
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.6_binarize_global efficiency -  704
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.6_normalize_global efficiency -  705
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.55_binarize_global efficiency -  706
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.55_normalize_global efficiency -  707
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.5_binarize_global efficiency -  708
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.5_normalize_global efficiency -  709
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.55_binarize_global efficiency -  710
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.55_normalize_global efficiency -  711
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.4_binarize_global efficiency -  712
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.4_normalize_global efficiency -  713
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.35_binarize_global efficiency -  714
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.35_normalize_global efficiency -  715
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.3_binarize_global efficiency -  716
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.3_normalize_global efficiency -  717
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.25_binarize_global efficiency -  718
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.25_normalize_global efficiency -  719
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.2_binarize_global efficiency -  720
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.2_normalize_global efficiency -  721
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.15_binarize_global efficiency -  722
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.15_normalize_global efficiency -  723
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.1_binarize_global efficiency -  724
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.1_normalize_global efficiency -  725
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.05_binarize_global efficiency -  726
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_abs_0.05_normalize_global efficiency -  727
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.65_binarize_global efficiency -  728
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.65_normalize_global efficiency -  729
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.6_binarize_global efficiency -  730
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.6_normalize_global efficiency -  731
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.55_binarize_global efficiency -  732
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.55_normalize_global efficiency -  733
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.5_binarize_global efficiency -  734
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.5_normalize_global efficiency -  735
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.55_binarize_global efficiency -  736
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.55_normalize_global efficiency -  737
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.4_binarize_global efficiency -  738
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.4_normalize_global efficiency -  739
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.35_binarize_global efficiency -  740
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.35_normalize_global efficiency -  741
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.3_binarize_global efficiency -  742
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.3_normalize_global efficiency -  743
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.25_binarize_global efficiency -  744
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.25_normalize_global efficiency -  745
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.2_binarize_global efficiency -  746
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.2_normalize_global efficiency -  747
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.15_binarize_global efficiency -  748
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.15_normalize_global efficiency -  749
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.1_binarize_global efficiency -  750
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.1_normalize_global efficiency -  751
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.05_binarize_global efficiency -  752
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_zero_0.05_normalize_global efficiency -  753
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.65_binarize_global efficiency -  754
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.65_normalize_global efficiency -  755
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.6_binarize_global efficiency -  756
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.6_normalize_global efficiency -  757
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.55_binarize_global efficiency -  758
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.55_normalize_global efficiency -  759
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.5_binarize_global efficiency -  760
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.5_normalize_global efficiency -  761
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.55_binarize_global efficiency -  762
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.55_normalize_global efficiency -  763
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.4_binarize_global efficiency -  764
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.4_normalize_global efficiency -  765
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.35_binarize_global efficiency -  766
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.35_normalize_global efficiency -  767
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.3_binarize_global efficiency -  768
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.3_normalize_global efficiency -  769
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.25_binarize_global efficiency -  770
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.25_normalize_global efficiency -  771
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.2_binarize_global efficiency -  772
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.2_normalize_global efficiency -  773
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.15_binarize_global efficiency -  774
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.15_normalize_global efficiency -  775
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.1_binarize_global efficiency -  776
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.1_normalize_global efficiency -  777
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.05_binarize_global efficiency -  778
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_covariance_keep_0.05_normalize_global efficiency -  779
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.65_binarize_global efficiency -  780
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.65_normalize_global efficiency -  781
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.6_binarize_global efficiency -  782
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.6_normalize_global efficiency -  783
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.55_binarize_global efficiency -  784
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.55_normalize_global efficiency -  785
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.5_binarize_global efficiency -  786
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.5_normalize_global efficiency -  787
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.55_binarize_global efficiency -  788
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.55_normalize_global efficiency -  789
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.4_binarize_global efficiency -  790
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.4_normalize_global efficiency -  791
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.35_binarize_global efficiency -  792
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.35_normalize_global efficiency -  793
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.3_binarize_global efficiency -  794
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.3_normalize_global efficiency -  795
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.25_binarize_global efficiency -  796
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.25_normalize_global efficiency -  797
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.2_binarize_global efficiency -  798
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.2_normalize_global efficiency -  799
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.15_binarize_global efficiency -  800
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.15_normalize_global efficiency -  801
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.1_binarize_global efficiency -  802
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.1_normalize_global efficiency -  803
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.05_binarize_global efficiency -  804
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_abs_0.05_normalize_global efficiency -  805
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.65_binarize_global efficiency -  806
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.65_normalize_global efficiency -  807
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.6_binarize_global efficiency -  808
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.6_normalize_global efficiency -  809
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.55_binarize_global efficiency -  810
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.55_normalize_global efficiency -  811
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.5_binarize_global efficiency -  812
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.5_normalize_global efficiency -  813
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.55_binarize_global efficiency -  814
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.55_normalize_global efficiency -  815
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.4_binarize_global efficiency -  816
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.4_normalize_global efficiency -  817
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.35_binarize_global efficiency -  818
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.35_normalize_global efficiency -  819
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.3_binarize_global efficiency -  820
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.3_normalize_global efficiency -  821
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.25_binarize_global efficiency -  822
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.25_normalize_global efficiency -  823
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.2_binarize_global efficiency -  824
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.2_normalize_global efficiency -  825
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+L_A2 - 1
+L_aASS - 2
+L_aINS - 3
+L_aMFG - 4
+L_asASS - 5
+L_FFC - 6
+L_iIPC - 7
+L_InP - 8
+L_iPreM - 9
+L_lACC - 10
+L_lIFG - 11
+L_mACC - 12
+L_pASS - 13
+L_pMFG - 14
+L_psASS - 15
+L_sACC - 16
+L_SC - 17
+L_sIFG - 18
+L_sIPC - 19
+L_sPreM - 20
+L_TPOJ - 21
+L_V1 - 22
+L_V2 - 23
+L_V3 - 24
+L_V4 - 25
+R_A1 - 26
+R_A2 - 27
+R_aASS - 28
+R_aINS - 29
+R_aMFG - 30
+R_asASS - 31
+R_FFC - 32
+R_iIPC - 33
+R_InP - 34
+R_iPreM - 35
+R_lACC - 36
+R_lIFG - 37
+R_mACC - 38
+R_pASS - 39
+R_pMFG - 40
+R_psASS - 41
+R_sACC - 42
+R_SC - 43
+R_sIFG - 44
+R_sIPC - 45
+R_sPreM - 46
+R_TPOJ - 47
+R_V1 - 48
+R_V2 - 49
+R_V3 - 50
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_zero_0.15_binarize_global efficiency -  826
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.15_normalize_global efficiency -  827
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.1_binarize_global efficiency -  828
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.1_normalize_global efficiency -  829
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.05_binarize_global efficiency -  830
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_zero_0.05_normalize_global efficiency -  831
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.65_binarize_global efficiency -  832
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.65_normalize_global efficiency -  833
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.6_binarize_global efficiency -  834
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.6_normalize_global efficiency -  835
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.55_binarize_global efficiency -  836
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.55_normalize_global efficiency -  837
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.5_binarize_global efficiency -  838
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.5_normalize_global efficiency -  839
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.55_binarize_global efficiency -  840
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.55_normalize_global efficiency -  841
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.4_binarize_global efficiency -  842
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.4_normalize_global efficiency -  843
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.35_binarize_global efficiency -  844
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.35_normalize_global efficiency -  845
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.3_binarize_global efficiency -  846
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.3_normalize_global efficiency -  847
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.25_binarize_global efficiency -  848
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.25_normalize_global efficiency -  849
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.2_binarize_global efficiency -  850
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.2_normalize_global efficiency -  851
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+L_A2 - 1
+L_aASS - 2
+L_aINS - 3
+L_aMFG - 4
+L_asASS - 5
+L_FFC - 6
+L_iIPC - 7
+L_InP - 8
+L_iPreM - 9
+L_lACC - 10
+L_lIFG - 11
+L_mACC - 12
+L_pASS - 13
+L_pMFG - 14
+L_psASS - 15
+L_sACC - 16
+L_SC - 17
+L_sIFG - 18
+L_sIPC - 19
+L_sPreM - 20
+L_TPOJ - 21
+L_V1 - 22
+L_V2 - 23
+L_V3 - 24
+L_V4 - 25
+R_A1 - 26
+R_A2 - 27
+R_aASS - 28
+R_aINS - 29
+R_aMFG - 30
+R_asASS - 31
+R_FFC - 32
+R_iIPC - 33
+R_InP - 34
+R_iPreM - 35
+R_lACC - 36
+R_lIFG - 37
+R_mACC - 38
+R_pASS - 39
+R_pMFG - 40
+R_psASS - 41
+R_sACC - 42
+R_SC - 43
+R_sIFG - 44
+R_sIPC - 45
+R_sPreM - 46
+R_TPOJ - 47
+R_V1 - 48
+R_V2 - 49
+R_V3 - 50
+R_V4 - 51
+Chosen pipeline: noGSR_correlation_keep_0.15_binarize_global efficiency -  852
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.15_normalize_global efficiency -  853
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.1_binarize_global efficiency -  854
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.1_normalize_global efficiency -  855
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.05_binarize_global efficiency -  856
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_correlation_keep_0.05_normalize_global efficiency -  857
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.65_binarize_global efficiency -  858
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.65_normalize_global efficiency -  859
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.6_binarize_global efficiency -  860
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.6_normalize_global efficiency -  861
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.55_binarize_global efficiency -  862
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.55_normalize_global efficiency -  863
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.5_binarize_global efficiency -  864
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.5_normalize_global efficiency -  865
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.55_binarize_global efficiency -  866
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.55_normalize_global efficiency -  867
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.4_binarize_global efficiency -  868
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.4_normalize_global efficiency -  869
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.35_binarize_global efficiency -  870
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.35_normalize_global efficiency -  871
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.3_binarize_global efficiency -  872
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.3_normalize_global efficiency -  873
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.25_binarize_global efficiency -  874
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.25_normalize_global efficiency -  875
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.2_binarize_global efficiency -  876
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.2_normalize_global efficiency -  877
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.15_binarize_global efficiency -  878
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.15_normalize_global efficiency -  879
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.1_binarize_global efficiency -  880
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.1_normalize_global efficiency -  881
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.05_binarize_global efficiency -  882
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_abs_0.05_normalize_global efficiency -  883
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.65_binarize_global efficiency -  884
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+L_A2 - 1
+L_aASS - 2
+L_aINS - 3
+L_aMFG - 4
+L_asASS - 5
+L_FFC - 6
+L_iIPC - 7
+L_InP - 8
+L_iPreM - 9
+L_lACC - 10
+L_lIFG - 11
+L_mACC - 12
+L_pASS - 13
+L_pMFG - 14
+L_psASS - 15
+L_sACC - 16
+L_SC - 17
+L_sIFG - 18
+L_sIPC - 19
+L_sPreM - 20
+L_TPOJ - 21
+L_V1 - 22
+L_V2 - 23
+L_V3 - 24
+L_V4 - 25
+R_A1 - 26
+R_A2 - 27
+R_aASS - 28
+R_aINS - 29
+R_aMFG - 30
+R_asASS - 31
+R_FFC - 32
+R_iIPC - 33
+R_InP - 34
+R_iPreM - 35
+R_lACC - 36
+R_lIFG - 37
+R_mACC - 38
+R_pASS - 39
+R_pMFG - 40
+R_psASS - 41
+R_sACC - 42
+R_SC - 43
+R_sIFG - 44
+R_sIPC - 45
+R_sPreM - 46
+R_TPOJ - 47
+R_V1 - 48
+R_V2 - 49
+R_V3 - 50
+R_V4 - 51
+Chosen pipeline: noGSR_partial correlation_zero_0.65_normalize_global efficiency -  885
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.6_binarize_global efficiency -  886
+
+The association between x and y was statistically significant at least once.
+L_A1 - 0
+L_A2 - 1
+L_aASS - 2
+L_aINS - 3
+L_aMFG - 4
+L_asASS - 5
+L_FFC - 6
+L_iIPC - 7
+L_InP - 8
+L_iPreM - 9
+L_lACC - 10
+L_lIFG - 11
+L_mACC - 12
+L_pASS - 13
+L_pMFG - 14
+L_psASS - 15
+L_sACC - 16
+L_SC - 17
+L_sIFG - 18
+L_sIPC - 19
+L_sPreM - 20
+L_TPOJ - 21
+L_V1 - 22
+L_V2 - 23
+L_V3 - 24
+L_V4 - 25
+R_A1 - 26
+R_A2 - 27
+R_aASS - 28
+R_aINS - 29
+R_aMFG - 30
+R_asASS - 31
+R_FFC - 32
+R_iIPC - 33
+R_InP - 34
+R_iPreM - 35
+R_lACC - 36
+R_lIFG - 37
+R_mACC - 38
+R_pASS - 39
+R_pMFG - 40
+R_psASS - 41
+R_sACC - 42
+R_SC - 43
+R_sIFG - 44
+R_sIPC - 45
+R_sPreM - 46
+R_TPOJ - 47
+R_V1 - 48
+R_V2 - 49
+R_V3 - 50
+R_V4 - 51
+Chosen pipeline: noGSR_partial correlation_zero_0.6_normalize_global efficiency -  887
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.55_binarize_global efficiency -  888
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.55_normalize_global efficiency -  889
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.5_binarize_global efficiency -  890
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.5_normalize_global efficiency -  891
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.55_binarize_global efficiency -  892
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.55_normalize_global efficiency -  893
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.4_binarize_global efficiency -  894
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.4_normalize_global efficiency -  895
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.35_binarize_global efficiency -  896
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.35_normalize_global efficiency -  897
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.3_binarize_global efficiency -  898
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.3_normalize_global efficiency -  899
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.25_binarize_global efficiency -  900
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.25_normalize_global efficiency -  901
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.2_binarize_global efficiency -  902
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.2_normalize_global efficiency -  903
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.15_binarize_global efficiency -  904
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.15_normalize_global efficiency -  905
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.1_binarize_global efficiency -  906
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.1_normalize_global efficiency -  907
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.05_binarize_global efficiency -  908
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_zero_0.05_normalize_global efficiency -  909
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.65_binarize_global efficiency -  910
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.65_normalize_global efficiency -  911
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.6_binarize_global efficiency -  912
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.6_normalize_global efficiency -  913
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.55_binarize_global efficiency -  914
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.55_normalize_global efficiency -  915
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.5_binarize_global efficiency -  916
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.5_normalize_global efficiency -  917
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.55_binarize_global efficiency -  918
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.55_normalize_global efficiency -  919
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.4_binarize_global efficiency -  920
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.4_normalize_global efficiency -  921
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.35_binarize_global efficiency -  922
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.35_normalize_global efficiency -  923
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.3_binarize_global efficiency -  924
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.3_normalize_global efficiency -  925
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.25_binarize_global efficiency -  926
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.25_normalize_global efficiency -  927
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.2_binarize_global efficiency -  928
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.2_normalize_global efficiency -  929
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.15_binarize_global efficiency -  930
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.15_normalize_global efficiency -  931
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.1_binarize_global efficiency -  932
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.1_normalize_global efficiency -  933
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.05_binarize_global efficiency -  934
+
+There is no significant association between x and y.
+Chosen pipeline: noGSR_partial correlation_keep_0.05_normalize_global efficiency -  935
+
+There is no significant association between x and y.

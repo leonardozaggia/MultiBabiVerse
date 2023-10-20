@@ -461,7 +461,7 @@ Best pipeline for each Multiverse
 Linear Regression = 390
 Spline Regression = 207 + 233
 """
-pipeline_n = 600
+pipeline_n = 233
 regional_r2 = []
 
 # Load your data and set up your variables
@@ -525,6 +525,9 @@ plt.tight_layout()
 plt.show()
 
 
+# %% ------------------------------------------------------------------------------------
+# ##                        RERUN - ALL SUBJECTS
+# ## ------------------------------------------------------------------------------------
 # %% K = 1
 accs_1 = np.zeros(936)
 for pipeline in range(936):
@@ -622,7 +625,233 @@ for pipeline in range(936):
         r2 = r2_score(y[:, i], y_pred)
         regional_r2.append(r2)
     accs_0[pipeline] = np.mean(regional_r2)
-    
+# %% Dictionary with all the results
+accs_dict_301 = {"0": accs_0, "1": accs_1, "2": accs_2, "3": accs_3}
+pickle.dump(accs_dict_301, open(str(output_path + "/" + "accs_dict_301.p"), "wb" ) )
+# %% ------------------------------------------------------------------------------------
+# ##                        RERUN - 150 SUBJECTS
+# ## ------------------------------------------------------------------------------------
+# %% Accuracies for 150 subjects
+# K = 1
+accs_1 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:150]
+    y = y[:150]
+
+    # Define the intervals and spline model
+    intervals = [28, 31, 37]
+    for i, ROI in enumerate(ROIs):
+        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=1)
+        # Calculate the R-squared value
+        y_pred = spline_model(x)
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_1[pipeline] = np.mean(regional_r2)
+# K = 2
+accs_2 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:150]
+    y = y[:150]
+
+    # Define the intervals and spline model
+    intervals = [28, 31, 37]
+    for i, ROI in enumerate(ROIs):
+        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=2)
+        # Calculate the R-squared value
+        y_pred = spline_model(x)
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_2[pipeline] = np.mean(regional_r2)
+# K = 3
+accs_3 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:150]
+    y = y[:150]
+
+    # Define the intervals and spline model
+    intervals = [28, 31, 37]
+    for i, ROI in enumerate(ROIs):
+        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=3)
+        # Calculate the R-squared value
+        y_pred = spline_model(x)
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_3[pipeline] = np.mean(regional_r2)
+# Linear Regression
+accs_0 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:150]
+    y = y[:150]
+
+    # Define the intervals and spline model
+    intervals = [28, 31, 37]
+    for i, ROI in enumerate(ROIs):
+        from sklearn.linear_model import LinearRegression
+        reg = LinearRegression().fit(x.reshape(-1, 1), y[:, i])
+        # Calculate the R-squared value
+        y_pred = reg.predict(x.reshape(-1, 1))
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_0[pipeline] = np.mean(regional_r2)
+# Dictionary with all the results
+accs_dict_150 = {"0": accs_0, "1": accs_1, "2": accs_2, "3": accs_3}
+pickle.dump(accs_dict_150, open(str(output_path + "/" + "accs_dict_150.p"), "wb" ) )
+# %% ------------------------------------------------------------------------------------
+# ##                        RERUN - 95 SUBJECTS
+# ## ------------------------------------------------------------------------------------
+# %% Accuracies for 95 subjects 
+# K = 1
+accs_1 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:95]
+    y = y[:95]
+
+    # Define the intervals and spline model
+    intervals = [28, 31, 37]
+    for i, ROI in enumerate(ROIs):
+        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=1)
+        # Calculate the R-squared value
+        y_pred = spline_model(x)
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_1[pipeline] = np.mean(regional_r2)
+# K = 2
+accs_2 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:95]
+    y = y[:95]
+
+    # Define the intervals and spline model
+    intervals = [28, 31, 37]
+    for i, ROI in enumerate(ROIs):
+        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=2)
+        # Calculate the R-squared value
+        y_pred = spline_model(x)
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_2[pipeline] = np.mean(regional_r2)
+# K = 3
+accs_3 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:95]
+    y = y[:95]
+
+    # Define the intervals and spline model
+    intervals = [28, 31, 37]
+    for i, ROI in enumerate(ROIs):
+        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=3)
+        # Calculate the R-squared value
+        y_pred = spline_model(x)
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_3[pipeline] = np.mean(regional_r2)
+# Linear Regression
+accs_0 = np.zeros(936)
+for pipeline in range(936):
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    x = x[:95]
+    y = y[:95]
+
+    # Define the intervals and spline model
+    intervals = [28, 31, 37]
+    for i, ROI in enumerate(ROIs):
+        from sklearn.linear_model import LinearRegression
+        reg = LinearRegression().fit(x.reshape(-1, 1), y[:, i])
+        # Calculate the R-squared value
+        y_pred = reg.predict(x.reshape(-1, 1))
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    accs_0[pipeline] = np.mean(regional_r2)
+# Dictionary with all the results
+accs_dict_95 = {"0": accs_0, "1": accs_1, "2": accs_2, "3": accs_3} 
+pickle.dump(accs_dict_95, open(str(output_path + "/" + "accs_dict_95.p"), "wb" ) )
 # %% ------------------------------------------------------------------------------------
 # ##                        EXHAUSTIVE SEARCH EXPLORATION
 # ## ------------------------------------------------------------------------------------
@@ -789,223 +1018,68 @@ print("The best pipeline using polinomial k = 2 is: " + pipe_choices[np.argmax(a
 print("The best pipeline using polinomial k = 3 is: " + pipe_choices[np.argmax(accs_3)].replace("_", ", "))
 
 # %% ------------------------------------------------------------------------------------
-# ##                        RERUN - 150 SUBJECTS
+# ##                        Significance Test Linear
 # ## ------------------------------------------------------------------------------------
-# %% K = 1
-accs_1 = np.zeros(936)
-for pipeline in range(936):
-    ROIs = list(data["ts"][0].keys())
-    regional_r2 = []
+# Linear Model Significance
+# Imports
+from scipy.stats import linregress
+storage = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["301_subjects_936_pipelines"]
+pipe_choices = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["pipeline_choices"]
+ROIs = list(data["ts"][0].keys())
+histogram = []
+
+for pipeline_n in range(len(pipe_choices)):
+    print("Chosen pipeline: " + pipe_choices[pipeline_n] + " - ", pipeline_n)
+    print()
 
     # Load your data and set up your variables
     x = np.asanyarray(data["b_age"])
-    y = np.asanyarray(storage[pipeline])
+    y = np.asanyarray(storage[pipeline_n])
+
 
     # Sort the data
     sort_idx = np.argsort(x)
     x = x[sort_idx]
     y = y[sort_idx]
-    x = x[:150]
-    y = y[:150]
 
-    # Define the intervals and spline model
-    intervals = [28, 31, 37]
-    for i, ROI in enumerate(ROIs):
-        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=1)
-        # Calculate the R-squared value
-        y_pred = spline_model(x)
-        r2 = r2_score(y[:, i], y_pred)
-        regional_r2.append(r2)
-    accs_1[pipeline] = np.mean(regional_r2)
-# %% K = 2
-accs_2 = np.zeros(936)
-for pipeline in range(936):
-    ROIs = list(data["ts"][0].keys())
-    regional_r2 = []
+    # Initializing relevant variables
+    tmp = 0
+    idx_significance = []
 
-    # Load your data and set up your variables
-    x = np.asanyarray(data["b_age"])
-    y = np.asanyarray(storage[pipeline])
+    for i in range(len(ROIs)):
 
-    # Sort the data
-    sort_idx = np.argsort(x)
-    x = x[sort_idx]
-    y = y[sort_idx]
-    x = x[:150]
-    y = y[:150]
+        # Assuming x and y are your variables (lists, arrays, or pandas Series)
+        # For example:
+        # x = [1, 2, 3, 4, 5]
+        # y = [2, 4, 5, 4, 5]
 
-    # Define the intervals and spline model
-    intervals = [28, 31, 37]
-    for i, ROI in enumerate(ROIs):
-        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=2)
-        # Calculate the R-squared value
-        y_pred = spline_model(x)
-        r2 = r2_score(y[:, i], y_pred)
-        regional_r2.append(r2)
-    accs_2[pipeline] = np.mean(regional_r2)
-# %% K = 3
-accs_3 = np.zeros(936)
-for pipeline in range(936):
-    ROIs = list(data["ts"][0].keys())
-    regional_r2 = []
+        # Perform linear regression
+        slope, intercept, r_value, p_value, std_err = linregress(x, y[:,i])
 
-    # Load your data and set up your variables
-    x = np.asanyarray(data["b_age"])
-    y = np.asanyarray(storage[pipeline])
+        # Check if the association is significant (using a common alpha level of 0.05)
+        if p_value < 0.05:
+            tmp = 1
+            idx_significance.append(i)
+            histogram.append(i)
 
-    # Sort the data
-    sort_idx = np.argsort(x)
-    x = x[sort_idx]
-    y = y[sort_idx]
-    x = x[:150]
-    y = y[:150]
+    if tmp == 1:
+        print("The association between x and y was statistically significant at least once.")
+        for idx in idx_significance:
+            print(ROIs[idx], "-", idx)
+    else:
+        print("There is no significant association between x and y.")
 
-    # Define the intervals and spline model
-    intervals = [28, 31, 37]
-    for i, ROI in enumerate(ROIs):
-        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=3)
-        # Calculate the R-squared value
-        y_pred = spline_model(x)
-        r2 = r2_score(y[:, i], y_pred)
-        regional_r2.append(r2)
-    accs_3[pipeline] = np.mean(regional_r2)
-# %% Linear Regression
-accs_0 = np.zeros(936)
-for pipeline in range(936):
-    ROIs = list(data["ts"][0].keys())
-    regional_r2 = []
+plt.figure(figsize=(8, 6))
+plt.style.use('seaborn-whitegrid')
+plt.hist(histogram, bins=20, color='skyblue', edgecolor='black', alpha=0.7)
+plt.xlabel('Significant ROI', fontsize=14)
+plt.ylabel('Frequency', fontsize=14)
+plt.title('Histogram of Significant ROIs', fontsize=16)
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.tick_params(labelsize=12)
+plt.legend(['Significant associations'], fontsize=12)
+plt.tight_layout()
+plt.show()
 
-    # Load your data and set up your variables
-    x = np.asanyarray(data["b_age"])
-    y = np.asanyarray(storage[pipeline])
-
-    # Sort the data
-    sort_idx = np.argsort(x)
-    x = x[sort_idx]
-    y = y[sort_idx]
-    x = x[:150]
-    y = y[:150]
-
-    # Define the intervals and spline model
-    intervals = [28, 31, 37]
-    for i, ROI in enumerate(ROIs):
-        from sklearn.linear_model import LinearRegression
-        reg = LinearRegression().fit(x.reshape(-1, 1), y[:, i])
-        # Calculate the R-squared value
-        y_pred = reg.predict(x.reshape(-1, 1))
-        r2 = r2_score(y[:, i], y_pred)
-        regional_r2.append(r2)
-    accs_0[pipeline] = np.mean(regional_r2)
- 
-
-# %% ------------------------------------------------------------------------------------
-# ##                        RERUN - 95 SUBJECTS
-# ## ------------------------------------------------------------------------------------
-# %% K = 1
-accs_1 = np.zeros(936)
-for pipeline in range(936):
-    ROIs = list(data["ts"][0].keys())
-    regional_r2 = []
-
-    # Load your data and set up your variables
-    x = np.asanyarray(data["b_age"])
-    y = np.asanyarray(storage[pipeline])
-
-    # Sort the data
-    sort_idx = np.argsort(x)
-    x = x[sort_idx]
-    y = y[sort_idx]
-    x = x[:95]
-    y = y[:95]
-
-    # Define the intervals and spline model
-    intervals = [28, 31, 37]
-    for i, ROI in enumerate(ROIs):
-        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=1)
-        # Calculate the R-squared value
-        y_pred = spline_model(x)
-        r2 = r2_score(y[:, i], y_pred)
-        regional_r2.append(r2)
-    accs_1[pipeline] = np.mean(regional_r2)
-# %% K = 2
-accs_2 = np.zeros(936)
-for pipeline in range(936):
-    ROIs = list(data["ts"][0].keys())
-    regional_r2 = []
-
-    # Load your data and set up your variables
-    x = np.asanyarray(data["b_age"])
-    y = np.asanyarray(storage[pipeline])
-
-    # Sort the data
-    sort_idx = np.argsort(x)
-    x = x[sort_idx]
-    y = y[sort_idx]
-    x = x[:95]
-    y = y[:95]
-
-    # Define the intervals and spline model
-    intervals = [28, 31, 37]
-    for i, ROI in enumerate(ROIs):
-        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=2)
-        # Calculate the R-squared value
-        y_pred = spline_model(x)
-        r2 = r2_score(y[:, i], y_pred)
-        regional_r2.append(r2)
-    accs_2[pipeline] = np.mean(regional_r2)
-# %% K = 3
-accs_3 = np.zeros(936)
-for pipeline in range(936):
-    ROIs = list(data["ts"][0].keys())
-    regional_r2 = []
-
-    # Load your data and set up your variables
-    x = np.asanyarray(data["b_age"])
-    y = np.asanyarray(storage[pipeline])
-
-    # Sort the data
-    sort_idx = np.argsort(x)
-    x = x[sort_idx]
-    y = y[sort_idx]
-    x = x[:95]
-    y = y[:95]
-
-    # Define the intervals and spline model
-    intervals = [28, 31, 37]
-    for i, ROI in enumerate(ROIs):
-        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=3)
-        # Calculate the R-squared value
-        y_pred = spline_model(x)
-        r2 = r2_score(y[:, i], y_pred)
-        regional_r2.append(r2)
-    accs_3[pipeline] = np.mean(regional_r2)
-# %% Linear Regression
-accs_0 = np.zeros(936)
-for pipeline in range(936):
-    ROIs = list(data["ts"][0].keys())
-    regional_r2 = []
-
-    # Load your data and set up your variables
-    x = np.asanyarray(data["b_age"])
-    y = np.asanyarray(storage[pipeline])
-
-    # Sort the data
-    sort_idx = np.argsort(x)
-    x = x[sort_idx]
-    y = y[sort_idx]
-    x = x[:95]
-    y = y[:95]
-
-    # Define the intervals and spline model
-    intervals = [28, 31, 37]
-    for i, ROI in enumerate(ROIs):
-        from sklearn.linear_model import LinearRegression
-        reg = LinearRegression().fit(x.reshape(-1, 1), y[:, i])
-        # Calculate the R-squared value
-        y_pred = reg.predict(x.reshape(-1, 1))
-        r2 = r2_score(y[:, i], y_pred)
-        regional_r2.append(r2)
-    accs_0[pipeline] = np.mean(regional_r2)
- 
 
 # %%
