@@ -1,7 +1,10 @@
 # %% IMPORTS
 import numpy as np
+import seaborn as sns
 import matplotlib.pyplot as plt
-from nilearn.datasets import MNI152_FILE_PATH
+from scipy.interpolate import LSQUnivariateSpline
+from scipy.stats import linregress
+from sklearn.metrics import r2_score
 from pipeline import get_data, pair_age, split_data
 from pipeline import get_3_connectivity
 from pipeline import new_mv
@@ -19,6 +22,7 @@ signal_path = '/Users/amnesia/Desktop/Master_Thesis/root_dir/end_processing_sign
 path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/pipeline_timeseries"
 age_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/combined.tsv"
 output_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir_G_&_L/outputs"
+pipe_choices = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["pipeline_choices"]
 
 
 # %%
@@ -30,21 +34,25 @@ data = pair_age(data_total, age_path, clean=True)       # clean parameter remove
 
 # Get and Display forks we utilize in this multiverse
 BCT_models, neg_options, thresholds, weight_options, graph_measures, connectivities = get_FORKs()
+
 print_FORKs()
 
 
 # %% ----------------- DATA VISUALIZATION -------------------
 #TODO: DISPLAY THE DEMOGRAPHICS OF THE DATA
 # Set up the plot style
+Boundaries = [28, 31, 37]
 plt.figure(figsize=(8, 6))
 plt.style.use('seaborn-whitegrid')
 plt.hist(np.asanyarray(data["b_age"]), bins=20, color='skyblue', edgecolor='black', alpha=0.7)
+plt.legend(['Infants'], fontsize=12)
+for interval in Boundaries:
+    plt.axvline(x=interval, color='b', linestyle='--', alpha=0.7)
 plt.xlabel('Age', fontsize=14)
 plt.ylabel('Count', fontsize=14)
 plt.title('Age distribution', fontsize=16)
 plt.grid(True, linestyle='--', alpha=0.7)
 plt.tick_params(labelsize=12)
-plt.legend(['Infants'], fontsize=12)
 plt.tight_layout()
 plt.show()
 
@@ -206,7 +214,7 @@ for idx_method, (label, method) in enumerate(methods.items()):
             for idx_conn, connect in enumerate(connectivities):
                 for weight in weight_options:
                     for idx_bct, bct_model in enumerate(BCT_models):
-                        # Distinguish between Juan's Multiverse and the rest of it (different edgecolor)
+                        ### Distinguish between Quinones' Multiverse and the rest of it (different edgecolor)
                         if weight == "binarize" and connect == "correlation" and negatives == "abs" and preprocessing == "noGSR":
                             axs[idx_method].scatter(YTemp[:, 0][(BCTTemp == bct_model) & (WeightsTemp == weight) & (ConnectivitiesTemp == connect) & (NegativesTemp == negatives)],
                                                     YTemp[:, 1][(BCTTemp == bct_model) & (WeightsTemp == weight) & (ConnectivitiesTemp == connect) & (NegativesTemp == negatives)],
@@ -215,7 +223,7 @@ for idx_method, (label, method) in enumerate(methods.items()):
                                                     hatch=hatches[connect],
                                                     alpha=0.5,
                                                     linewidth= widths[negatives],
-                                                    edgecolor='green', # Show JUAN pipelines in green
+                                                    edgecolor='green', # Show Quinones' pipelines in green
                                                     cmap=colourmaps[preprocessing], s=sizes[weight])
                         else:
                             axs[idx_method].scatter(YTemp[:, 0][(BCTTemp == bct_model) & (WeightsTemp == weight) & (ConnectivitiesTemp == connect) & (NegativesTemp == negatives)],
@@ -448,10 +456,6 @@ Use the output from the cluster to explore the results.
 # %% ------------------------------------------------------------------------------------
 # ##                        EXHAUSTIVE SEARCH EXPLORATION
 # ## ------------------------------------------------------------------------------------
-import numpy as np
-from scipy.interpolate import LSQUnivariateSpline
-import matplotlib.pyplot as plt
-from sklearn.metrics import r2_score
 
 storage = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["301_subjects_936_pipelines"]
 pipe_choices = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["pipeline_choices"]
@@ -551,7 +555,12 @@ for pipeline in range(936):
         y_pred = spline_model(x)
         r2 = r2_score(y[:, i], y_pred)
         regional_r2.append(r2)
-    accs_1[pipeline] = np.mean(regional_r2)
+    if any(value == 1.0 for value in regional_r2):
+        accs_1[pipeline] = 0.0
+    else:
+        accs_1[pipeline] = np.mean(regional_r2)
+
+   
 # %% K = 2
 accs_2 = np.zeros(936)
 for pipeline in range(936):
@@ -575,7 +584,10 @@ for pipeline in range(936):
         y_pred = spline_model(x)
         r2 = r2_score(y[:, i], y_pred)
         regional_r2.append(r2)
-    accs_2[pipeline] = np.mean(regional_r2)
+    if any(value == 1.0 for value in regional_r2):
+        accs_2[pipeline] = 0.0
+    else:
+        accs_2[pipeline] = np.mean(regional_r2)
 # %% K = 3
 accs_3 = np.zeros(936)
 for pipeline in range(936):
@@ -599,7 +611,10 @@ for pipeline in range(936):
         y_pred = spline_model(x)
         r2 = r2_score(y[:, i], y_pred)
         regional_r2.append(r2)
-    accs_3[pipeline] = np.mean(regional_r2)
+    if any(value == 1.0 for value in regional_r2):
+        accs_3[pipeline] = 0.0
+    else:
+        accs_3[pipeline] = np.mean(regional_r2)
 # %% Linear Regression
 accs_0 = np.zeros(936)
 for pipeline in range(936):
@@ -624,10 +639,13 @@ for pipeline in range(936):
         y_pred = reg.predict(x.reshape(-1, 1))
         r2 = r2_score(y[:, i], y_pred)
         regional_r2.append(r2)
-    accs_0[pipeline] = np.mean(regional_r2)
+    if any(value == 1.0 for value in regional_r2):
+        accs_0[pipeline] = 0.0
+    else:
+        accs_0[pipeline] = np.mean(regional_r2)
 # %% Dictionary with all the results
 accs_dict_301 = {"0": accs_0, "1": accs_1, "2": accs_2, "3": accs_3}
-pickle.dump(accs_dict_301, open(str(output_path + "/" + "accs_dict_301.p"), "wb" ) )
+pickle.dump(accs_dict_301, open(str(output_path + "/" + "accs_dict_301_fixed.p"), "wb" ) )
 # %% ------------------------------------------------------------------------------------
 # ##                        RERUN - 150 SUBJECTS
 # ## ------------------------------------------------------------------------------------
@@ -657,7 +675,10 @@ for pipeline in range(936):
         y_pred = spline_model(x)
         r2 = r2_score(y[:, i], y_pred)
         regional_r2.append(r2)
-    accs_1[pipeline] = np.mean(regional_r2)
+    if any(value == 1.0 for value in regional_r2):
+        accs_1[pipeline] = 0.0
+    else:
+        accs_1[pipeline] = np.mean(regional_r2)
 # K = 2
 accs_2 = np.zeros(936)
 for pipeline in range(936):
@@ -683,7 +704,10 @@ for pipeline in range(936):
         y_pred = spline_model(x)
         r2 = r2_score(y[:, i], y_pred)
         regional_r2.append(r2)
-    accs_2[pipeline] = np.mean(regional_r2)
+    if any(value == 1.0 for value in regional_r2):
+        accs_2[pipeline] = 0.0
+    else:
+        accs_2[pipeline] = np.mean(regional_r2)
 # K = 3
 accs_3 = np.zeros(936)
 for pipeline in range(936):
@@ -709,7 +733,10 @@ for pipeline in range(936):
         y_pred = spline_model(x)
         r2 = r2_score(y[:, i], y_pred)
         regional_r2.append(r2)
-    accs_3[pipeline] = np.mean(regional_r2)
+    if any(value == 1.0 for value in regional_r2):
+        accs_3[pipeline] = 0.0
+    else:
+        accs_3[pipeline] = np.mean(regional_r2)
 # Linear Regression
 accs_0 = np.zeros(936)
 for pipeline in range(936):
@@ -736,10 +763,13 @@ for pipeline in range(936):
         y_pred = reg.predict(x.reshape(-1, 1))
         r2 = r2_score(y[:, i], y_pred)
         regional_r2.append(r2)
-    accs_0[pipeline] = np.mean(regional_r2)
+    if any(value == 1.0 for value in regional_r2):
+        accs_0[pipeline] = 0.0
+    else:
+        accs_0[pipeline] = np.mean(regional_r2)
 # Dictionary with all the results
 accs_dict_150 = {"0": accs_0, "1": accs_1, "2": accs_2, "3": accs_3}
-pickle.dump(accs_dict_150, open(str(output_path + "/" + "accs_dict_150.p"), "wb" ) )
+pickle.dump(accs_dict_150, open(str(output_path + "/" + "accs_dict_150_fixed.p"), "wb" ) )
 # %% ------------------------------------------------------------------------------------
 # ##                        RERUN - 95 SUBJECTS
 # ## ------------------------------------------------------------------------------------
@@ -769,7 +799,10 @@ for pipeline in range(936):
         y_pred = spline_model(x)
         r2 = r2_score(y[:, i], y_pred)
         regional_r2.append(r2)
-    accs_1[pipeline] = np.mean(regional_r2)
+    if any(value == 1.0 for value in regional_r2):
+        accs_1[pipeline] = 0.0
+    else:
+        accs_1[pipeline] = np.mean(regional_r2)
 # K = 2
 accs_2 = np.zeros(936)
 for pipeline in range(936):
@@ -795,7 +828,10 @@ for pipeline in range(936):
         y_pred = spline_model(x)
         r2 = r2_score(y[:, i], y_pred)
         regional_r2.append(r2)
-    accs_2[pipeline] = np.mean(regional_r2)
+    if any(value == 1.0 for value in regional_r2):
+        accs_2[pipeline] = 0.0
+    else:
+        accs_2[pipeline] = np.mean(regional_r2)
 # K = 3
 accs_3 = np.zeros(936)
 for pipeline in range(936):
@@ -821,7 +857,10 @@ for pipeline in range(936):
         y_pred = spline_model(x)
         r2 = r2_score(y[:, i], y_pred)
         regional_r2.append(r2)
-    accs_3[pipeline] = np.mean(regional_r2)
+    if any(value == 1.0 for value in regional_r2):
+        accs_3[pipeline] = 0.0
+    else:
+        accs_3[pipeline] = np.mean(regional_r2)
 # Linear Regression
 accs_0 = np.zeros(936)
 for pipeline in range(936):
@@ -848,10 +887,13 @@ for pipeline in range(936):
         y_pred = reg.predict(x.reshape(-1, 1))
         r2 = r2_score(y[:, i], y_pred)
         regional_r2.append(r2)
-    accs_0[pipeline] = np.mean(regional_r2)
+    if any(value == 1.0 for value in regional_r2):
+        accs_0[pipeline] = 0.0
+    else:
+        accs_0[pipeline] = np.mean(regional_r2)
 # Dictionary with all the results
 accs_dict_95 = {"0": accs_0, "1": accs_1, "2": accs_2, "3": accs_3} 
-pickle.dump(accs_dict_95, open(str(output_path + "/" + "accs_dict_95.p"), "wb" ) )
+pickle.dump(accs_dict_95, open(str(output_path + "/" + "accs_dict_95_fixed.p"), "wb" ) )
 # %% ------------------------------------------------------------------------------------
 # ##                        EXHAUSTIVE SEARCH EXPLORATION
 # ## ------------------------------------------------------------------------------------
@@ -862,9 +904,6 @@ ModelEmbedding = data_reduced[key]
 # %% ------------------------------------------------------------------------------------
 # ##                        PLOT ALTERNATIVE 2
 # ## ------------------------------------------------------------------------------------
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
 
 # Set a custom color palette
 sns.set_palette("coolwarm")
@@ -879,7 +918,7 @@ titles = ['Linear Regression', 'k = 1', 'k = 2', 'k = 3']
 # Create a list of k values and corresponding accuracy arrays
 k_values = [0, 1, 2, 3]
 accs_list = [accs_0, accs_1, accs_2, accs_3]
-vmax = np.max(accs_3)
+vmax = np.max(np.hstack([accs_3,accs_2,accs_1,accs_0]))
 
 # Define custom colors for subplots
 colors = ['red', 'blue', 'green', 'purple']
@@ -896,7 +935,7 @@ for i, ax in enumerate(axs.flat):
             ModelEmbedding[0: accs.shape[0], 1],
             c=accs,
             cmap='coolwarm',
-            vmax=0.1,
+            vmax=vmax,
             vmin=0,
         )
 
@@ -923,9 +962,6 @@ plt.show()
 """
 Plotting a single multiverse, using linear regression or spline k = 1, 2, 3
 """
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
 
 # Set a custom color palette
 sns.set_palette("coolwarm")
@@ -943,7 +979,7 @@ scatter = ax.scatter(
     ModelEmbedding[0: accs.shape[0], 1],
     c=accs,
     cmap='coolwarm',
-    vmax=0.1,
+    vmax=vmax,
     vmin=0,
 )
 
@@ -1022,7 +1058,12 @@ print("The best pipeline using polinomial k = 3 is: " + pipe_choices[np.argmax(a
 # ## ------------------------------------------------------------------------------------
 # Linear Model Significance
 # Imports
-from scipy.stats import linregress
+
+
+accs_dict_301 = pickle.load(open(str(output_path + "/" + "accs_dict_301.p"), "rb" ) )
+accs_dict_150 = pickle.load(open(str(output_path + "/" + "accs_dict_150.p"), "rb" ) )
+accs_dict_95 = pickle.load(open(str(output_path + "/" + "accs_dict_95.p"), "rb" ) )
+
 storage = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["301_subjects_936_pipelines"]
 pipe_choices = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["pipeline_choices"]
 ROIs = list(data["ts"][0].keys())
@@ -1066,15 +1107,173 @@ for pipeline_n in range(len(pipe_choices)):
 
 plt.figure(figsize=(8, 6))
 plt.style.use('seaborn-whitegrid')
-plt.hist(histogram, bins=20, color='skyblue', edgecolor='black', alpha=0.7)
+plt.hist(histogram, bins=52, color='skyblue', edgecolor='black', alpha=0.7)
 plt.xlabel('Significant ROI', fontsize=14)
 plt.ylabel('Frequency', fontsize=14)
-plt.title('Histogram of Significant ROIs', fontsize=16)
+plt.title('Linear regression', fontsize=16)
 plt.grid(True, linestyle='--', alpha=0.7)
 plt.tick_params(labelsize=12)
 plt.legend(['Significant associations'], fontsize=12)
 plt.tight_layout()
 plt.show()
+
+
+# %% ePT - spline k = 1
+
+histogram = []
+
+for pipeline_n in range(len(pipe_choices)):
+    print("Chosen pipeline: " + pipe_choices[pipeline_n] + " - ", pipeline_n)
+    print()
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline_n])
+
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+
+    # Initializing relevant variables
+    tmp = 0
+    idx_significance = []
+
+    for i in range(len(ROIs)):
+
+        # Perform linear regression
+        slope, intercept, r_value, p_value, std_err = linregress(x[:7], y[:7,i])
+
+        # Check if the association is significant (using a common alpha level of 0.05)
+        if p_value < 0.05:
+            tmp = 1
+            idx_significance.append(i)
+            histogram.append(i)
+
+    if tmp == 1:
+        print("The association between x and y was statistically significant at least once.")
+        for idx in idx_significance:
+            print(ROIs[idx], "-", idx)
+    else:
+        print("There is no significant association between x and y.")
+
+plt.figure(figsize=(8, 6))
+plt.style.use('seaborn-whitegrid')
+plt.hist(histogram, bins=52, color='skyblue', edgecolor='black', alpha=0.7)
+plt.xlabel('Significant ROI', fontsize=14)
+plt.ylabel('Frequency', fontsize=14)
+plt.title('ePT - spline k = 1', fontsize=16)
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.tick_params(labelsize=12)
+plt.legend(['Significant associations'], fontsize=12)
+plt.tight_layout()
+plt.show()
+
+# %% vPT - spline k = 1
+histogram = []
+
+for pipeline_n in range(len(pipe_choices)):
+    print("Chosen pipeline: " + pipe_choices[pipeline_n] + " - ", pipeline_n)
+    print()
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline_n])
+
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+
+    # Initializing relevant variables
+    tmp = 0
+    idx_significance = []
+
+    for i in range(len(ROIs)):
+
+        # Perform linear regression
+        slope, intercept, r_value, p_value, std_err = linregress(x[8:17], y[8:17,i])
+
+        # Check if the association is significant (using a common alpha level of 0.05)
+        if p_value < 0.05:
+            tmp = 1
+            idx_significance.append(i)
+            histogram.append(i)
+
+    if tmp == 1:
+        print("The association between x and y was statistically significant at least once.")
+        for idx in idx_significance:
+            print(ROIs[idx], "-", idx)
+    else:
+        print("There is no significant association between x and y.")
+
+plt.figure(figsize=(8, 6))
+plt.style.use('seaborn-whitegrid')
+plt.hist(histogram, bins=52, color='skyblue', edgecolor='black', alpha=0.7)
+plt.xlabel('Significant ROI', fontsize=14)
+plt.ylabel('Frequency', fontsize=14)
+plt.title('vPT - spline k = 1', fontsize=16)
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.tick_params(labelsize=12)
+plt.legend(['Significant associations'], fontsize=12)
+plt.tight_layout()
+plt.show()
+# %% PT - spline k = 1
+histogram = []
+
+for pipeline_n in range(len(pipe_choices)):
+    print("Chosen pipeline: " + pipe_choices[pipeline_n] + " - ", pipeline_n)
+    print()
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline_n])
+
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+
+    # Initializing relevant variables
+    tmp = 0
+    idx_significance = []
+
+    for i in range(len(ROIs)):
+
+        # Perform linear regression
+        slope, intercept, r_value, p_value, std_err = linregress(x[18:47], y[18:47,i])
+
+        # Check if the association is significant (using a common alpha level of 0.05)
+        if p_value < 0.05:
+            tmp = 1
+            idx_significance.append(i)
+            histogram.append(i)
+
+    if tmp == 1:
+        print("The association between x and y was statistically significant at least once.")
+        for idx in idx_significance:
+            print(ROIs[idx], "-", idx)
+    else:
+        print("There is no significant association between x and y.")
+
+plt.figure(figsize=(8, 6))
+plt.style.use('seaborn-whitegrid')
+plt.hist(histogram, bins=52, color='skyblue', edgecolor='black', alpha=0.7)
+plt.xlabel('Significant ROI', fontsize=14)
+plt.ylabel('Frequency', fontsize=14)
+plt.title('PT - spline k = 1', fontsize=16)
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.tick_params(labelsize=12)
+plt.legend(['Significant associations'], fontsize=12)
+plt.tight_layout()
+plt.show()
+
+#%% 
+
+
 
 
 # %%

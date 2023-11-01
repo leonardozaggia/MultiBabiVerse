@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from nilearn.connectome import ConnectivityMeasure
 from sklearn.metrics.pairwise import cosine_similarity
+from scipy.interpolate import LSQUnivariateSpline
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
 from sklearn.multioutput import MultiOutputRegressor
@@ -714,6 +715,68 @@ def print_FORKs():
     print("Connectivities:", connectivities)
 
     return 
+
+# Show pipeline results
+def show_results(data, storage, pipeline_n, region = 42):
+    regional_r2 = []
+    ROIs = list(data["ts"][0].keys())
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline_n])
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+
+    # Define the intervals and spline model
+    intervals = [28, 31, 37]
+    best_ROI_idx = []
+    best_ROI = 0
+    for i, ROI in enumerate(ROIs):
+        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=1)
+
+        # Calculate the R-squared value
+        y_pred = spline_model(x)
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+        if r2 > best_ROI:
+            best_ROI = r2
+            best_ROI_idx = i
+
+    #  -------------- Plotting the spline model for ROI[i] --------------
+    # Generate the x values for visualization
+    xs = np.linspace(x.min(), x.max(), 1000)
+    if region == "best":
+        region = best_ROI_idx
+    # Run one more iteration of the model to get the final y_pred
+    spline_model = LSQUnivariateSpline(x, y[:, region], t=intervals, k=1)
+    # Calculate the R-squared value
+    y_pred = spline_model(x)
+    r2 = r2_score(y[:, region], y_pred)
+    # Plot the data points, spline fit, and intervals
+    plt.figure(figsize=(10, 6))
+    plt.style.use('seaborn-whitegrid')
+    plt.plot(x, y[:, region], 'ro', ms=8, label='Data', alpha=0.5)
+    plt.plot(xs, spline_model(xs), 'g-', lw=3, label='Spline Fit')
+    for interval in intervals:
+        plt.axvline(x=interval, color='b', linestyle='--', alpha=0.7, label='Intervals' if interval == intervals[0] else '')
+    plt.legend(loc='upper left', fontsize=12)
+    plt.xlabel('Gestational age', fontsize=14)
+    plt.ylabel('Graph Measure value', fontsize=14)
+    plt.title(pipe_choices[pipeline_n], fontsize=16)
+    plt.tick_params(labelsize=12)
+    plt.text(0.89, 0.92, f'R² = {r2:.2f}', transform=plt.gca().transAxes, fontsize=12, color='k',
+            bbox=dict(facecolor='white', edgecolor='black', boxstyle='round'))
+    plt.tight_layout()
+    plt.show()
+    plt.figure()
+    plt.plot(np.sort(regional_r2))
+    plt.show()
+    print(f"The average R2 for pipeline {pipeline_n} is: {np.mean(regional_r2)}")
+    print(f"The highest R2 is:{best_ROI} and was found in {best_ROI_idx}: {ROIs[best_ROI_idx]}")
+
 
 # More eficient functions to speed up exaustive search
 def neg_abs(f):   
