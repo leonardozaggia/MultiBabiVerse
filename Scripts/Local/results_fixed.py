@@ -23,9 +23,9 @@ data = pair_age(data_total, age_path, clean=True)
 BCT_models, neg_options, thresholds, weight_options, graph_measures, connectivities = get_FORKs()
 
 # Load results
-accs_dict_301 = pickle.load(open(str(output_path + "/" + 'accs_dict_301.p'), 'rb'))
-accs_dict_150 = pickle.load(open(str(output_path + "/" + 'accs_dict_150.p'), 'rb'))
-accs_dict_95 = pickle.load(open(str(output_path + "/" + 'accs_dict_95.p'), 'rb'))
+accs_dict_301 = pickle.load(open(str(output_path + "/" + 'accs_dict_301_fixed.p'), 'rb'))
+accs_dict_150 = pickle.load(open(str(output_path + "/" + 'accs_dict_150_fixed.p'), 'rb'))
+accs_dict_95 = pickle.load(open(str(output_path + "/" + 'accs_dict_95_fixed.p'), 'rb'))
 accs_dict_all = {301: accs_dict_301, 150: accs_dict_150, 95: accs_dict_95}
 
 # Load necessary variables
@@ -35,126 +35,6 @@ ROIs = list(data["ts"][0].keys())
 
 # Set the rank value as needed
 rank = 25  
-
-# %% Inefficient
-# Linear regression
-print("Model Linear")
-# ------------------- 301 participants ------------------- #
-accs_0_301participant = np.asanyarray(accs_dict_301["0"])
-sort_idx = np.argsort(accs_0_301participant)
-pipe_sorted = pipe_choices[sort_idx]
-accs_0_301participant_sorted = accs_0_301participant[sort_idx]
-idx = np.where(pipe_choices == pipe_sorted[-rank])
-print(f"{pipe_choices[idx]}; index = {idx}")
-print(accs_0_301participant_sorted[-rank])
-# ------------------- 150 participants ------------------- #
-accs_0_150participant = np.asanyarray(accs_dict_150["0"])
-sort_idx = np.argsort(accs_0_150participant)
-pipe_sorted = pipe_choices[sort_idx]
-accs_0_150participant_sorted = accs_0_150participant[sort_idx]
-idx = np.where(pipe_choices == pipe_sorted[-rank])
-print(f"{pipe_choices[idx]}; index = {idx}")
-print(accs_0_150participant_sorted[-rank])
-# ------------------- 95 participants -------------------- #
-accs_0_95participant = np.asanyarray(accs_dict_95["0"])
-sort_idx = np.argsort(accs_0_95participant)
-pipe_sorted = pipe_choices[sort_idx]
-accs_0_95participant_sorted = accs_0_95participant[sort_idx]
-idx = np.where(pipe_choices == pipe_sorted[-rank])
-print(f"{pipe_choices[idx]}; index = {idx}")
-print(accs_0_95participant_sorted[-rank])
-print()
-print()
-
-# K = 1
-print("Model K = 1")
-# ------------------- 301 participants ------------------- #
-accs_1_301participant = np.asanyarray(accs_dict_301["1"])
-sort_idx = np.argsort(accs_1_301participant)
-pipe_sorted = pipe_choices[sort_idx]
-accs_1_301participant_sorted = accs_1_301participant[sort_idx]
-idx = np.where(pipe_choices == pipe_sorted[-rank])
-print(f"{pipe_choices[idx]}; index = {idx}")
-print(accs_1_301participant_sorted[-rank])
-# ------------------- 150 participants ------------------- #
-accs_1_150participant = np.asanyarray(accs_dict_150["1"])
-sort_idx = np.argsort(accs_1_150participant)
-pipe_sorted = pipe_choices[sort_idx]
-accs_1_150participant_sorted = accs_1_150participant[sort_idx]
-idx = np.where(pipe_choices == pipe_sorted[-rank])
-print(f"{pipe_choices[idx]}; index = {idx}")
-print(accs_1_150participant_sorted[-rank])
-# ------------------- 95 participants -------------------- #
-accs_1_95participant = np.asanyarray(accs_dict_95["1"])
-sort_idx = np.argsort(accs_1_95participant)
-pipe_sorted = pipe_choices[sort_idx]
-accs_1_95participant_sorted = accs_1_95participant[sort_idx]
-idx = np.where(pipe_choices == pipe_sorted[-rank])
-print(f"{pipe_choices[idx]}; index = {idx}")
-print(accs_1_95participant_sorted[-rank])
-print()
-print()
-
-# K = 2
-print("Model K = 2")
-# ------------------- 301 participants ------------------- #
-accs_2_301participant = np.asanyarray(accs_dict_301["2"])
-sort_idx = np.argsort(accs_2_301participant)
-pipe_sorted = pipe_choices[sort_idx]
-accs_2_301participant_sorted = accs_2_301participant[sort_idx]
-idx = np.where(pipe_choices == pipe_sorted[-rank])
-print(f"{pipe_choices[idx]}; index = {idx}")
-print(accs_2_301participant_sorted[-rank])
-# ------------------- 150 participants ------------------- #
-accs_2_150participant = np.asanyarray(accs_dict_150["2"])
-sort_idx = np.argsort(accs_2_150participant)
-pipe_sorted = pipe_choices[sort_idx]
-accs_2_150participant_sorted = accs_2_150participant[sort_idx]
-idx = np.where(pipe_choices == pipe_sorted[-rank])
-print(f"{pipe_choices[idx]}; index = {idx}")
-print(accs_2_150participant_sorted[-rank])
-# ------------------- 95 participants -------------------- #
-accs_2_95participant = np.asanyarray(accs_dict_95["2"])
-sort_idx = np.argsort(accs_2_95participant)
-pipe_sorted = pipe_choices[sort_idx]
-accs_2_95participant_sorted = accs_2_95participant[sort_idx]
-idx = np.where(pipe_choices == pipe_sorted[-rank])
-print(f"{pipe_choices[idx]}; index = {idx}")
-print(accs_2_95participant_sorted[-rank])
-print()
-print()
-
-# K = 3
-print("Model K = 3")
-# ------------------- 301 participants ------------------- #
-accs_3_301participant = np.asanyarray(accs_dict_301["3"])
-sort_idx = np.argsort(accs_3_301participant)
-pipe_sorted = pipe_choices[sort_idx]
-accs_3_301participant_sorted = accs_3_301participant[sort_idx]
-print(np.where(pipe_choices == pipe_sorted[-rank]))
-print(accs_3_301participant_sorted[-rank])
-# ------------------- 150 participants ------------------- #
-accs_3_150participant = np.asanyarray(accs_dict_150["3"])
-sort_idx = np.argsort(accs_3_150participant)
-pipe_sorted = pipe_choices[sort_idx]
-accs_3_150participant_sorted = accs_3_150participant[sort_idx]
-idx = np.where(pipe_choices == pipe_sorted[-rank])
-print(f"{pipe_choices[idx]}; index = {idx}")
-print(accs_3_150participant_sorted[-rank])
-# ------------------- 95 participants -------------------- #
-accs_3_95participant = np.asanyarray(accs_dict_95["3"])
-sort_idx = np.argsort(accs_3_95participant)
-pipe_sorted = pipe_choices[sort_idx]
-accs_3_95participant_sorted = accs_3_95participant[sort_idx]
-idx = np.where(pipe_choices == pipe_sorted[-rank])
-print(f"{pipe_choices[idx]}; index = {idx}")
-print(accs_3_95participant_sorted[-rank])
-print()
-print()
-
-
-
-
 # %% Efficient
 
 def print_rank_results(accs_dict, k, num_participants, pipe_choices, rank):
@@ -180,10 +60,8 @@ for k in range(4):  # Assuming the models run from 0 to 3
         print_rank_results(accs_dict, k, participants, pipe_choices, rank)
     print("\n")
 
-
-# %% 
-
-
+#%% unused code
+"""# %% 
 ####################################################
 #    Pipeline diagnosis: checking the variation    #
 ####################################################
@@ -200,7 +78,7 @@ for pipeline_n in range(len(pipe_choices)):
     pipe_variation_all_rois[pipeline_n] = var_roi
     pipe_variation_avg[pipeline_n] = np.mean(var_roi)
 
-# %% Plotting the variation of each pipeline
+# Plotting the variation of each pipeline
 plt.figure(figsize=(8, 6))
 plt.style.use('seaborn-whitegrid')
 plt.hist(pipe_variation_avg, bins=52, color='skyblue', edgecolor='black', alpha=0.7)
@@ -213,9 +91,9 @@ plt.tick_params(labelsize=12)
 plt.legend(['Variation'], fontsize=12)
 plt.tight_layout()
 plt.show()
+"""
 
-
-# %% new function to calculate the r2 score
+"""# new function to calculate the r2 score
 # TODO: check if this is the correct way to calculate the r2 score
 #          - then move it to pipeline.py
 
@@ -267,7 +145,7 @@ plt.plot(pipe_r2_k3)
 plt.plot(pipe_r2_k2)
 
 plt.show()
-
+"""
 
 
 # %% Specification curve analysis - boolean sorted and not
@@ -306,16 +184,7 @@ sort_idx = np.argsort(accs_dict_301["1"])
 pipe_r2_sort = accs_dict_301["1"][sort_idx]
 pipe_choices_sort = np.asarray(pipe_choices)[sort_idx]
 bool_values_sort = np.asarray(bool_values)[:, sort_idx]
-""" Sort the pipeline accordingly to accuracy
-pipe_r2 = np.asarray(pipe_r2)
-sort_idx = np.argsort(pipe_r2)[::-1]
-pipe_r2_sort = pipe_r2[sort_idx]
-pipe_choices_sort = np.asarray(pipe_choices)[sort_idx]
-bool_values_sort = np.asarray(bool_values)[:, sort_idx]
-bool_values = np.asarray(bool_values)
-# repmat pipe_r2 to create a heatmap
-new_pipe_r2 = np.tile(pipe_r2, (24, 1))
-"""
+
 
 # Create a heatmap
 plt.figure(figsize=(8, 6))
@@ -339,7 +208,6 @@ ax0.plot(accs_dict_301["1"], color='skyblue', alpha=0.7)
 ax0.plot(accs_dict_301["2"], color='green', alpha=0.7)
 ax0.plot(accs_dict_301["3"], color='purple', alpha=0.7)
 ax0.set_xlim(0, 936)
-ax0.set_ylim(0, 0.18)
 ax0.set_ylabel('Accuracy')
 ax0.set_xticks([])  # Disable x-ticks for the upper subplot
 
@@ -354,16 +222,6 @@ plt.show()
 
 # %%SORTEd SPECIFICATION CURVE
 # Sorting the pipeline according to model flexibility
-sort_idx_0 = np.argsort(accs_dict_301["0"])
-sort_idx_1 = np.argsort(accs_dict_301["1"])
-sort_idx_2 = np.argsort(accs_dict_301["2"])
-sort_idx_3 = np.argsort(accs_dict_301["3"])
-
-accs_0_sort = accs_dict_301["0"][sort_idx_0]
-accs_1_sort = accs_dict_301["1"][sort_idx_1]
-accs_2_sort = accs_dict_301["2"][sort_idx_2]
-accs_3_sort = accs_dict_301["3"][sort_idx_3]
-
 
 pipe_choices_sort = np.asarray(pipe_choices)[sort_idx]
 bool_values_sort = np.asarray(bool_values)[:, sort_idx]
@@ -465,7 +323,6 @@ gs = gridspec.GridSpec(2, 1, height_ratios=[1, 2.5])  # 2 rows, 1 column, height
 ax0 = plt.subplot(gs[0])
 ax0.plot(accs_dict_301_e2e, color='green', alpha=0.7)
 ax0.set_xlim(0, 3744)
-ax0.set_ylim(0, 0.18)
 ax0.set_ylabel('Accuracy in R squared')
 ax0.set_xticks([])  # Disable x-ticks for the upper subplot
 
@@ -492,7 +349,6 @@ gs = gridspec.GridSpec(2, 1, height_ratios=[1, 2.5])  # 2 rows, 1 column, height
 ax0 = plt.subplot(gs[0])
 ax0.plot(accs_dict_301_e2e_sort, color='green', alpha=0.7)
 ax0.set_xlim(0, 3744)
-ax0.set_ylim(0, 0.18)
 ax0.set_ylabel('Accuracy in R squared')
 ax0.set_xticks([])  # Disable x-ticks for the upper subplot
 
@@ -526,7 +382,7 @@ accs_dict_95_e2e = np.hstack((accs_dict_95["0"], accs_dict_95["1"], accs_dict_95
 accs_dict_e2e = np.hstack((accs_dict_301_e2e, accs_dict_150_e2e, accs_dict_95_e2e))
 
 # boolean creation
-""""
+
 fork_dict_e2e_final = {
     "Global Signal Regression": ['GSR', 'noGSR'], 
     "neg_options": neg_options,
@@ -537,12 +393,13 @@ fork_dict_e2e_final = {
     "k": ["linear", "k1", "k2", "k3"],
     "sample_size": ["301p", "150p", "95p"]
 }
+
 """
 fork_dict_e2e_final = {
     "sample_size": ["301p", "150p", "95p"],
     "k": ["linear", "k1", "k2", "k3"],
 }
-
+"""
 # create boolean list for each item within each forking path
 bool_list = {}
 for key, values in fork_dict_e2e_final.items():
@@ -550,10 +407,9 @@ for key, values in fork_dict_e2e_final.items():
         bool_list[value] = np.array([True if value in choice else False for choice in pipe_choices_e2e_final])
 
 # corretting for GSR and correlation
-"""
-#bool_list["GSR"] = [not value for value in bool_list["noGSR"]]
-#bool_list["correlation"] &= ~bool_list["partial correlation"]
-"""
+bool_list["GSR"] = [not value for value in bool_list["noGSR"]]
+bool_list["correlation"] &= ~bool_list["partial correlation"]
+
 items = list(bool_list.keys())
 bool_values = list(bool_list.values())
 
@@ -632,4 +488,17 @@ ax1.set_ylabel('Forking Paths')
 
 plt.tight_layout()  # Adjust layout for better spacing
 plt.show()
+# %% Pirnting results
+print(accs_dict_e2e_sort[-1])
+print(accs_dict_e2e_sort[-2])
+print(accs_dict_e2e_sort[-3])
+print()
+print(pipe_choices_sort[-1])
+print(pipe_choices_sort[-2])
+print(pipe_choices_sort[-3])
+print()
+print(np.where(pipe_choices == "GSR_correlation_abs_0.2_normalize_global efficiency"))
+print(np.where(pipe_choices == "GSR_covariance_abs_0.2_normalize_global efficiency"))
+print(np.where(pipe_choices == "noGSR_covariance_zero_0.2_normalize_global efficiency"))
+
 # %%
