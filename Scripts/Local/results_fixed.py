@@ -368,7 +368,7 @@ plt.show()
 # ## ------------------------------ ##
 # ##      Sample size Variation     ##
 # ## ------------------------------ ##
-
+cmap = "Spectral"
 # concatenate pipe_choices_e2e into pipe_choices_e2e_final
 pipe_choices_301 = [pipe_choice + "_301p" for pipe_choice in pipe_choices_e2e]
 pipe_choices_150 = [pipe_choice + "_150p" for pipe_choice in pipe_choices_e2e]
@@ -400,6 +400,7 @@ fork_dict_e2e_final = {
     "k": ["linear", "k1", "k2", "k3"],
 }
 """
+
 # create boolean list for each item within each forking path
 bool_list = {}
 for key, values in fork_dict_e2e_final.items():
@@ -409,84 +410,71 @@ for key, values in fork_dict_e2e_final.items():
 # corretting for GSR and correlation
 bool_list["GSR"] = [not value for value in bool_list["noGSR"]]
 bool_list["correlation"] &= ~bool_list["partial correlation"]
+bool_values = np.array(bool_values)
+for i in range(bool_values.shape[1]):
+    # Replace 0 with np.nan and 1 with the corresponding accuracy
+    accuracy_values[:, i] = np.where(bool_values[:, i] == 1, accs_dict_e2e[i], np.nan)
 
 items = list(bool_list.keys())
 bool_values = list(bool_list.values())
 
-# Create a heatmap
-plt.figure(figsize=(8,6))
-sns.heatmap(bool_values, cmap='YlGnBu', cbar=False, xticklabels=False, yticklabels=items)
-plt.xlabel('Pipe Choices')
-plt.ylabel('Forking Paths')
-plt.title('Boolean Values Visualization')
-plt.show()
-
-# Sort the pipeline accordingly to accuracy
-sort_idx = np.argsort(accs_dict_e2e)
-pipe_r2_sort = accs_dict_e2e[sort_idx]
-pipe_choices_sort = np.asarray(pipe_choices_e2e_final)[sort_idx]
-bool_values_sort = np.asarray(bool_values)[:, sort_idx]
-
-# Create a heatmap
-plt.figure(figsize=(8,6))
-sns.heatmap(bool_values_sort, cmap='YlGnBu', cbar=False, xticklabels=False, yticklabels=items)
-plt.xlabel('Pipe Choices')
-plt.ylabel('Forking Paths')
-plt.title('SORTED: Boolean Values Visualization')
-plt.show()
-
-#
-#
-#
-
 ## Create a grid for the subplots with specific heights for the plots
 fig = plt.figure(figsize=(8, 10))
-gs = gridspec.GridSpec(2, 1, height_ratios=[1, 2.5])  # 2 rows, 1 column, height ratio of 1:2.5
+gs = gridspec.GridSpec(2, 1, height_ratios=[1, 2.5])
 
-# Plot the line plot in the upper subplot
 ax0 = plt.subplot(gs[0])
-ax0.plot(accs_dict_e2e, color='green', alpha=0.7)
+ax0.plot(accs_dict_e2e, color='black', alpha=0.7)
 ax0.set_xlim(0, len(accs_dict_e2e))
 ax0.set_ylim(0, 0.2)
 for i in [3744, 3744*2]:
     ax0.axvline(x=i, color='b', linestyle='--', alpha=0.7)
 ax0.set_ylabel('Accuracy in R squared')
-ax0.set_xticks([])  # Disable x-ticks for the upper subplot
+ax0.set_title('Model Accuracy Over Pipelines')
+ax0.set_xticks([])
 
-# Plot the heatmap in the lower subplot
 ax1 = plt.subplot(gs[1])
-sns.heatmap(bool_values, cmap='YlGnBu', cbar=False, xticklabels=False, yticklabels=items, ax=ax1)
-ax1.set_xlabel('Pipe Choices')
+heatmap = sns.heatmap(accuracy_values, cmap=cmap, cbar=False, xticklabels=False, yticklabels=items, ax=ax1, vmin=0.0, vmax=0.15)  # Set cbar=False
+ax1.set_xlabel('Pipeline Coding')
 ax1.set_ylabel('Forking Paths')
 
-plt.tight_layout()  # Adjust layout for better spacing
+
+# Create a new axes for the colorbar
+cbar_ax = fig.add_axes([0.93, 0.035, 0.02, 0.648])
+fig.colorbar(heatmap.get_children()[0], cax=cbar_ax)
+
+plt.tight_layout(rect=[0, 0, 0.9, 1])  # Adjust the right boundary of the layout to make space for the colorbar
 plt.show()
 
 # SORTED SPECIFICATION CURVE
 sort_idx_e2e = np.argsort(accs_dict_e2e)
 pipe_choices_sort = np.asarray(pipe_choices_e2e_final)[sort_idx_e2e]
 bool_values_sort = np.asarray(bool_values)[:, sort_idx_e2e]
+accuracy_values_sort = np.asarray(accuracy_values)[:, sort_idx_e2e]
 accs_dict_e2e_sort = accs_dict_e2e[sort_idx_e2e]
 
-# Create a grid for the subplots with specific heights for the plots
-fig = plt.figure(figsize=(8, 10))
-gs = gridspec.GridSpec(2, 1, height_ratios=[1, 2.5])  # 2 rows, 1 column, height ratio of 1:2.5
 
-# Plot the line plot in the upper subplot
+fig = plt.figure(figsize=(8, 10))
+gs = gridspec.GridSpec(2, 1, height_ratios=[1, 2.5])
+
 ax0 = plt.subplot(gs[0])
-ax0.plot(accs_dict_e2e_sort, color='green', alpha=0.7)
+ax0.plot(accs_dict_e2e_sort, color='black', alpha=0.7)
 ax0.set_xlim(0, len(accs_dict_e2e))
 ax0.set_ylim(0, 0.2)
 ax0.set_ylabel('Accuracy in R squared')
-ax0.set_xticks([])  # Disable x-ticks for the upper subplot
+ax0.set_title('Model Accuracy Over Pipelines')
+ax0.set_xticks([])
 
-# Plot the heatmap in the lower subplot
 ax1 = plt.subplot(gs[1])
-sns.heatmap(bool_values_sort, cmap='YlGnBu', cbar=False, xticklabels=False, yticklabels=items, ax=ax1)
-ax1.set_xlabel('Pipe Choices')
+heatmap = sns.heatmap(accuracy_values_sort, cmap=cmap, cbar=False, xticklabels=False, yticklabels=items, ax=ax1, vmin=0.0, vmax=0.15)  # Set cbar=False
+ax1.set_xlabel('Pipeline Coding')
 ax1.set_ylabel('Forking Paths')
 
-plt.tight_layout()  # Adjust layout for better spacing
+
+# Create a new axes for the colorbar
+cbar_ax = fig.add_axes([0.93, 0.035, 0.02, 0.648])
+fig.colorbar(heatmap.get_children()[0], cax=cbar_ax)
+
+plt.tight_layout(rect=[0, 0, 0.9, 1])  # Adjust the right boundary of the layout to make space for the colorbar
 plt.show()
 # %% Pirnting results
 print(accs_dict_e2e_sort[-1])
@@ -500,5 +488,51 @@ print()
 print(np.where(pipe_choices == "GSR_correlation_abs_0.2_normalize_global efficiency"))
 print(np.where(pipe_choices == "GSR_covariance_abs_0.2_normalize_global efficiency"))
 print(np.where(pipe_choices == "noGSR_covariance_zero_0.2_normalize_global efficiency"))
+
+# %% Histogram of slopes across k=1
+"""
+This histogram shows the lack of robustness of the explored association across the multiverse
+"""
+from collections import defaultdict
+from pipeline import calculate_spline_and_plot
+
+all_slope_signs = defaultdict(list)
+for pipeline_n in range(936):
+    _, slope_signs = calculate_spline_and_plot(storage, pipeline_n, plot=False)
+    for interval, sign in slope_signs.items():
+        all_slope_signs[interval].append(sign)
+
+for interval, signs in all_slope_signs.items():
+    positive_slopes = signs.count('positive')
+    negative_slopes = signs.count('negative')
+    neutral_slopes = signs.count('neutral')
+
+    print(f"Interval {interval}:")
+    print(f"Positive slopes: {positive_slopes}")
+    print(f"Negative slopes: {negative_slopes}")
+    print(f"Neutral slopes: {neutral_slopes}")
+
+# Assuming all_slope_signs is the dictionary you got from the previous step
+intervals = all_slope_signs.keys()
+positive_slopes = [signs.count('positive') for signs in all_slope_signs.values()]
+negative_slopes = [signs.count('negative') for signs in all_slope_signs.values()]
+neutral_slopes = [signs.count('neutral') for signs in all_slope_signs.values()]
+
+bar_width = 0.35
+index = np.arange(len(intervals))
+fig, ax = plt.subplots()
+
+bar1 = ax.bar(index, positive_slopes, bar_width, label='Positive')
+bar2 = ax.bar(index, negative_slopes, bar_width, bottom=positive_slopes, label='Negative')
+bar3 = ax.bar(index, neutral_slopes, bar_width, bottom=np.array(positive_slopes)+np.array(negative_slopes), label='Neutral')
+
+ax.set_xlabel('Interval')
+ax.set_ylabel('Count')
+ax.set_title('Slope signs by interval')
+ax.set_xticks(index)
+ax.set_xticklabels(intervals)
+ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+
+plt.show()
 
 # %%

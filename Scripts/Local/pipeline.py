@@ -7,6 +7,7 @@ import pandas as pd
 from tqdm import tqdm
 from copy import deepcopy
 import matplotlib.pyplot as plt
+from numdifftools import Derivative
 from sklearn.preprocessing import StandardScaler
 from nilearn.connectome import ConnectivityMeasure
 from sklearn.metrics.pairwise import cosine_similarity
@@ -683,9 +684,80 @@ def search_ehaustive_reg(TempModelNum, age, Sparsities_Run,
 
     return TempResults
 
-# Get default FORKs
-def get_FORKs():
+# plotting spline for desired pipeline
+def calculate_spline_and_plot(storage, pipeline_n, n_participants=301, k=1, intervals=[28, 31, 37], plot_index=41, outputs=True):
     
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"])
+    y = np.asanyarray(storage[pipeline_n])
+
+    # Sort the data and select the first n_participants
+    sort_idx = np.argsort(x)
+    x = x[sort_idx][:n_participants]
+    y = y[sort_idx][:n_participants]
+
+    regional_r2 = []
+    for i in range(y.shape[1]):
+        spline_model = LSQUnivariateSpline(x, y[:, i], t=intervals, k=k)
+        y_pred = spline_model(x)
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+
+    # Plotting
+    if outputs:
+        xs = np.linspace(x.min(), x.max(), 1000)
+        spline_model = LSQUnivariateSpline(x, y[:, plot_index], t=intervals, k=k)
+        y_pred = spline_model(x)
+        r2 = r2_score(y[:, plot_index], y_pred)
+
+        plt.figure(figsize=(10, 6))
+        plt.style.use('seaborn-whitegrid')
+        plt.plot(x, y[:, plot_index], 'ro', ms=8, label='Data', alpha=0.5)
+        plt.plot(xs, spline_model(xs), 'g-', lw=3, label='Spline Fit')
+        for interval in intervals:
+            plt.axvline(x=interval, color='b', linestyle='--', alpha=0.7, label='Intervals' if interval == intervals[0] else '')
+        plt.legend(loc='upper left', fontsize=12)
+        plt.xlabel('Gestational age', fontsize=14)
+        plt.ylabel('Graph Measure value', fontsize=14)
+        plt.title(pipe_choices[pipeline_n], fontsize=16)
+        plt.tick_params(labelsize=12)
+        plt.text(0.89, 0.92, f'R² = {r2:.2f}', transform=plt.gca().transAxes, fontsize=12, color='k',
+                 bbox=dict(facecolor='white', edgecolor='black', boxstyle='round'))
+        plt.tight_layout()
+        plt.show()
+
+    # Calculate derivative
+    spline_model = LSQUnivariateSpline(x, y[:, plot_index], t=intervals, k=k)
+    spline_derivative = Derivative(spline_model)
+    intervals = np.hstack([intervals, x.max()])
+    interval_slopes = [spline_derivative(interval) for interval in intervals]
+
+    # Interpret the direction of the relationship within each interval
+    slope_signs = {}
+    for i, slope in enumerate(interval_slopes):
+        interval_start = intervals[i - 1] if i > 0 else x.min()
+        interval_end = intervals[i]
+        interval_key = f"{round(interval_start)}-{round(interval_end)}"
+        if slope > 0:
+            print(f"Positive relationship in interval {interval_key}") if outputs else None
+            slope_signs[interval_key] = 'positive'
+        elif slope < 0:
+            print(f"Negative relationship in interval {interval_key}") if outputs else None
+            slope_signs[interval_key] = 'negative'
+        else:
+            print(f"No relationship in interval {interval_key}") if outputs else None
+            slope_signs[interval_key] = 'neutral'
+
+    # Calculate R-squared
+    y_pred = spline_model(x)
+    r2 = r2_score(y[:, plot_index], y_pred)
+    print("Overall R-squared:", r2)
+
+    return regional_r2, slope_signs
+
+# Get default FORKs
+def get_FORKs():    
+
     BCT_models       = {
         'local efficiency': bct.efficiency_bin,              # segregation measure
         'global efficiency': bct.efficiency_bin,             # integration measure

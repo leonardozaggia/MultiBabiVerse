@@ -898,6 +898,13 @@ pickle.dump(accs_dict_95, open(str(output_path + "/" + "accs_dict_95_fixed.p"), 
 # ##                        EXHAUSTIVE SEARCH EXPLORATION
 # ## ------------------------------------------------------------------------------------
 # %% Plotting R2 for all pipelines - spline k = 1
+accs_dict_301 = pickle.load(open(str(output_path + "/" + 'accs_dict_301_fixed.p'), 'rb'))
+accs_dict_150 = pickle.load(open(str(output_path + "/" + 'accs_dict_150_fixed.p'), 'rb'))
+accs_dict_95 = pickle.load(open(str(output_path + "/" + 'accs_dict_95_fixed.p'), 'rb'))
+accs_0 = accs_dict_301["0"]
+accs_1 = accs_dict_301["1"]
+accs_2 = accs_dict_301["2"]
+accs_3 = accs_dict_301["3"]
 key = 't-SNE'
 ModelEmbedding = data_reduced[key]
 
