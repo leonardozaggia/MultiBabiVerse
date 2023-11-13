@@ -685,7 +685,7 @@ def search_ehaustive_reg(TempModelNum, age, Sparsities_Run,
     return TempResults
 
 # plotting spline for desired pipeline
-def calculate_spline_and_plot(storage, pipeline_n, n_participants=301, k=1, intervals=[28, 31, 37], plot_index=41, outputs=True):
+def calculate_spline_and_plot(data, pipe_choices, storage, pipeline_n, n_participants=301, k=1, intervals=[28, 31, 37], plot_index=41, outputs=True):
     
     # Load your data and set up your variables
     x = np.asanyarray(data["b_age"])
@@ -789,7 +789,7 @@ def print_FORKs():
     return 
 
 # Show pipeline results
-def show_results(data, storage, pipeline_n, region = 42):
+def show_results(data, pipe_choices, storage, pipeline_n, region = 42):
     regional_r2 = []
     ROIs = list(data["ts"][0].keys())
 
