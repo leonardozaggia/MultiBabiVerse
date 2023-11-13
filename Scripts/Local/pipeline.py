@@ -13,7 +13,7 @@ from nilearn.connectome import ConnectivityMeasure
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.interpolate import LSQUnivariateSpline
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.multioutput import MultiOutputRegressor
 from sklearn.linear_model import LinearRegression, Ridge, Lasso, ElasticNet
 from sklearn.ensemble import RandomForestRegressor
