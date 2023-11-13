@@ -1283,4 +1283,77 @@ plt.show()
 
 
 
+# %% new analysis
+# Separate pipelines by global or local efficiency
+global_pipes = []
+local_pipes = []
+
+for pipe in range(len(pipe_choices)):
+    if "global" in pipe_choices[pipe]:
+        global_pipes.append(pipe)
+    else:
+        local_pipes.append(pipe)
+
+# %% Global efficiency
+accs_0 = np.zeros(936)
+
+for pipeline in global_pipes:
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"]) 
+    y = np.asanyarray(storage[pipeline]) 
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    
+    # Define the intervals and spline model
+    intervals = [28, 31, 37]
+    for i, ROI in enumerate(ROIs): 
+        from sklearn.linear_model import LinearRegression
+        reg = LinearRegression().fit(x.reshape(-1, 1), y[:, i])
+        # Calculate the R-squared value
+        y_pred = reg.predict(x.reshape(-1, 1))
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    if any(value == 1.0 for value in regional_r2):
+        accs_0[pipeline] = 0
+    else:
+        accs_0[pipeline] = np.mean(regional_r2)
+
+# %% Local efficiency
+accs_1 = np.zeros(936)
+
+for pipeline in local_pipes:
+    ROIs = list(data["ts"][0].keys())
+    regional_r2 = []
+
+    # Load your data and set up your variables
+    x = np.asanyarray(data["b_age"]) 
+    y = np.asanyarray(storage[pipeline]) 
+
+    # Sort the data
+    sort_idx = np.argsort(x)
+    x = x[sort_idx]
+    y = y[sort_idx]
+    
+    # Define the intervals and spline model
+    intervals = [28, 31, 37]
+    for i, ROI in enumerate(ROIs): 
+        from sklearn.linear_model import LinearRegression
+        reg = LinearRegression().fit(x.reshape(-1, 1), y[:, i])
+        # Calculate the R-squared value
+        y_pred = reg.predict(x.reshape(-1, 1))
+        r2 = r2_score(y[:, i], y_pred)
+        regional_r2.append(r2)
+    if any(value == 1.0 for value in regional_r2):
+        accs_1[pipeline] = 0
+    else:
+        accs_1[pipeline] = np.mean(regional_r2)
+
+
+
 # %%

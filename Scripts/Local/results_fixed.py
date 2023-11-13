@@ -9,9 +9,11 @@ from sklearn.metrics import r2_score
 import matplotlib.pyplot as plt
 from pipeline import get_data, pair_age
 from pipeline import get_FORKs
+from collections import defaultdict
+from pipeline import calculate_spline_and_plot
 import pickle
 
-# Relevant paths
+# %%Relevant paths
 signal_path = '/Users/amnesia/Desktop/Master_Thesis/root_dir/end_processing_signal/handy-introduction-022-glbml-21786.mp3'
 path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/pipeline_timeseries"
 age_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/combined.tsv"
@@ -22,11 +24,18 @@ data_total = get_data(path = path)
 data = pair_age(data_total, age_path, clean=True)
 BCT_models, neg_options, thresholds, weight_options, graph_measures, connectivities = get_FORKs()
 
-# Load results
+"""# Load FIXED results
 accs_dict_301 = pickle.load(open(str(output_path + "/" + 'accs_dict_301_fixed.p'), 'rb'))
 accs_dict_150 = pickle.load(open(str(output_path + "/" + 'accs_dict_150_fixed.p'), 'rb'))
 accs_dict_95 = pickle.load(open(str(output_path + "/" + 'accs_dict_95_fixed.p'), 'rb'))
 accs_dict_all = {301: accs_dict_301, 150: accs_dict_150, 95: accs_dict_95}
+"""
+# Load ARTIFACT results
+accs_dict_301 = pickle.load(open(str(output_path + "/" + 'accs_dict_301.p'), 'rb'))
+accs_dict_150 = pickle.load(open(str(output_path + "/" + 'accs_dict_150.p'), 'rb'))
+accs_dict_95 = pickle.load(open(str(output_path + "/" + 'accs_dict_95.p'), 'rb'))
+accs_dict_all = {301: accs_dict_301, 150: accs_dict_150, 95: accs_dict_95}
+
 
 # Load necessary variables
 storage = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["301_subjects_936_pipelines"]
@@ -170,10 +179,17 @@ bool_list["GSR"] = [not value for value in bool_list["noGSR"]]
 bool_list["correlation"] &= ~bool_list["partial correlation"]
 items = list(bool_list.keys())
 bool_values = list(bool_list.values())
+bool_values = np.asarray(bool_values)
+accuracy_values = np.zeros((bool_values.shape[0], bool_values.shape[1]))
+for i in range(bool_values.shape[1]):
+    # Replace 0 with np.nan and 1 with the corresponding accuracy
+    accuracy_values[:, i] = np.where(bool_values[:, i] == 1, accs_dict_301["1"][i], np.nan)
+
 
 # Create a heatmap
+cmap = "Spectral"
 plt.figure(figsize=(8, 6))
-sns.heatmap(bool_values, cmap='YlGnBu', cbar=False, xticklabels=False, yticklabels=items)
+sns.heatmap(accuracy_values, cmap=cmap, cbar=True, xticklabels=False, yticklabels=items, vmin=0.0, vmax=0.10)
 plt.xlabel('Pipe Choices')
 plt.ylabel('Forking Paths')
 plt.title('Boolean Values Visualization')
@@ -183,12 +199,12 @@ plt.show()
 sort_idx = np.argsort(accs_dict_301["1"])
 pipe_r2_sort = accs_dict_301["1"][sort_idx]
 pipe_choices_sort = np.asarray(pipe_choices)[sort_idx]
+accuracy_values_sort = accuracy_values[:, sort_idx]
 bool_values_sort = np.asarray(bool_values)[:, sort_idx]
-
 
 # Create a heatmap
 plt.figure(figsize=(8, 6))
-sns.heatmap(bool_values_sort, cmap='YlGnBu', cbar=False, xticklabels=False, yticklabels=items)
+sns.heatmap(accuracy_values_sort, cmap=cmap, cbar=True, xticklabels=False, yticklabels=items, vmin=0.0, vmax=0.10)
 plt.xlabel('Pipe Choices')
 plt.ylabel('Forking Paths')
 plt.title('SORTED: Boolean Values Visualization')
@@ -196,7 +212,6 @@ plt.show()
 
 
 # %% USABLE PLOT
-
 # Create a grid for the subplots with specific heights for the plots
 fig = plt.figure(figsize=(8, 10))
 gs = gridspec.GridSpec(2, 1, height_ratios=[1, 2.5])  # 2 rows, 1 column, height ratio of 2:1
@@ -208,23 +223,28 @@ ax0.plot(accs_dict_301["1"], color='skyblue', alpha=0.7)
 ax0.plot(accs_dict_301["2"], color='green', alpha=0.7)
 ax0.plot(accs_dict_301["3"], color='purple', alpha=0.7)
 ax0.set_xlim(0, 936)
+ax0.set_ylim(0, 0.18)
 ax0.set_ylabel('Accuracy')
 ax0.set_xticks([])  # Disable x-ticks for the upper subplot
 
 # Plot the heatmap in the lower subplot
 ax1 = plt.subplot(gs[1])
-sns.heatmap(bool_values, cmap='YlGnBu', cbar=False, xticklabels=False, yticklabels=items, ax=ax1)
+heatmap = sns.heatmap(accuracy_values, cmap=cmap, cbar=False, xticklabels=False, yticklabels=items, ax=ax1, vmin=0.0, vmax=0.1)
 ax1.set_xlabel('Pipe Choices')
 ax1.set_ylabel('Forking Paths')
 
-plt.tight_layout()  # Adjust layout for better spacing
+# Create a new axes for the colorbar
+cbar_ax = fig.add_axes([0.93, 0.035, 0.02, 0.67])
+fig.colorbar(heatmap.get_children()[0], cax=cbar_ax)
+
+plt.tight_layout(rect=[0, 0, 0.9, 1]) 
 plt.show()
 
-# %%SORTEd SPECIFICATION CURVE
+# SORTED SPECIFICATION CURVE
 # Sorting the pipeline according to model flexibility
 
 pipe_choices_sort = np.asarray(pipe_choices)[sort_idx]
-bool_values_sort = np.asarray(bool_values)[:, sort_idx]
+accuracy_values_sort = np.asarray(accuracy_values)[:, sort_idx]
 
 # Create a grid for the subplots with specific heights for the plots
 fig = plt.figure(figsize=(8, 10))
@@ -232,22 +252,26 @@ gs = gridspec.GridSpec(2, 1, height_ratios=[1, 2.5])  # 2 rows, 1 column, height
 
 # Plot the line plot in the upper subplot
 ax0 = plt.subplot(gs[0])
-ax0.plot(pipe_r2_sort)
+ax0.plot(pipe_r2_sort, color='blue', alpha=0.7)  # Change color to 'skyblue'
 ax0.set_xlim(0, 936)
-ax0.axvline(x=930, color='r', linestyle='--', alpha=0.7)
+ax0.set_ylim(0, 0.18)
 ax0.set_ylabel('Accuracy')
 ax0.set_xticks([])  # Disable x-ticks for the upper subplot
 
 # Plot the heatmap in the lower subplot
 ax1 = plt.subplot(gs[1])
-sns.heatmap(bool_values_sort, cmap='YlGnBu', cbar=False, xticklabels=False, yticklabels=items, ax=ax1)
+heatmap = sns.heatmap(accuracy_values_sort, cmap=cmap, cbar=False, xticklabels=False, yticklabels=items, ax=ax1, vmin=0.0, vmax=0.1)
 ax1.set_xlabel('Pipe Choices')
 ax1.set_ylabel('Forking Paths')
 
-plt.tight_layout()  # Adjust layout for better spacing
+# Create a new axes for the colorbar
+cbar_ax = fig.add_axes([0.93, 0.035, 0.02, 0.67])
+fig.colorbar(heatmap.get_children()[0], cax=cbar_ax)
+
+plt.tight_layout(rect=[0, 0, 0.9, 1]) 
 plt.show()
 
-# %% --------------------------------------------------------------------------------- ##
+"""# %% --------------------------------------------------------------------------------- ##
 # ##                         END TO END MULTIVERSE CREATION                            ##
 # ## --------------------------------------------------------------------------------- ##
 
@@ -311,9 +335,9 @@ plt.ylabel('Forking Paths')
 plt.title('SORTED: Boolean Values Visualization')
 plt.show()
 
-""" larger plot
-fig, ax = plt.subplots(figsize=(12, 6))  # Increase the width to space columns
-"""
+#larger plot
+#fig, ax = plt.subplots(figsize=(12, 6))  # Increase the width to space columns
+
 
 # Create a grid for the subplots with specific heights for the plots
 fig = plt.figure(figsize=(8, 10))
@@ -360,6 +384,7 @@ ax1.set_ylabel('Forking Paths')
 
 plt.tight_layout()  # Adjust layout for better spacing
 plt.show()
+"""
 # %% --------------------------------------------------------------------------------- ##
 # ##                          FINAL END TO END MULTIVERSE                              ##
 # ## --------------------------------------------------------------------------------- ##
@@ -368,7 +393,13 @@ plt.show()
 # ## ------------------------------ ##
 # ##      Sample size Variation     ##
 # ## ------------------------------ ##
-cmap = "Spectral"
+# concatenate pipe_choices into pipe_choices_e2e
+pipe_choices_k0 = [pipe_choice + "_linear" for pipe_choice in pipe_choices]
+pipe_choices_k1 = [pipe_choice + "_k1" for pipe_choice in pipe_choices]
+pipe_choices_k2 = [pipe_choice + "_k2" for pipe_choice in pipe_choices]
+pipe_choices_k3 = [pipe_choice + "_k3" for pipe_choice in pipe_choices]
+pipe_choices_e2e = pipe_choices_k0 + pipe_choices_k1 + pipe_choices_k2 + pipe_choices_k3
+
 # concatenate pipe_choices_e2e into pipe_choices_e2e_final
 pipe_choices_301 = [pipe_choice + "_301p" for pipe_choice in pipe_choices_e2e]
 pipe_choices_150 = [pipe_choice + "_150p" for pipe_choice in pipe_choices_e2e]
@@ -410,19 +441,21 @@ for key, values in fork_dict_e2e_final.items():
 # corretting for GSR and correlation
 bool_list["GSR"] = [not value for value in bool_list["noGSR"]]
 bool_list["correlation"] &= ~bool_list["partial correlation"]
-bool_values = np.array(bool_values)
+items = list(bool_list.keys())
+bool_values = list(bool_list.values())
+bool_values = np.asarray(bool_values)
+accuracy_values = np.zeros((bool_values.shape[0], bool_values.shape[1]))
 for i in range(bool_values.shape[1]):
     # Replace 0 with np.nan and 1 with the corresponding accuracy
     accuracy_values[:, i] = np.where(bool_values[:, i] == 1, accs_dict_e2e[i], np.nan)
 
-items = list(bool_list.keys())
-bool_values = list(bool_list.values())
 
 ## Create a grid for the subplots with specific heights for the plots
 fig = plt.figure(figsize=(8, 10))
 gs = gridspec.GridSpec(2, 1, height_ratios=[1, 2.5])
 
 ax0 = plt.subplot(gs[0])
+ax0.grid(axis='y')  # Add horizontal grid lines
 ax0.plot(accs_dict_e2e, color='black', alpha=0.7)
 ax0.set_xlim(0, len(accs_dict_e2e))
 ax0.set_ylim(0, 0.2)
@@ -457,6 +490,7 @@ fig = plt.figure(figsize=(8, 10))
 gs = gridspec.GridSpec(2, 1, height_ratios=[1, 2.5])
 
 ax0 = plt.subplot(gs[0])
+ax0.grid(axis='y')  # Add horizontal grid lines
 ax0.plot(accs_dict_e2e_sort, color='black', alpha=0.7)
 ax0.set_xlim(0, len(accs_dict_e2e))
 ax0.set_ylim(0, 0.2)
@@ -493,12 +527,11 @@ print(np.where(pipe_choices == "noGSR_covariance_zero_0.2_normalize_global effic
 """
 This histogram shows the lack of robustness of the explored association across the multiverse
 """
-from collections import defaultdict
-from pipeline import calculate_spline_and_plot
-
+data_total = get_data(path = path)
+data = pair_age(data_total, age_path, clean=True)
 all_slope_signs = defaultdict(list)
 for pipeline_n in range(936):
-    _, slope_signs = calculate_spline_and_plot(storage, pipeline_n, plot=False)
+    _, slope_signs = calculate_spline_and_plot(storage, pipeline_n, outputs=False)
     for interval, sign in slope_signs.items():
         all_slope_signs[interval].append(sign)
 
