@@ -176,7 +176,7 @@ def get_1_connectivity(sub_data, connect_met, p = False):
     if p:
         plt.matshow(connectivity, cmap='coolwarm')
         plt.title(f'{connect_met}')
-        plt.colorbar([-1,1])
+        plt.colorbar()
         plt.show()
 
     return connectivity
@@ -211,7 +211,6 @@ def fork_GSR(sub):
         time_series[roi] = np.array(df[roi].tolist())
     
     # Regressing the global signal from ROI
-    # TODO: change the name
     gsr_df = {}
     for roi in df.columns:
         roi_data = df[roi].values
