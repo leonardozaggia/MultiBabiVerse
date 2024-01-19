@@ -13,7 +13,7 @@ from nilearn.connectome import ConnectivityMeasure
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.interpolate import LSQUnivariateSpline
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.multioutput import MultiOutputRegressor
 from sklearn.linear_model import LinearRegression, Ridge, Lasso, ElasticNet
 from sklearn.ensemble import RandomForestRegressor
@@ -176,7 +176,7 @@ def get_1_connectivity(sub_data, connect_met, p = False):
     if p:
         plt.matshow(connectivity, cmap='coolwarm')
         plt.title(f'{connect_met}')
-        plt.colorbar([-1,1])
+        plt.colorbar()
         plt.show()
 
     return connectivity
@@ -211,7 +211,6 @@ def fork_GSR(sub):
         time_series[roi] = np.array(df[roi].tolist())
     
     # Regressing the global signal from ROI
-    # TODO: change the name
     gsr_df = {}
     for roi in df.columns:
         roi_data = df[roi].values
@@ -685,7 +684,7 @@ def search_ehaustive_reg(TempModelNum, age, Sparsities_Run,
     return TempResults
 
 # plotting spline for desired pipeline
-def calculate_spline_and_plot(storage, pipeline_n, n_participants=301, k=1, intervals=[28, 31, 37], plot_index=41, outputs=True):
+def calculate_spline_and_plot(data, pipe_choices, storage, pipeline_n, n_participants=301, k=1, intervals=[28, 31, 37], plot_index=41, outputs=True):
     
     # Load your data and set up your variables
     x = np.asanyarray(data["b_age"])
@@ -789,7 +788,7 @@ def print_FORKs():
     return 
 
 # Show pipeline results
-def show_results(data, storage, pipeline_n, region = 42):
+def show_results(data, pipe_choices, storage, pipeline_n, region = 42):
     regional_r2 = []
     ROIs = list(data["ts"][0].keys())
 

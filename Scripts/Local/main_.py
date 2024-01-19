@@ -11,6 +11,7 @@ from pipeline import new_mv
 from pipeline import get_FORKs, print_FORKs
 import pickle
 
+
 # Prevent warnings about future nilearn package updates
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -18,10 +19,10 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 
 # %% ------------------- DATA HANDLING ---------------------
 # defining relevant paths
-signal_path = '/Users/amnesia/Desktop/Master_Thesis/root_dir/end_processing_signal/handy-introduction-022-glbml-21786.mp3'
-path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/pipeline_timeseries"
-age_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/combined.tsv"
-output_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir_G_&_L/outputs"
+signal_path = '/Users/amnesia/Desktop/Oldenburg/Master_Thesis/root_dir/end_processing_signal/handy-introduction-022-glbml-21786.mp3'
+path = "/Users/amnesia/Desktop/Oldenburg/Master_Thesis/root_dir/data/pipeline_timeseries"
+age_path = "/Users/amnesia/Desktop/Oldenburg/Master_Thesis/root_dir/data/combined.tsv"
+output_path = "/Users/amnesia/Desktop/Oldenburg/Master_Thesis/root_dir_G_&_L/outputs"
 pipe_choices = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["pipeline_choices"]
 
 
@@ -78,7 +79,7 @@ for i in range(len(intervals) - 1):
 # Infant with lowest Gestational Age: 109
 # Infant with highest Gestational Age: 85
 sub_idx = np.random.randint(0,300)
-connectivities = get_3_connectivity(data = data, plot = True, sub_idx = sub_idx)
+#connectivities = get_3_connectivity(data = data, plot = True, sub_idx = sub_idx)
 
 # %% ----------------- CREATE THE SPACE -------------------
 # This process is time consuming takes approximately 10h to be completed
@@ -974,7 +975,7 @@ Plotting a single multiverse, using linear regression or spline k = 1, 2, 3
 sns.set_palette("coolwarm")
 
 # Choose a specific value of k
-k = 1
+k = 0
 accs = accs_list[k]  # Assuming you have accs_list defined somewhere
 
 # Create a figure and adjust size
@@ -1075,6 +1076,7 @@ storage = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'
 pipe_choices = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["pipeline_choices"]
 ROIs = list(data["ts"][0].keys())
 histogram = []
+p_value_list = np.zeros((len(pipe_choices), len(ROIs)))
 
 for pipeline_n in range(len(pipe_choices)):
     print("Chosen pipeline: " + pipe_choices[pipeline_n] + " - ", pipeline_n)
@@ -1098,7 +1100,7 @@ for pipeline_n in range(len(pipe_choices)):
 
         # Perform linear regression
         slope, intercept, r_value, p_value, std_err = linregress(x, y[:,i])
-
+        p_value_list[pipeline_n, i] = p_value
         # Check if the association is significant (using a common alpha level of 0.05)
         if p_value < 0.05:
             tmp = 1
