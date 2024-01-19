@@ -11,6 +11,7 @@ from pipeline import new_mv
 from pipeline import get_FORKs, print_FORKs
 import pickle
 
+
 # Prevent warnings about future nilearn package updates
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -18,10 +19,10 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 
 # %% ------------------- DATA HANDLING ---------------------
 # defining relevant paths
-signal_path = '/Users/amnesia/Desktop/Master_Thesis/root_dir/end_processing_signal/handy-introduction-022-glbml-21786.mp3'
-path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/pipeline_timeseries"
-age_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir/data/combined.tsv"
-output_path = "/Users/amnesia/Desktop/Master_Thesis/root_dir_G_&_L/outputs"
+signal_path = '/Users/amnesia/Desktop/Oldenburg/Master_Thesis/root_dir/end_processing_signal/handy-introduction-022-glbml-21786.mp3'
+path = "/Users/amnesia/Desktop/Oldenburg/Master_Thesis/root_dir/data/pipeline_timeseries"
+age_path = "/Users/amnesia/Desktop/Oldenburg/Master_Thesis/root_dir/data/combined.tsv"
+output_path = "/Users/amnesia/Desktop/Oldenburg/Master_Thesis/root_dir_G_&_L/outputs"
 pipe_choices = pickle.load(open(str(output_path + "/" + 'exhaustive_search_results.p'), 'rb'))["pipeline_choices"]
 
 
@@ -310,7 +311,7 @@ data_reduced['MDS'] = Y
 
 #%% ------------------------- Single Plot -------------------------
 
-key = 'MDS'
+key = 't-SNE'
 title_dict = {"MDS": "Multi-dimensional Scaling",
               "t-SNE": "t-Distributed Stochastic Neighbor Embedding",
               "SE": "Spectral Embedding",
@@ -974,7 +975,7 @@ Plotting a single multiverse, using linear regression or spline k = 1, 2, 3
 sns.set_palette("coolwarm")
 
 # Choose a specific value of k
-k = 1
+k = 0
 accs = accs_list[k]  # Assuming you have accs_list defined somewhere
 
 # Create a figure and adjust size
