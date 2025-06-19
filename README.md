@@ -1,66 +1,32 @@
 # MultiBabiVerse
 
-This project aims to study the relationship between prematurity and brain development.
-Leveraging Multiverse Analysis to ensure the robustness of the findings
+MultiBabiVerse contains the code used to explore how prematurity affects early brain development using a multiverse approach. The analysis relies on 301 infant resting‑state fMRI datasets and evaluates more than a thousand preprocessing pipelines to test the stability of different network measures.
 
-## Description
+## Repository structure
+- `Scripts/Local/` – Python modules to run the analysis on a local workstation. `main_.py` provides an example workflow based on the functions defined in `pipeline.py`.
+- `Scripts/Cluster/` – Variants of the same pipeline adapted for high performance computing (HPC) environments.
+- `multiverse_analysis_classification.py` and `multiverse_analysis_regression.py` – Jupyter notebooks and scripts used during development to replicate parts of the analysis.
+- `requirements.txt` – List of Python packages required to execute the code.
 
-The current project aims to study the difference between efficient and segregated working modalities of the brain in premature neonates.
-To achieve this goal, fMRI data from 301 infants was used to conduct the following analyses. Then, individual measures of segregation and integration are estimated.
-To ensure the replicability of the findings, and gain insight into the robustness of the effect, many alternative analyses are carried out.
-These analyses include 1152 different ways to process the data, each being a unique combination of the following decisions:
-* Global Signal Regression - yes or no
-* Connectivity measure - correlation, partial correlation or covariance
-* Negative Correlations - keep, absolute or to zero
-* Threshold - high to low
-* Connectivity Weigths - binarize or normalize
-
-Through different dimensionality reduction methods, the similarities between approaches are visualized in a 2D space.
-The prediction accuracy of each approach is calculated using simple spline regression with variable polynomial degree to observe the increased explained R2.
-
-
-## Getting Started
-
-### Dependencies
-
-* prerequisites, libraries, OS version, etc., needed before installing program.
-*
-
-### Executing program
-
-* How to run the program - cluster and local
-* Step-by-step bullets
+## Installation
+Clone the repository and install the dependencies with
+```bash
+pip install -r requirements.txt
 ```
-code blocks for commands
+Python 3.8 or newer is recommended.
+
+## Data
+The raw fMRI time‑series and demographic files are not distributed with this repository. Update the path variables at the top of the scripts in `Scripts/Local` or `Scripts/Cluster` to point to your local copies of these data.
+
+## Running the analysis
+For a local run execute
+```bash
+python Scripts/Local/main_.py
 ```
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run with helper info
-```
-
-## Authors
-
-Leonardo Zaggia
-[@leonardo_zaggia](https://twitter.com/leonardo_zaggia)
-
-## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
+For large scale experiments on a cluster modify the paths inside the scripts under `Scripts/Cluster/` and submit them using your scheduler of choice.
 
 ## License
+This project is released under the University of Oldenburg License. See the corresponding license file for details.
 
-This project is licensed under the [University of Oldenburg] License - see the LICENSE.md file for details
-
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [Dafflon-approach](https://github.com/Mind-the-Pineapple/into-the-multiverse)
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-
+## Author
+Leonardo Zaggia – [@leonardo_zaggia](https://twitter.com/leonardo_zaggia)
